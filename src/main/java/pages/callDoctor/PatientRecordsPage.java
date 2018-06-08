@@ -1,29 +1,68 @@
 package pages.callDoctor;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import pages.BasePage;
-import org.openqa.selenium.By;
 
 public class PatientRecordsPage extends BasePage {
+    @FindBy(xpath = "//*[@id='all-patient-records-tab']")
+    WebElement allrecord;
+    @FindBy(xpath = "//button[@title='Перенести запись']")
+    WebElement reschedule;
+    @FindBy(xpath = "//*[@id='week-doc-schedule-table-body']/tr[2]/td[7]/button")
+    WebElement recordDate;
+    @FindBy(xpath = "//*[@id='day-doc-schedule']/div/div/div[2]/button[17]")
+    WebElement recordTime;
+    @FindBy(xpath = "//*[@id='record-to-doc-form']/div/div[2]/button")
+    WebElement rerecord;
+    @FindBy(xpath = "//*[@id='ccInfoModal']/div/div/div[3]/button[2]")
+    WebElement yes;
+    @FindBy(xpath = "//button[@title='Удалить запись']")
+    WebElement delete;
+    @FindBy(xpath = "//*[@id='talon-list']/tr/td[2]")
+    WebElement talonNumber2;
+    @FindBy(xpath = "//*[@id='talon-list']/tr/td[4]")
+    WebElement docName2;
+    @FindBy(xpath = "//*[@id='talon-list']/tr/td[7]")
+    WebElement talonTime2;
     public PatientRecordsPage(WebDriver driver) {super(driver);}
     public void patientRecords() throws InterruptedException {
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[@id='all-patient-records-tab']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[@title='Перенести запись']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[@id='week-doc-schedule-table-body']/tr[2]/td[7]/button")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[@id='day-doc-schedule']/div/div/div[2]/button[17]")).click();
-        driver.findElement(By.xpath("//*[@id='record-to-doc-form']/div/div[2]/button")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[@title='Удалить запись']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button[2]")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[@title='Удалить запись']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button[2]")).click();
-        // webDriver.findElement(By.xpath ("//button[@id='search-patient']")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(allrecord));
+        allrecord.click();
+       // number2 = talonNumber2.getAttribute("innerHTML");
+       //System.out.println(talonNumber2.getAttribute("innerHTML"));
+       name2 = docName2.getAttribute("innerHTML");
+       System.out.println(name2);
+       // time2 = talonTime2.getAttribute("innerHTML");
+       /* asserts();
+        workRecord();
+        deleteRecord();*/
     }
+    public void workRecord() {
+        wait.until(ExpectedConditions.elementToBeClickable(reschedule));
+        reschedule.click();
+        wait.until(ExpectedConditions.elementToBeClickable(recordDate));
+        recordDate.click();
+        wait.until(ExpectedConditions.elementToBeClickable(recordTime));
+        recordTime.click();
+        rerecord.click();
+    }
+    public void deleteRecord() {
+        wait.until(ExpectedConditions.elementToBeClickable(delete));
+        delete.click();
+        wait.until(ExpectedConditions.elementToBeClickable(yes));
+        yes.click();
+        }
+    public void asserts() {
+        Assert.assertTrue(name.contains(docName2.getAttribute("innerHTML")));
+        //Assert.assertEquals(time,time2);
+        //Assert.assertEquals(number,talonNumber2.getAttribute("innerHTML"););
+
+    }
+
+
+
 }

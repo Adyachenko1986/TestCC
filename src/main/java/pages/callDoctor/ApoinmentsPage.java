@@ -2,12 +2,20 @@ package pages.callDoctor;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class ApoinmentsPage extends BasePage {
+    @FindBy(xpath = "//*[@id='direction-list-tab']")
+    WebElement apo;
+    JavascriptExecutor js = (JavascriptExecutor)driver;
     public ApoinmentsPage(WebDriver driver) {super(driver);}
     public void apoinmets() throws InterruptedException {
-        driver.findElement(By.xpath("//*[@id='direction-list-tab']")).click();
+        (js).executeScript("arguments[0].scrollIntoView();"
+                ,apo);
+        apo.click();
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[@id='direction-list']/div/div[2]/button")).click();
         Thread.sleep(2000);

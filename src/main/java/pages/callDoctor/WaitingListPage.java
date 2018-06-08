@@ -2,14 +2,20 @@ package pages.callDoctor;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 
 public class WaitingListPage extends BasePage {
+    @FindBy(xpath = "//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")
+    WebElement lpu;
     public WaitingListPage(WebDriver driver) {super(driver);}
     public void waitingList() throws InterruptedException {
-        driver.findElement(By.xpath("//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(lpu));
+        lpu.click();
         Thread.sleep(2000);
-        driver.findElement(By.xpath("//div[@id='spec-doc-list']/div[4]/button")).click();
+        driver.findElement(By.xpath("//div[@id='department-12202'")).click();
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[contains(text(),'Записать в лист ожидания')]")).click();
         Thread.sleep(2000);

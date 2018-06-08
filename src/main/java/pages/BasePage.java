@@ -18,6 +18,7 @@ abstract public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
+    public String name, name2, time, time2, number, number2;
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 20);
