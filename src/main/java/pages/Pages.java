@@ -45,9 +45,9 @@ public class Pages extends BasePage {
         return callDoctorPage;
     }
 
-    public CallCentreTests callCentreTests() {
-        CallCentreTests callCentreTests = PageFactory.initElements(driver, CallCentreTests.class);
-        return callCentreTests;
+    public CallCenterTests callCentreTests() {
+        CallCenterTests callCenterTests = PageFactory.initElements(driver, CallCenterTests.class);
+        return callCenterTests;
     }
 
 }

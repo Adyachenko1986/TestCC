@@ -6,9 +6,9 @@ import pages.BasePage;
 
 
 
-public class CallCentreTests extends BasePage {
+public class CallCenterTests extends BasePage {
 
-    public CallCentreTests(WebDriver driver) {
+    public CallCenterTests(WebDriver driver) {
         super(driver);
     }
 

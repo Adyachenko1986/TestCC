@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import pages.BasePage;
 
 public class PatientRecordsPage extends BasePage {
@@ -24,23 +23,33 @@ public class PatientRecordsPage extends BasePage {
     WebElement delete;
     @FindBy(xpath = "//*[@id='talon-list']/tr/td[2]")
     WebElement talonNumber2;
+
     @FindBy(xpath = "//*[@id='talon-list']/tr/td[4]")
     WebElement docName2;
     @FindBy(xpath = "//*[@id='talon-list']/tr/td[7]")
     WebElement talonTime2;
-    public PatientRecordsPage(WebDriver driver) {super(driver);}
+
+    public PatientRecordsPage(WebDriver driver) {
+        super(driver);
+    }
+
     public void patientRecords() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(allrecord));
         allrecord.click();
-       // number2 = talonNumber2.getAttribute("innerHTML");
-       //System.out.println(talonNumber2.getAttribute("innerHTML"));
-       name2 = docName2.getAttribute("innerHTML");
-       System.out.println(name2);
-       // time2 = talonTime2.getAttribute("innerHTML");
-       /* asserts();
+        Thread.sleep(1000);
+        name2 = docName2.getText();
+        time2 = talonTime2.getAttribute("innerHTML");
+
+        number2 = talonNumber2.getAttribute("innerHTML");
+        System.out.println(name2 + " " + time2 + " " + number2);
+        System.out.println(name + " " + time + " " + number);
+
+
+        //asserts();
         workRecord();
-        deleteRecord();*/
+        deleteRecord();
     }
+
     public void workRecord() {
         wait.until(ExpectedConditions.elementToBeClickable(reschedule));
         reschedule.click();
@@ -50,19 +59,23 @@ public class PatientRecordsPage extends BasePage {
         recordTime.click();
         rerecord.click();
     }
-    public void deleteRecord() {
-        wait.until(ExpectedConditions.elementToBeClickable(delete));
+
+    public void deleteRecord() throws InterruptedException {
+        //WebElement element = delete;
+        //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        Thread.sleep(1000);
+        //driver.findElement(By.xpath("//button[@title='Удалить запись']")).click();
+        //Thread.sleep(2000);
+        //driver.findElement(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button[2]")).click();
+        //wait.until(ExpectedConditions.elementToBeClickable(delete));
         delete.click();
         wait.until(ExpectedConditions.elementToBeClickable(yes));
         yes.click();
-        }
-    public void asserts() {
-        Assert.assertTrue(name.contains(docName2.getAttribute("innerHTML")));
-        //Assert.assertEquals(time,time2);
-        //Assert.assertEquals(number,talonNumber2.getAttribute("innerHTML"););
-
     }
 
+    public void asserts() {
+
+    }
 
 
 }

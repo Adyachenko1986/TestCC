@@ -22,13 +22,12 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) { super(driver); }
 
     public void login() {
-        driver.get("http://call.emias.mosreg.ru/call2_dev/to_work/");
+        driver.get("http://call.emias.mosreg.ru/cc_dev/to_work/");
         //WebElement explicitWait = (new WebDriverWait(driver, 5))
         //       .until(ExpectedConditions.elementToBeClicable(By.id("USER_LOGIN")));
         enterLoginText("ccg");
         enterPasswordText("ccg123");
         clickloginButton();
-        driver.get("http://call.emias.mosreg.ru/call2_dev/to_work/");
     }
 
     public void enterLoginText(String text) {
