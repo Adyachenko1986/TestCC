@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,9 +25,9 @@ abstract public class BasePage {
 
     public void hoverByAction(WebElement element) {
         //Asynchronous wait
-        JSWaiter.waitJQueryAngular();
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element).perform();
+//        JSWaiter.waitJQueryAngular();
+//        Actions actions = new Actions(driver);
+//        actions.moveToElement(element).perform();
     }
 
     public void click(By by) {
