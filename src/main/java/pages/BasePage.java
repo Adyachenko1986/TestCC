@@ -11,7 +11,6 @@ import pages.utilities.JSWaiter;
 
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertTrue;
 
 abstract public class BasePage {
     protected WebDriver driver;
@@ -59,7 +58,7 @@ abstract public class BasePage {
 
     public void containsClickable(String name) throws InterruptedException {
         WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));
-        wait.until(ExpectedConditions.visibilityOfAllElements(element));
-        assertTrue(element.isDisplayed());
+//        wait.until(ExpectedConditions.visibilityOfAllElements(element));
+//        assertTrue(element.isDisplayed());
     }
 }

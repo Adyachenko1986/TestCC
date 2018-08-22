@@ -1,6 +1,6 @@
 package callcenter;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 public class TestCC extends AbstractTest {
 

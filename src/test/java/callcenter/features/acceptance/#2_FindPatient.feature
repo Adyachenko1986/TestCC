@@ -1,6 +1,6 @@
-@acceptanceTest
 #   language: ru
 
+@acceptanceTest
 Функция: Поиск пациента
   Задействованные роли:
   Андрей - оператор Колл-Центра
