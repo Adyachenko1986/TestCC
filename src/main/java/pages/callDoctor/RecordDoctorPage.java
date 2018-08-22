@@ -1,6 +1,5 @@
 package pages.callDoctor;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,7 +26,9 @@ public class RecordDoctorPage extends BasePage {
     @FindBy(xpath = "//*[@id='ccIngoModalCont']/dl/dd[7]")
     WebElement talonNumber;
 
-    public RecordDoctorPage(WebDriver driver) { super(driver); }
+    public RecordDoctorPage() {
+    }
+
     public void recordDoctor() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(lpu));
         lpu.click();
@@ -42,7 +43,7 @@ public class RecordDoctorPage extends BasePage {
         name = docName.getText();
         time = talonTime.getText();
         number = talonNumber.getAttribute("innerHTML");
-        System.out.println(name+" "+time+" "+number);
+        System.out.println(name + " " + time + " " + number);
         close.click();
 
     }

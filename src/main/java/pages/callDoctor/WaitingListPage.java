@@ -1,7 +1,6 @@
 package pages.callDoctor;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,7 +9,10 @@ import pages.BasePage;
 public class WaitingListPage extends BasePage {
     @FindBy(xpath = "//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")
     WebElement lpu;
-    public WaitingListPage(WebDriver driver) {super(driver);}
+
+    public WaitingListPage() {
+    }
+
     public void waitingList() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(lpu));
         lpu.click();

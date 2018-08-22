@@ -1,14 +1,20 @@
 package callcenter.steps;
 
+import callcenter.AbstractTest;
+import com.codeborne.selenide.Condition;
 import cucumber.api.PendingException;
 import cucumber.api.java.ru.*;
+import org.openqa.selenium.By;
 
-public class MyStepdefs {
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
-        @Допустим("^что Андрей вошел в АРМ оператора под своей учетной записью$")
-        public void чтоАндрейВошелВАРМОператораПодСвоейУчетнойЗаписью() throws Throwable {
-                // Write code here that turns the phrase above into concrete actions
-                throw new PendingException();
+public class MyStepdefs extends AbstractTest {
+
+        @Если("^Андрей вошел в АРМ оператора под своей учетной записью$")
+        public void АндрейВошелВАРМОператораПодСвоейУчетнойЗаписью() {
+//                page.loginPage().login();
+                open("http://ya.ru");
         }
 
         @Допустим("^Андрей хочет найти пациента по номеру полиса$")
@@ -321,18 +327,7 @@ public class MyStepdefs {
         public void андрейЗаполняетОбязательныеПоля() throws Throwable {
                 // Write code here that turns the phrase above into concrete actions
                 throw new PendingException();
-        }
 
-        @И("^нажимает на ЛПУ$")
-        public void нажимаетНаЛПУ() throws Throwable {
-                // Write code here that turns the phrase above into concrete actions
-                throw new PendingException();
-        }
-
-        @То("^появится всплывающие окно с заполненными полями$")
-        public void появитсяВсплывающиеОкноСЗаполненнымиПолями() throws Throwable {
-                // Write code here that turns the phrase above into concrete actions
-                throw new PendingException();
         }
 
         @Допустим("^Андрей захотел посмотреть вызовы врача к пациенту$")
@@ -361,27 +356,28 @@ public class MyStepdefs {
 
         @Тогда("^Андрей успешно входит в АРМ оператора$")
         public void андрейУспешноВходитВАРМОператора() throws Throwable {
-                // Write code here that turns the phrase above into concrete actions
-                throw new PendingException();
+                $(By.xpath("//*[conditions(text(),'Серия и номер полиса через пробел')]")).shouldBe(Condition.visible);
+//                $(By.xpath("//*[conditions(text(),'Фамилия Имя Отчество (полностью)')]")).shouldBe(Condition.visible).equals(true));
+//                $(By.xpath("//*[conditions(text(),'Дата рождения')]")).shouldBe(Condition.visible).equals(true));
         }
 
-        @Тогда("^открылась вкладка с активными направлениями, где указано куда направлен пациент, специализация, ФИО врача и период действия направления\.$")
-        public void открыласьВкладкаСАктивнымиНаправлениямиГдеУказаноКудаНаправленПациентСпециализацияФИОВрачаИПериодДействияНаправления() throws Throwable {
-                // Write code here that turns the phrase above into concrete actions
-                throw new PendingException();
-        }
+//        @Тогда("^открылась вкладка с активными направлениями, где указано куда направлен пациент, специализация, ФИО врача и период действия направления\.$")
+//        public void открыласьВкладкаСАктивнымиНаправлениямиГдеУказаноКудаНаправленПациентСпециализацияФИОВрачаИПериодДействияНаправления() throws Throwable {
+//                // Write code here that turns the phrase above into concrete actions
+//                throw new PendingException();
+//        }
 
-        @Допустим("^Андрей захотел записать пациента по направлению\.$")
-        public void андрейЗахотелЗаписатьПациентаПоНаправлению() throws Throwable {
-                // Write code here that turns the phrase above into concrete actions
-                throw new PendingException();
-        }
+//        @Допустим("^Андрей захотел записать пациента по направлению\.$")
+//        public void андрейЗахотелЗаписатьПациентаПоНаправлению() throws Throwable {
+//                // Write code here that turns the phrase above into concrete actions
+//                throw new PendingException();
+//        }
 
-        @И("^нажимает на ЛПУ$")
-        public void нажимаетНаЛПУ() throws Throwable {
-                // Write code here that turns the phrase above into concrete actions
-                throw new PendingException();
-        }
+//        @И("^нажимает на ЛПУ$")
+//        public void нажимаетНаЛПУ() throws Throwable {
+//                // Write code here that turns the phrase above into concrete actions
+//                throw new PendingException();
+//        }
 
         @То("^появится всплывающие окно с заполненными полями:$")
         public void появитсяВсплывающиеОкноСЗаполненнымиПолями() throws Throwable {
@@ -389,11 +385,11 @@ public class MyStepdefs {
                 throw new PendingException();
         }
 
-        @Допустим("^Андрей захотел посмотреть историю вызова врача на дом\.$")
-        public void андрейЗахотелПосмотретьИсториюВызоваВрачаНаДом() throws Throwable {
-                // Write code here that turns the phrase above into concrete actions
-                throw new PendingException();
-        }
+//        @Допустим("^Андрей захотел посмотреть историю вызова врача на дом\.$")
+//        public void андрейЗахотелПосмотретьИсториюВызоваВрачаНаДом() throws Throwable {
+//                // Write code here that turns the phrase above into concrete actions
+//                throw new PendingException();
+//        }
 
         @Также("^заполняет поле жалобы$")
         public void заполняетПолеЖалобы() throws Throwable {
@@ -431,9 +427,23 @@ public class MyStepdefs {
                 throw new PendingException();
         }
 
-        @Допустим("^Андрей захотел посмотреть историю вызова врача на дом\.$")
-        public void андрейЗахотелПосмотретьИсториюВызоваВрачаНаДом() throws Throwable {
+        @И("^Ввел в поиске \"([^\"]*)\"$")
+        public void ввелВПоиске(String arg0) throws Throwable {
+                $(By.id("text")).setValue(arg0);
                 // Write code here that turns the phrase above into concrete actions
-                throw new PendingException();
+//                throw new PendingException();
         }
+
+        @Тогда("^На странице поиска отобразится клип Бритни Спирс \"([^\"]*)\"$")
+        public void наСтраницеПоискаОтобразитсяКлипБритниСпирс(String arg0) throws Throwable {
+                // Write code here that turns the phrase above into concrete actions
+                $(By.xpath("//*[contains(text(),'" + arg0 + "')]")).shouldBe(Condition.visible);
+//                throw new PendingException();
+        }
+
+//        @Допустим("^Андрей захотел посмотреть историю вызова врача на дом\.$")
+//        public void андрейЗахотелПосмотретьИсториюВызоваВрачаНаДом() throws Throwable {
+//                // Write code here that turns the phrase above into concrete actions
+//                throw new PendingException();
+//        }
 }

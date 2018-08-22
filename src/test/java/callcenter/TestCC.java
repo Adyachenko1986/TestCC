@@ -2,7 +2,7 @@ package callcenter;
 
 import org.testng.annotations.Test;
 
-public class TestCC extends TestBase {
+public class TestCC extends AbstractTest {
 
     @Test
     public void testCallCenter() throws InterruptedException {

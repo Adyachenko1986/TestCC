@@ -1,6 +1,5 @@
 package pages.callDoctor;
 
-import org.openqa.selenium.WebDriver;
 import pages.BasePage;
 //import pages.callDoctor.LoginPage;
 
@@ -8,8 +7,8 @@ import pages.BasePage;
 
 public class CallCenterTests extends BasePage {
 
-    public CallCenterTests(WebDriver driver) {
-        super(driver);
+    public CallCenterTests( ) {
+
     }
 
     public void callCentrPage() throws InterruptedException {

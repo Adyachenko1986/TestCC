@@ -23,6 +23,9 @@ abstract public class BasePage {
         wait = new WebDriverWait(driver, 20);
     }
 
+    protected BasePage() {
+    }
+
     public void hoverByAction(WebElement element) {
         //Asynchronous wait
 //        JSWaiter.waitJQueryAngular();

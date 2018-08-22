@@ -1,52 +1,49 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import pages.callDoctor.*;
 
 public class Pages extends BasePage {
 
-    public Pages(WebDriver driver) {
-        super(driver);
+    public Pages() {
     }
 
     public LoginPage loginPage() {
-        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        LoginPage loginPage = new LoginPage();//.initElements(driver, LoginPage.class);
         return loginPage;
     }
 
     public FindPatientPage findPatientPage() {
-        FindPatientPage findPatientPage = PageFactory.initElements(driver, FindPatientPage.class);
+        FindPatientPage findPatientPage = new FindPatientPage();//.initElements(driver, FindPatientPage.class);
         return findPatientPage;
     }
 
     public RecordDoctorPage recordDoctorPage() {
-        RecordDoctorPage recordDoctorPage = PageFactory.initElements(driver, RecordDoctorPage.class);
+        RecordDoctorPage recordDoctorPage = new RecordDoctorPage();//.initElements(driver, RecordDoctorPage.class);
         return recordDoctorPage;
     }
 
     public WaitingListPage waitingListPage() {
-        WaitingListPage waitingListPage = PageFactory.initElements(driver, WaitingListPage.class);
+        WaitingListPage waitingListPage = new WaitingListPage();//.initElements(driver, WaitingListPage.class);
         return waitingListPage;
     }
 
     public ApoinmentsPage apoinmentsPage() {
-        ApoinmentsPage apoinmentsPage = PageFactory.initElements(driver, ApoinmentsPage.class);
+        ApoinmentsPage apoinmentsPage = new ApoinmentsPage();//.initElements(driver, ApoinmentsPage.class);
         return apoinmentsPage;
     }
 
     public PatientRecordsPage patientRecordsPage() {
-        PatientRecordsPage patientRecordsPage = PageFactory.initElements(driver, PatientRecordsPage.class);
+        PatientRecordsPage patientRecordsPage = new PatientRecordsPage();//.initElements(driver, PatientRecordsPage.class);
         return patientRecordsPage;
     }
 
     public CallDoctorPage callDoctorPage() {
-        CallDoctorPage callDoctorPage = PageFactory.initElements(driver, CallDoctorPage.class);
+        CallDoctorPage callDoctorPage = new CallDoctorPage();//.initElements(driver, CallDoctorPage.class);
         return callDoctorPage;
     }
 
     public CallCenterTests callCentreTests() {
-        CallCenterTests callCenterTests = PageFactory.initElements(driver, CallCenterTests.class);
+        CallCenterTests callCenterTests = new CallCenterTests();//.initElements(driver, CallCenterTests.class);
         return callCenterTests;
     }
 

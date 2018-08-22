@@ -9,11 +9,11 @@ import java.awt.*;
 
 @CucumberOptions(
         plugin = {"html:target/cucumber-report/acceptanceTest", "json:target/cucumber.json"},
-        features = "src/test/java/callcenter/features",
+        features = "src/test/java/callcenter/features/acceptance",
         glue = "callcenter/steps",
         tags = "@acceptanceTest",
-        dryRun = false,
-        strict = false,
+//        dryRun = false,
+//        strict = false,
         snippets = SnippetType.UNDERSCORE)
 
 public abstract class AbstractTest {
@@ -21,6 +21,27 @@ public abstract class AbstractTest {
     public static Pages page;
     public static String curUrlCalldoctor = null;
     public Robot rb;
+
+//    @BeforeSuite
+//    public void beforeSuite() {
+
+//        ChromeDriverService service = new ChromeDriverService.Builder()
+//                .usingDriverExecutable(new File("src/resources/chromedriver.exe"))
+//                .usingAnyFreePort()
+//                .build();
+//        ChromeOptions options = new ChromeOptions();
+//        driver = new ChromeDriver(service, options);
+
+//        JSWaiter.setDriver(driver);
+//        Waiter.setDriver(driver);
+//        wait = new WebDriverWait(driver, 20);
+//        page = new Pages(driver);
+//    }
+//
+//    @AfterSuite
+//    public void afterSuite() {
+//        driver.quit();
+//    }
 
 
 

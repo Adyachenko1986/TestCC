@@ -1,6 +1,5 @@
 package pages.callDoctor;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,8 +28,7 @@ public class PatientRecordsPage extends BasePage {
     @FindBy(xpath = "//*[@id='talon-list']/tr/td[7]")
     WebElement talonTime2;
 
-    public PatientRecordsPage(WebDriver driver) {
-        super(driver);
+    public PatientRecordsPage() {
     }
 
     public void patientRecords() throws InterruptedException {
