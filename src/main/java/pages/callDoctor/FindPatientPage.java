@@ -1,10 +1,10 @@
 package pages.callDoctor;
 
 import org.openqa.selenium.By;
-import pages.BasePage;
+import pages.AbstractPage;
 
 
-public class FindPatientPage extends BasePage {
+public class FindPatientPage extends AbstractPage {
 
     public FindPatientPage() {
     }

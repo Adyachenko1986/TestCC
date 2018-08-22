@@ -2,11 +2,11 @@ package pages.callDoctor;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
-import pages.BasePage;
+import pages.AbstractPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends AbstractPage {
 
     @FindBy(id = "USER_LOGIN")
     SelenideElement log;

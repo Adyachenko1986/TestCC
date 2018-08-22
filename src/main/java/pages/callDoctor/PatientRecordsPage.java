@@ -3,9 +3,9 @@ package pages.callDoctor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
+import pages.AbstractPage;
 
-public class PatientRecordsPage extends BasePage {
+public class PatientRecordsPage extends AbstractPage {
     @FindBy(xpath = "//*[@id='all-patient-records-tab']")
     WebElement allrecord;
     @FindBy(xpath = "//button[@title='Перенести запись']")
@@ -35,12 +35,12 @@ public class PatientRecordsPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(allrecord));
         allrecord.click();
         Thread.sleep(1000);
-        name2 = docName2.getText();
-        time2 = talonTime2.getAttribute("innerHTML");
-
-        number2 = talonNumber2.getAttribute("innerHTML");
-        System.out.println(name2 + " " + time2 + " " + number2);
-        System.out.println(name + " " + time + " " + number);
+//        name2 = docName2.getText();
+//        time2 = talonTime2.getAttribute("innerHTML");
+//
+//        number2 = talonNumber2.getAttribute("innerHTML");
+//        System.out.println(name2 + " " + time2 + " " + number2);
+//        System.out.println(name + " " + time + " " + number);
 
 
         //asserts();

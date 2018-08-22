@@ -1,11 +1,11 @@
 package pages.callDoctor;
 
-import pages.BasePage;
+import pages.AbstractPage;
 //import pages.callDoctor.LoginPage;
 
 
 
-public class CallCenterTests extends BasePage {
+public class CallCenterTests extends AbstractPage {
 
     public CallCenterTests( ) {
 

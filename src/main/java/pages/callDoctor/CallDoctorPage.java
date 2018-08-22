@@ -3,9 +3,9 @@ package pages.callDoctor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
+import pages.AbstractPage;
 
-public class CallDoctorPage extends BasePage {
+public class CallDoctorPage extends AbstractPage {
     public CallDoctorPage() {
     }
 

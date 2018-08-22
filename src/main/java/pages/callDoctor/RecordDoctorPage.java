@@ -3,10 +3,10 @@ package pages.callDoctor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
+import pages.AbstractPage;
 
 
-public class RecordDoctorPage extends BasePage {
+public class RecordDoctorPage extends AbstractPage {
     @FindBy(xpath = "//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")
     WebElement lpu;
     @FindBy(xpath = "//div[@id='department-11400']")
@@ -40,10 +40,10 @@ public class RecordDoctorPage extends BasePage {
         docTime.click();
         record.click();
         wait.until(ExpectedConditions.elementToBeClickable(close));
-        name = docName.getText();
-        time = talonTime.getText();
-        number = talonNumber.getAttribute("innerHTML");
-        System.out.println(name + " " + time + " " + number);
+//        name = docName.getText();
+//        time = talonTime.getText();
+//        number = talonNumber.getAttribute("innerHTML");
+//        System.out.println(name + " " + time + " " + number);
         close.click();
 
     }

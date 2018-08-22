@@ -2,7 +2,7 @@ package pages;
 
 import pages.callDoctor.*;
 
-public class Pages extends BasePage {
+public class Pages {
 
     public Pages() {
     }

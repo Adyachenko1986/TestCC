@@ -1,6 +1,6 @@
-@acceptanceTest
 #   language: ru
 
+@acceptanceTest
 Функция: Авторизация в КЦ
   Задействованные роли:
   Андрей - оператор Колл-Центра

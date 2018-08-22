@@ -3,40 +3,41 @@ package callcenter;
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import pages.Pages;
 
 import java.awt.*;
 
 @CucumberOptions(
         plugin = {"html:target/cucumber-report/acceptanceTest", "json:target/cucumber.json"},
-        features = "src/test/java/callcenter/features",
+        features = "src/test/java/callcenter/features/acceptance",
         glue = "callcenter/steps",
         tags = "@acceptanceTest",
-        dryRun = false,
-        strict = false,
+//        dryRun = false,
+//        strict = false,
         snippets = SnippetType.UNDERSCORE)
 
 public abstract class AbstractTest {
     public static WebDriver driver;
     public static Pages page;
     public static String curUrlCalldoctor = null;
-    public Robot rb;
 
 
 
-//    @Parameters({"browser", "platform"})
-//    @BeforeSuite(alwaysRun = true)
-//    public void beforeSuite(@Optional String browser, @Optional String platform, ITestContext context) {
-////        System.out.println("Browser: " + browser);
-////        System.out.println("Platform: " + platform);
-////        driver = new DriverManager(browser).createDriver();
-////        page = new Pages();
-//    }
+    @Parameters({"browser", "platform"})
+    @BeforeSuite(alwaysRun = true)
+    public void beforeSuite(@Optional String browser, @Optional String platform, ITestContext context) {
+//        System.out.println("Browser: " + browser);
+//        System.out.println("Platform: " + platform);
+//        driver = new DriverManager(browser).createDriver();
+//        page = new Pages();
+    }
 
-//    @AfterSuite(alwaysRun = true)
-//    public void afterSutie() {
-//        driver.quit();
-//    }
+    @AfterSuite(alwaysRun = true)
+    public void afterSutie() {
+        driver.quit();
+    }
 
 //    @Parameters(value = {"site", "login", "pass"})
 //    @BeforeGroups(groups = "mis", alwaysRun = true)
