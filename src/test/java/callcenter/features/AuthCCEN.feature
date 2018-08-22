@@ -6,7 +6,7 @@ Feature: Auth in CC
   Андрей - оператор Колл-Центра
 
   Scenario: Auth in CC
-    When open website
+    Given open website
     And enter "Работай сука"
     And press "Найти"
     Then verify "Work Bitch"
