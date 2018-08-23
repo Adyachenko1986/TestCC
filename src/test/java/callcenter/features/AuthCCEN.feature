@@ -7,5 +7,4 @@ Feature: Auth in CC
 
   Scenario: Auth in CC
     When что Андрей вошел в АРМ оператора под своей учетной записью
-    Then Andre succesfull engate in ARM oper
-#    Then Андрей успешно входит в АРМ оператора
+    Then Андрей успешно входит в АРМ оператора
