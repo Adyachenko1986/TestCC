@@ -2,7 +2,7 @@ package pages;
 
 import pages.callCenter.*;
 
-public class Pages extends BasePage {
+public class Pages extends AbstractPage {
 
     public Pages() {
     }

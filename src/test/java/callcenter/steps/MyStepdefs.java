@@ -10,6 +10,7 @@ import cucumber.api.java.en.When;
 import cucumber.api.java.ru.Допустим;
 import cucumber.api.java.ru.Тогда;
 import org.openqa.selenium.By;
+import pages.Pages;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -42,6 +43,16 @@ public class MyStepdefs extends AbstractTest {
         $(By.id("USER_LOGIN")).val("ccg");
         $(By.id("USER_PASSWORD")).val("ccg123");
         $(By.xpath("//button[@type='submit']")).click();
+    }
+
+    @When("^что Андрей вошел в АРМ оператора под своей учетной записью Тест$")
+    public void testest()  {
+        page.loginPage().login();
+
+//        open("http://local.call/cc_dev/to_work/?login=yes");
+//        $(By.id("USER_LOGIN")).val("ccg");
+//        $(By.id("USER_PASSWORD")).val("ccg123");
+//        $(By.xpath("//button[@type='submit']")).click();
     }
 
     @Then("^Андрей успешно входит в АРМ оператора$")
@@ -113,5 +124,29 @@ public class MyStepdefs extends AbstractTest {
     @Then("^появится всплывающее окно$")
     public void появитсяВсплывающееОкно() {
         $(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button")).click();
+    }
+
+    @Given("^Андрей хочет записать пациента в лист ожидания$")
+    public void андрейХочетЗаписатьПациентаВЛистОжидания() {
+
+    }
+
+    @And("^выбирает “Оформить лист ожидания” у специальности “Психиатрия”$")
+    public void выбираетОформитьЛистОжиданияУСпециальностиПсихиатрия() {
+
+    }
+
+    @And("^заполняет поле жалобы$")
+    public void заполняетПолеЖалобы() {
+
+    }
+
+    @And("^выбирает “Оформить”$")
+    public void выбираетОформить() {
+    }
+
+    @Then("^Появится всплывающее окно с записью \"([^\"]*)\"$")
+    public void появитсяВсплывающееОкноСЗаписью(String arg0) {
+
     }
 }

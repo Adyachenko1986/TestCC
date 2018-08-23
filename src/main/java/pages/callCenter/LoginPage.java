@@ -1,29 +1,27 @@
 package pages.callCenter;
 
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
-import pages.BasePage;
+import pages.AbstractPage;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends AbstractPage {
 
-    @FindBy(id = "USER_LOGIN")
-    SelenideElement log;
-
-    @FindBy(id = "USER_PASSWORD")
-    SelenideElement pass;
-
-    @FindBy(xpath = "//button[@type='submit']")
-    SelenideElement loginButton;
+    SelenideElement log = $(By.id("USER_LOGIN"));
+    SelenideElement pass = $(By.id("USER_PASSWORD"));
+    SelenideElement loginButton = $(By.xpath("//button[@type='submit']"));
 
     public LoginPage() {
     }
 
     public void login() {
+        System.out.println("компилятр дошел до сюдого!");
         open("http://call.emias.mosreg.ru/cc_dev/to_work/");
-        log.setValue("ccg");
-        pass.setValue("ccg123");
+        log.val("ccg");
+        pass.val("ccg123");
         loginButton.click();
     }
 }

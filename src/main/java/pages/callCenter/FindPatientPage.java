@@ -1,10 +1,12 @@
 package pages.callCenter;
 
 import org.openqa.selenium.By;
-import pages.BasePage;
+import pages.AbstractPage;
+
+import static com.codeborne.selenide.Selenide.$;
 
 
-public class FindPatientPage extends BasePage {
+public class FindPatientPage extends AbstractPage {
 
     public FindPatientPage() {
     }
@@ -13,8 +15,8 @@ public class FindPatientPage extends BasePage {
 
     public void findPatient() throws InterruptedException {
         Thread.sleep(1000);
-        driver.findElement(By.name("snPol")).sendKeys(snpol);
-        driver.findElement(By.xpath("//button[@id='search-patient']")).click();
+        $(By.name("snPol")).sendKeys(snpol);
+        $(By.xpath("//button[@id='search-patient']")).click();
         //Thread.sleep(2000);
     }
 }

@@ -1,38 +1,40 @@
 package pages.callCenter;
 
-import org.openqa.selenium.WebElement;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
+import pages.AbstractPage;
 
-public class PatientRecordsPage extends BasePage {
+public class PatientRecordsPage extends AbstractPage {
+    String name2;
+    String time2;
+    String number2;
+
     @FindBy(xpath = "//*[@id='all-patient-records-tab']")
-    WebElement allrecord;
+    SelenideElement allrecord;
     @FindBy(xpath = "//button[@title='Перенести запись']")
-    WebElement reschedule;
+    SelenideElement reschedule;
     @FindBy(xpath = "//*[@id='week-doc-schedule-table-body']/tr[2]/td[7]/button")
-    WebElement recordDate;
+    SelenideElement recordDate;
     @FindBy(xpath = "//*[@id='day-doc-schedule']/div/div/div[2]/button[17]")
-    WebElement recordTime;
+    SelenideElement recordTime;
     @FindBy(xpath = "//*[@id='record-to-doc-form']/div/div[2]/button")
-    WebElement rerecord;
+    SelenideElement rerecord;
     @FindBy(xpath = "//*[@id='ccInfoModal']/div/div/div[3]/button[2]")
-    WebElement yes;
+    SelenideElement yes;
     @FindBy(xpath = "//button[@title='Удалить запись']")
-    WebElement delete;
+    SelenideElement delete;
     @FindBy(xpath = "//*[@id='talon-list']/tr/td[2]")
-    WebElement talonNumber2;
+    SelenideElement talonNumber2;
 
     @FindBy(xpath = "//*[@id='talon-list']/tr/td[4]")
-    WebElement docName2;
+    SelenideElement docName2;
     @FindBy(xpath = "//*[@id='talon-list']/tr/td[7]")
-    WebElement talonTime2;
+    SelenideElement talonTime2;
 
     public PatientRecordsPage() {
     }
 
     public void patientRecords() throws InterruptedException {
-        wait.until(ExpectedConditions.elementToBeClickable(allrecord));
         allrecord.click();
         Thread.sleep(1000);
         name2 = docName2.getText();
@@ -40,8 +42,7 @@ public class PatientRecordsPage extends BasePage {
 
         number2 = talonNumber2.getAttribute("innerHTML");
         System.out.println(name2 + " " + time2 + " " + number2);
-        System.out.println(name + " " + time + " " + number);
-
+//        System.out.println(name + " " + time + " " + number);
 
         //asserts();
         workRecord();
@@ -49,17 +50,14 @@ public class PatientRecordsPage extends BasePage {
     }
 
     public void workRecord() {
-        wait.until(ExpectedConditions.elementToBeClickable(reschedule));
         reschedule.click();
-        wait.until(ExpectedConditions.elementToBeClickable(recordDate));
         recordDate.click();
-        wait.until(ExpectedConditions.elementToBeClickable(recordTime));
         recordTime.click();
         rerecord.click();
     }
 
     public void deleteRecord() throws InterruptedException {
-        //WebElement element = delete;
+        //SelenideElement element = delete;
         //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         Thread.sleep(1000);
         //driver.findElement(By.xpath("//button[@title='Удалить запись']")).click();
@@ -67,13 +65,10 @@ public class PatientRecordsPage extends BasePage {
         //driver.findElement(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button[2]")).click();
         //wait.until(ExpectedConditions.elementToBeClickable(delete));
         delete.click();
-        wait.until(ExpectedConditions.elementToBeClickable(yes));
         yes.click();
     }
 
     public void asserts() {
 
     }
-
-
 }
