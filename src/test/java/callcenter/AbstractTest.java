@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
-import pages.Pages;
 
 import java.io.File;
 
@@ -21,14 +20,11 @@ import java.io.File;
         features = "src/test/java/callcenter/features",
         glue = "callcenter/steps",
         tags = "@acceptanceTest",
-//        dryRun = false,
-//        strict = false,
         snippets = SnippetType.UNDERSCORE)
 
 public class AbstractTest {
     public static WebDriver driver;
-    public static Pages page;
-    public static String curUrlCalldoctor = null;
+//    public Pages page;
     public static ChromeOptions chromeOptions;
     public static ChromeDriverService chromeDriverService;
 
@@ -39,9 +35,9 @@ public class AbstractTest {
                 .usingAnyFreePort()
                 .build();
         chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("window-size=1900,1020");
+        chromeOptions.addArguments("window-size=1240,1020");
         driver = new ChromeDriver(chromeDriverService, chromeOptions);
         WebDriverRunner.setWebDriver(driver);
-        Configuration.timeout = 20000;
+        Configuration.timeout = 8000;
     }
 }

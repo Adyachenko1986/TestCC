@@ -6,7 +6,6 @@ Feature: Auth in CC
   Андрей - оператор Колл-Центра
 
   Scenario: Auth in CC
-    Given open website
-    And enter "Работай сука"
-    And press "Найти"
-    Then verify "Work Bitch"
+    When что Андрей вошел в АРМ оператора под своей учетной записью
+    Then Andre succesfull engate in ARM oper
+#    Then Андрей успешно входит в АРМ оператора

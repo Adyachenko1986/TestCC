@@ -1,4 +1,4 @@
-package pages.callDoctor;
+package pages.callCenter;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

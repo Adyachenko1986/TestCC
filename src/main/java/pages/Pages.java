@@ -1,6 +1,6 @@
 package pages;
 
-import pages.callDoctor.*;
+import pages.callCenter.*;
 
 public class Pages extends BasePage {
 

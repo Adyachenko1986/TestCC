@@ -1,4 +1,4 @@
-package pages.callDoctor;
+package pages.callCenter;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;

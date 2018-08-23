@@ -1,7 +1,7 @@
-package pages.callDoctor;
+package pages.callCenter;
 
 import pages.BasePage;
-//import pages.callDoctor.LoginPage;
+//import pages.callCenter.LoginPage;
 
 
 
