@@ -1,152 +1,238 @@
 package callcenter.steps;
 
 import callcenter.AbstractTest;
-import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selectors;
 import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-import cucumber.api.java.ru.Допустим;
-import cucumber.api.java.ru.Тогда;
+import cucumber.api.java.ru.*;
+import pages.SElements;
+import com.codeborne.selenide.Condition;
+
 import org.openqa.selenium.By;
-import pages.Pages;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class MyStepdefs extends AbstractTest {
+public class MyStepdefs extends AbstractTest implements SElements {
 
-//    @When("^open website$")
-//    public void openWebsite() {
-//            open("http://ya.ru");
-//    }
-//
-//    @And("^enter \"([^\"]*)\"$")
-//    public void enter(String arg0) {
-//            $(By.id("text")).setValue(arg0);
-//    }
-//
-//    @Then("^verify \"([^\"]*)\"$")
-//    public void verify(String arg0) {
-//            $(By.xpath("//*[contains(text(),'" + arg0 + "')]")).shouldBe(Condition.visible);
-//    }
-//
-//    @And("^press \"([^\"]*)\"$")
-//    public void press(String arg0) {
-//        $(By.xpath("//*[contains(text(),'" + arg0 + "')]")).click();
-//    }
-
-    @When("^что Андрей вошел в АРМ оператора под своей учетной записью$")
-    public void чтоАндрейВошелВАРМОператораПодСвоейУчетнойЗаписью()  {
-        open("http://local.call/cc_dev/to_work/?login=yes");
-        $(By.id("USER_LOGIN")).val("ccg");
-        $(By.id("USER_PASSWORD")).val("ccg123");
-        $(By.xpath("//button[@type='submit']")).click();
-    }
-
-    @When("^что Андрей вошел в АРМ оператора под своей учетной записью Тест$")
-    public void testest()  {
+    @Допустим("^что Андрей вошел в АРМ оператора под своей учетной записью$")
+    public void LoginCC() {
         page.loginPage().login();
-
-//        open("http://local.call/cc_dev/to_work/?login=yes");
-//        $(By.id("USER_LOGIN")).val("ccg");
-//        $(By.id("USER_PASSWORD")).val("ccg123");
-//        $(By.xpath("//button[@type='submit']")).click();
     }
 
-    @Then("^Андрей успешно входит в АРМ оператора$")
-    public void андрейУспешноВходитВАРМОператора()  {
-        $(By.xpath("//button[@id='search-patient']")).shouldBe(Condition.visible);
+    @Тогда("^Андрей успешно входит в АРМ оператора$")
+    public void SucsessLog() {
+        find.shouldBe(Condition.visible);
     }
 
-    @Given("^Андрей хочет найти пациента по номеру полиса$")
-    public void андрейХочетНайтиПациентаПоНомеруПолиса()  {
-        $(By.xpath("//button[@id='search-patient']")).shouldBe(Condition.visible);
+    @Дано("^Андрей хочет найти пациента по номеру полиса$")
+    public void FindPol() {
+        find.shouldBe(Condition.visible);
     }
 
-    @When("^Андрей заполняет данные полиса пациента$")
-    public void андрейЗаполняетДанныеПолисаПациента()  {
-        $(By.name("snPol")).val("5056900835000459");
+    @Когда("^Андрей заполняет данные полиса пациента$")
+    public void EnerPolis() {
+        page.findPatientPage().EnterPol();
     }
 
-    @And("^нажимает кнопку “войти”$")
-    public void нажимаетКнопкуВойти()  {
-        $(By.xpath("//button[@id='search-patient']")).click();
+    @И("^нажимает кнопку “войти”$")
+    public void EnterArm() {
+        page.findPatientPage().Clicable();
     }
 
-    @Then("^в колонке  появится строка содержащая следующие поля:$")
-    public void вКолонкеПоявитсяСтрокаСодержащаяСледующиеПоля()  {
-        $(By.id("fond-patients")).shouldHave(Condition.text("Единый полис ОМС"));
+    @Тогда("^в колонке  появится строка содержащая следующие поля:$")
+    public void Patient() {
+        oms.shouldHave(Condition.text("Единый полис ОМС"));
     }
 
-    @When("^Андрей заполняет данные ФИО и телефон пациента$")
-    public void андрейЗаполняетДанныеФИОИТелефонПациента()  {
-        $(By.name("snPol")).val("5056900835000459");
+    @Когда("^Андрей заполняет данные ФИО и телефон пациента$")
+    public void EnterFio() {
+        page.findPatientPage().FindByFio();
     }
 
-    @Given("^очистка поиска$")
-    public void очисткаПоиска()  {
-        $(By.xpath("//button[@title='Очистить форму']")).click();
+    @Дано("^очистка поиска$")
+    public void ClearSearch() {
+        clear.click();
     }
 
-    @Given("^Андрей хочет записать пациента к терапевту$")
-    public void андрейХочетЗаписатьПациентаКТерапевту() {
-        $(By.xpath("//button[@data-lpucode='330501']")).shouldBe(Condition.visible);
+    @Дано("^Андрей хочет записать пациента к терапевту$")
+    public void RecordToDocor() {
+        mcod.shouldBe(Condition.visible);
     }
 
-    @When("^Андрей выбирает “СТЕНД ЕМИАС МО”$")
-    public void андрейВыбираетСТЕНДЕМИАСМО() {
-        $(By.xpath("//button[@title='ДЕМИХОВСКАЯ УЧАСТКОВАЯ БОЛЬНИЦА; Адрес: 142632, Московская область, Орехово-Зуевский район, д. Демихово, ул. Заводская']")).click();
+    @Когда("^Андрей выбирает “СТЕНД ЕМИАС МО”$")
+    public void FiendLpu() {
+        lpu.click();
     }
 
-    @And("^затем выбирает специальность “Терапия”$")
-    public void затемВыбираетСпециальностьТерапия() {
-        $(By.xpath("//div[@id='department-12400']")).click();
+    @И("^затем выбирает специальность “Терапия”$")
+    public void FiendSrec() {
+        spec.click();
     }
 
-    @And("^выбирает ближайшую запись у Ай Бо Лит$")
-    public void выбираетБлижайшуюЗаписьУАйБоЛит() {
-        $(By.xpath("//*[contains(text(),'Ближайшая запись')]")).click();
+    @И("^выбирает ближайшую запись у Ай Бо Лит$")
+    public void FiendDay() {
+        dayz.click();
     }
 
-    @And("^выбирает время приема$")
-    public void выбираетВремяПриема() {
-        $(By.xpath("//*[contains(text(),'18:00')]")).click();
-
+    @И("^выбирает время приема$")
+    public void FiendTime() {
+        timerec.click();
     }
 
-    @And("^затем выбирает “Записать на прием”$")
-    public void затемВыбираетЗаписатьНаПрием() {
-        $(By.xpath("//*[contains(text(),'Записать на прием')]")).click();
+    @И("^затем выбирает “Записать на прием”$")
+    public void RecToDoc() {
+        recordbutton.click();
     }
 
-    @Then("^появится всплывающее окно$")
-    public void появитсяВсплывающееОкно() {
-        $(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button")).click();
+    @Тогда("^появится всплывающее окно$")
+    public void WinModal() {
+        closemodal.click();
     }
 
-    @Given("^Андрей хочет записать пациента в лист ожидания$")
-    public void андрейХочетЗаписатьПациентаВЛистОжидания() {
-
+    @Когда("^Андрей хочет записать пациента в лист ожидания$")
+    public void RecordWait() {
+        waitbutton.shouldBe(Condition.visible);
     }
 
-    @And("^выбирает “Оформить лист ожидания” у специальности “Психиатрия”$")
-    public void выбираетОформитьЛистОжиданияУСпециальностиПсихиатрия() {
-
+    @И("^выбирает “Оформить лист ожидания” у специальности “Психиатрия”$")
+    public void RecWait() {
+        waitbutton.click();
     }
 
-    @And("^заполняет поле жалобы$")
-    public void заполняетПолеЖалобы() {
-
+    @И("^заполняет поле жалобы$")
+    public void Complaint() {
+        complain.sendKeys("тест ожидания");
     }
 
-    @And("^выбирает “Оформить”$")
-    public void выбираетОформить() {
+    @И("^выбирает “Оформить”$")
+    public void Oformit() {
+        oform.click();
     }
 
-    @Then("^Появится всплывающее окно с записью \"([^\"]*)\"$")
-    public void появитсяВсплывающееОкноСЗаписью(String arg0) {
+    @И("^Появится всплывающее окно с записью \"([^\"]*)\"$")
+    public void ModalWin(String arg0) {
+        $(By.xpath("//div[@id='notifies']")).shouldHave(Condition.text(arg0));
+    }
 
+
+    @И("^найден пациент$")
+    public void Scenar() {
+        page.findPatientPage().EnterPol();
+        page.findPatientPage().Clicable();
+    }
+
+    @Допустим("^Андрей захотел просмотреть записи пациента$")
+    public void андрейЗахотелПросмотретьЗаписиПациента() {
+        allrecord.shouldBe(Condition.visible);
+    }
+
+    @Когда("^Андрей выбрал “Все записи пациента”$")
+    public void андрейВыбралВсеЗаписиПациента() {
+        allrecord.click();
+    }
+
+    @Тогда("^открылась вкладка с записями \"([^\"]*)\" \"([^\"]*)\"$")
+    public void открыласьВкладкаСЗаписями(String arg0, String arg1) {
+        $(By.xpath("//div[contains(text()]")).shouldHave(Condition.text(arg0));
+        $(By.xpath("//div[contains(text()]")).shouldHave(Condition.text(arg1));
+    }
+
+    @Допустим("^Андрей захотел просмотреть активный лист ожидания$")
+    public void андрейЗахотелПросмотретьАктивныйЛистОжидания() {
+        $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Создана"));
+    }
+
+    @Когда("^Андрей нажимает “Подробная информация”$")
+    public void андрейНажимаетПодробнаяИнформация() {
+        $(By.xpath("//*[@class='waiting-list-item']/div/button")).click();
+    }
+
+    @То("^появится всплывающие окно с полями:$")
+    public void появитсяВсплывающиеОкноСПолями() {
+        $(By.xpath("//*[@class='waiting-list-item']/div")).getText();
+    }
+
+    @Тогда("^Андрей нажимает “История”$")
+    public void андрейНажимаетИстория() {
+        $(By.xpath("//*[@class='waiting-list-item']/div[2]/button")).click();
+    }
+
+    @И("^появится всплывающие окно с таблицей с полями:$")
+    public void появитсяВсплывающиеОкноСТаблицейСПолями() {
+        $(By.xpath("//*[@id='waiting-list-history']/table/tbody[2]")).getText();
+    }
+
+    @Допустим("^Андрей захотел просмотреть все листы ожидания$")
+    public void андрейЗахотелПросмотретьВсеЛистыОжидания() {
+        $(By.xpath("//input[@id='show-all-waiting-list']")).shouldBe(Condition.visible);
+    }
+
+    @Когда("^Андрей  ставит отметку “Показать все”$")
+    public void андрейСтавитОтметкуПоказатьВсе() {
+        $(By.xpath("//input[@id='show-all-waiting-list']")).click();
+    }
+
+    @Тогда("^появляется список всех созданных листов ожидания$")
+    public void появляетсяСписокВсехСозданныхЛистовОжидания() {
+        $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Отменена"));
+    }
+
+    @Допустим("^Андрей захотел перенести запись на прием$")
+    public void андрейЗахотелПеренестиЗаписьНаПрием() {
+        reschedule.shouldBe(Condition.visible);
+    }
+
+    @Когда("^Андрей нажимает “Перенести запись”$")
+    public void андрейНажимаетПеренестиЗапись() {
+        reschedule.click();
+    }
+
+    @Тогда("^открывается окно “перенос записи талона” с расписанием врачей этой специальности$")
+    public void открываетсяОкноПереносЗаписиТалонаСРасписаниемВрачейЭтойСпециальности() {
+        $(By.xpath("//div[@class='modal-header']")).shouldHave(Condition.text("Перенос записи талона"));
+    }
+
+    @И("^Андрей выбирает дату$")
+    public void андрейВыбираетДату() {
+        recordDate.click();
+    }
+
+    @И("^нажимает “перенести запись”$")
+    public void нажимаетПеренестиЗапись() {
+        rerecord.click();
+    }
+
+    @То("^появляется всплывающее окно “Запись перенесена успешно”$")
+    public void появляетсяВсплывающееОкноЗаписьПеренесенаУспешно() {
+        yes.click();
+    }
+
+    @Допустим("^Андрей захотел отменить лист ожидания$")
+    public void андрейЗахотелОтменитьЛистОжидания() {
+        $(By.xpath("//*[@class='waiting-list-item']/td[7]/button")).shouldBe(Condition.visible);
+    }
+
+    @Когда("^Андрей нажимает “Удалить”$")
+    public void андрейНажимаетУдалить() {
+        $(By.xpath("//*[@class='waiting-list-item']/td[7]/button")).click();
+    }
+
+    @Тогда("^у вызова проставляется статус “Отменена”$")
+    public void уВызоваПроставляетсяСтатусОтменена() {
+        $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Отменена"));
+    }
+
+    @Допустим("^Андрей захотел отменить запись на прием$")
+    public void андрейЗахотелОтменитьЗаписьНаПрием() {
+        delete.shouldBe(Condition.visible);
+    }
+
+    @Когда("^Андрей нажимает “Удалить запись”$")
+    public void андрейНажимаетУдалитьЗапись() {
+        delete.click();
+    }
+
+    @Тогда("^запись пропадает из поля “записи на прием”$")
+    public void записьПропадаетИзПоляЗаписиНаПрием() {
     }
 }
