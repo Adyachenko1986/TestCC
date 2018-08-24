@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage extends AbstractPage implements SElements {
 
-    String url = "http://local.call/cc_dev/to_work/";
+//    String url = "http://local.call/cc_dev/to_work/";
 
 
 
@@ -19,7 +19,7 @@ public class LoginPage extends AbstractPage implements SElements {
     }
 
     public void login() {
-        System.out.println("компилятр дошел до сюдого!");
+        System.out.println("компилятр дошел до сюдова!");
         open(url);
         log.val("ccg");
         pass.val("ccg123");

@@ -13,8 +13,6 @@ public class FindPatientPage extends AbstractPage implements SElements {
     public FindPatientPage() {
     }
 
-//    String snpol = "45 558320";
-    String snpol = "5056900835000459";
 
     public void EnterPol() {
         polis.val(snpol);
@@ -24,7 +22,7 @@ public class FindPatientPage extends AbstractPage implements SElements {
     }
 
     public void FindByFio() {
-        fio.val("Карташев А Е");
-        birthday.val("14.03.1990");
+        fio.val(fam);
+        birthday.val(bd);
     }
 }
