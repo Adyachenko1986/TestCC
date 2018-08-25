@@ -1,8 +1,5 @@
-package callcenter.steps;
-
-import callcenter.AbstractTest;
-import cucumber.api.PendingException;
 import cucumber.api.java.ru.*;
+import callcenter.AbstractTest;
 import pages.SElements;
 import com.codeborne.selenide.Condition;
 
@@ -284,51 +281,35 @@ public class MyStepdefs extends AbstractTest implements SElements {
         reschedule.shouldBe(Condition.visible);
     }
 
-    @Допустим("^Адрей перешел на страницу вызова врача$")
-    public void адрейПерешелНаСтраницуВызоваВрача() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @Допустим("^Андрей перешел на страницу вызова врача$")
+    public void CalldoctorPage() {
     }
 
     @Допустим("^Андрей не известен пациент$")
-    public void андрейНеИзвестенПациент() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void PatientNoFound() {
     }
 
     @Когда("^Андрей заполняет обязательные поля$")
-    public void андрейЗаполняетОбязательныеПоля() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void андрейЗаполняетОбязательныеПоля() {
     }
 
     @Тогда("^вводит название ЛПУ в фильтре списка учреждений$")
-    public void вводитНазваниеЛПУВФильтреСпискаУчреждений() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void вводитНазваниеЛПУВФильтреСпискаУчреждений() {
     }
 
     @Также("^нажимает “Вызвать врача”$")
-    public void нажимаетВызватьВрача() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void нажимаетВызватьВрача() {
     }
 
     @То("^появится всплывающие окно с заполненными полями$")
-    public void появитсяВсплывающиеОкноСЗаполненнымиПолями() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void появитсяВсплывающиеОкноСЗаполненнымиПолями() {
     }
 
     @Допустим("^Андрей хочет вызвать врача$")
-    public void андрейХочетВызватьВрача() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void андрейХочетВызватьВрача() {
     }
 
     @Тогда("^Андрей заполняет поля$")
-    public void андрейЗаполняетПоля() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void андрейЗаполняетПоля() {
     }
 }
