@@ -1,7 +1,6 @@
 package callcenter.steps;
 
 import callcenter.AbstractTest;
-import com.codeborne.selenide.Selectors;
 import cucumber.api.PendingException;
 import cucumber.api.java.ru.*;
 import pages.SElements;
@@ -10,7 +9,6 @@ import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class MyStepdefs extends AbstractTest implements SElements {
 
@@ -39,7 +37,7 @@ public class MyStepdefs extends AbstractTest implements SElements {
         page.findPatientPage().Clicable();
     }
 
-    @Тогда("^в колонке  появится строка содержащая следующие поля:$")
+    @Тогда("^в колонке появится строка содержащая следующие поля:$")
     public void Patient() {
         oms.shouldHave(Condition.text("Единый полис ОМС"));
     }
@@ -122,164 +120,215 @@ public class MyStepdefs extends AbstractTest implements SElements {
     }
 
     @Допустим("^Андрей захотел просмотреть записи пациента$")
-    public void андрейЗахотелПросмотретьЗаписиПациента() {
+    public void WatchPatientRecord() {
         allrecord.shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей выбрал “Все записи пациента”$")
-    public void андрейВыбралВсеЗаписиПациента() {
+    public void ChooseAllRecord() {
         allrecord.click();
     }
 
     @Тогда("^открылась вкладка с записями \"([^\"]*)\" \"([^\"]*)\"$")
-    public void открыласьВкладкаСЗаписями(String arg0, String arg1) {
+    public void OpeninigTabRecord(String arg0, String arg1) {
         $(By.xpath("//div[contains(text()]")).shouldHave(Condition.text(arg0));
         $(By.xpath("//div[contains(text()]")).shouldHave(Condition.text(arg1));
     }
 
     @Допустим("^Андрей захотел просмотреть активный лист ожидания$")
-    public void андрейЗахотелПросмотретьАктивныйЛистОжидания() {
+    public void WatchActiveWl() {
         $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Создана"));
     }
 
     @Когда("^Андрей нажимает “Подробная информация”$")
-    public void андрейНажимаетПодробнаяИнформация() {
+    public void DetailsWl() {
         $(By.xpath("//*[@class='waiting-list-item']/div/button")).click();
     }
 
     @То("^появится всплывающие окно с полями:$")
-    public void появитсяВсплывающиеОкноСПолями() {
+    public void DetailModal() {
         $(By.xpath("//*[@class='waiting-list-item']/div")).getText();
     }
 
     @Тогда("^Андрей нажимает “История”$")
-    public void андрейНажимаетИстория() {
+    public void ChangeHistory() {
         $(By.xpath("//*[@class='waiting-list-item']/div[2]/button")).click();
     }
 
     @И("^появится всплывающие окно с таблицей с полями:$")
-    public void появитсяВсплывающиеОкноСТаблицейСПолями() {
+    public void HistoryModal() {
         $(By.xpath("//*[@id='waiting-list-history']/table/tbody[2]")).getText();
     }
 
     @Допустим("^Андрей захотел просмотреть все листы ожидания$")
-    public void андрейЗахотелПросмотретьВсеЛистыОжидания() {
+    public void WatchAllWl() {
         $(By.xpath("//input[@id='show-all-waiting-list']")).shouldBe(Condition.visible);
     }
 
-    @Когда("^Андрей  ставит отметку “Показать все”$")
-    public void андрейСтавитОтметкуПоказатьВсе() {
+    @Когда("^Андрей ставит отметку “Показать все”$")
+    public void WiewAll() {
         $(By.xpath("//input[@id='show-all-waiting-list']")).click();
     }
 
     @Тогда("^появляется список всех созданных листов ожидания$")
-    public void появляетсяСписокВсехСозданныхЛистовОжидания() {
+    public void ListWl() {
         $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Отменена"));
     }
 
     @Допустим("^Андрей захотел перенести запись на прием$")
-    public void андрейЗахотелПеренестиЗаписьНаПрием() {
+    public void WantRerecord() {
         reschedule.shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей нажимает “Перенести запись”$")
-    public void андрейНажимаетПеренестиЗапись() {
+    public void ClickRerecord() {
         reschedule.click();
     }
 
     @Тогда("^открывается окно “перенос записи талона” с расписанием врачей этой специальности$")
-    public void открываетсяОкноПереносЗаписиТалонаСРасписаниемВрачейЭтойСпециальности() {
+    public void RerecordWindow() {
         $(By.xpath("//div[@class='modal-header']")).shouldHave(Condition.text("Перенос записи талона"));
     }
 
     @И("^Андрей выбирает дату$")
-    public void андрейВыбираетДату() {
+    public void ChangeData() {
         recordDate.click();
     }
 
     @И("^нажимает “перенести запись”$")
-    public void нажимаетПеренестиЗапись() {
+    public void RerecordButton() {
         rerecord.click();
     }
 
     @То("^появляется всплывающее окно “Запись перенесена успешно”$")
-    public void появляетсяВсплывающееОкноЗаписьПеренесенаУспешно() {
+    public void ModalSucsess() {
         yes.click();
     }
 
     @Допустим("^Андрей захотел отменить лист ожидания$")
-    public void андрейЗахотелОтменитьЛистОжидания() {
+    public void WantCancelWl() {
         $(By.xpath("//*[@class='waiting-list-item']/td[7]/button")).shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей нажимает “Удалить”$")
-    public void андрейНажимаетУдалить() {
+    public void DeleteWl() {
         $(By.xpath("//*[@class='waiting-list-item']/td[7]/button")).click();
     }
 
     @Тогда("^у вызова проставляется статус “Отменена”$")
-    public void уВызоваПроставляетсяСтатусОтменена() {
+    public void CancelWl() {
         $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Отменена"));
     }
 
     @Допустим("^Андрей захотел отменить запись на прием$")
-    public void андрейЗахотелОтменитьЗаписьНаПрием() {
+    public void WantCancelRecord() {
         delete.shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей нажимает “Удалить запись”$")
-    public void андрейНажимаетУдалитьЗапись() {
+    public void CancelRecord() {
         delete.click();
     }
 
     @Тогда("^запись пропадает из поля “записи на прием”$")
-    public void записьПропадаетИзПоляЗаписиНаПрием() {
+    public void ClearRecord() {
     }
 
     @И("^создана запись на прием$")
-    public void созданаЗаписьНаПрием()  {
+    public void CreateRecord()  {
         page.recordDoctorPage().recordDoctor();
     }
 
     @И("^создан запись в ЛО$")
-    public void созданЗаписьВЛО()  {
+    public void CreateWl()  {
         page.waitingListPage().waitingList();
     }
 
     @Допустим("^Андрей захотел просмотреть направления пациента$")
-    public void андрейЗахотелПросмотретьНаправленияПациента()  {
+    public void WantDirectionList()  {
         apoinmentsList.shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей выбрал “Записать по направлению”$")
-    public void андрейВыбралЗаписатьПоНаправлению() {
+    public void DirectionList() {
         apoinmentsList.click();
     }
 
     @Тогда("^открылась вкладка с активными направлениями, где указано куда направлен пациент, специализация, ФИО врача и период действия направления$")
-    public void открыласьВкладкаСАктивнымиНаправлениямиГдеУказаноКудаНаправленПациентСпециализацияФИОВрачаИПериодДействияНаправления() {
+    public void ActiveDirectionList() {
     }
 
     @Допустим("^Андрей захотел записать пациента по направлению$")
-    public void андрейЗахотелЗаписатьПациентаПоНаправлению()  {
+    public void WantDirection()  {
         apoLpu.shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей нажал на выбранное направление$")
-    public void андрейНажалНаВыбранноеНаправление()  {
+    public void Direction()  {
         apoLpu.click();
     }
 
     @То("^появляется расписание врачей этой специальности$")
-    public void появляетсяРасписаниеВрачейЭтойСпециальности()  {
+    public void SheduleDoc()  {
+        recordDate.shouldBe(Condition.visible);
     }
 
     @Тогда("^появляется всплывающее окно с заполненными полями:$")
-    public void появляетсяВсплывающееОкноСЗаполненнымиПолями()  {
+    public void ModalRecord()  {
+        closemodal.shouldBe(Condition.visible);
     }
 
     @То("^в “Записях пациента” появится активная запись на прием$")
-    public void вЗаписяхПациентаПоявитсяАктивнаяЗаписьНаПрием()  {
+    public void ActiveRecordDirection()  {
+        allrecord.click();
+        reschedule.shouldBe(Condition.visible);
     }
 
+    @Допустим("^Адрей перешел на страницу вызова врача$")
+    public void адрейПерешелНаСтраницуВызоваВрача() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Допустим("^Андрей не известен пациент$")
+    public void андрейНеИзвестенПациент() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Когда("^Андрей заполняет обязательные поля$")
+    public void андрейЗаполняетОбязательныеПоля() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Тогда("^вводит название ЛПУ в фильтре списка учреждений$")
+    public void вводитНазваниеЛПУВФильтреСпискаУчреждений() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Также("^нажимает “Вызвать врача”$")
+    public void нажимаетВызватьВрача() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @То("^появится всплывающие окно с заполненными полями$")
+    public void появитсяВсплывающиеОкноСЗаполненнымиПолями() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Допустим("^Андрей хочет вызвать врача$")
+    public void андрейХочетВызватьВрача() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Тогда("^Андрей заполняет поля$")
+    public void андрейЗаполняетПоля() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
 }

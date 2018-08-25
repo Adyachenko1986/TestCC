@@ -9,12 +9,12 @@ import pages.SElements;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class ApoinmentsPage extends AbstractPage implements SElements {
+public class DirectionsPage extends AbstractPage implements SElements {
 //    @FindBy(xpath = "//*[@id='direction-list-tab']")
 //    WebElement apo;
 //    JavascriptExecutor js = (JavascriptExecutor) driver;
 
-    public ApoinmentsPage() {
+    public DirectionsPage() {
     }
 
     public void apoinmets() throws InterruptedException {
