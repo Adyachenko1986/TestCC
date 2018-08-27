@@ -1,9 +1,15 @@
+package callcenter.steps;
+
+import cucumber.api.PendingException;
 import cucumber.api.java.ru.*;
 import callcenter.AbstractTest;
 import pages.SElements;
 import com.codeborne.selenide.Condition;
 
 import org.openqa.selenium.By;
+
+import java.io.File;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -24,24 +30,24 @@ public class MyStepdefs extends AbstractTest implements SElements {
         find.shouldBe(Condition.visible);
     }
 
-    @Когда("^Андрей заполняет данные полиса пациента$")
-    public void EnerPolis() {
-        page.findPatientPage().EnterPol();
-    }
+//    @Когда("^Андрей заполняет данные \"([^\"]*)\"$")
+//    public void EnerPolis(String name) throws Throwable  {
+//        page.findPatientPage().enterPol(name);
+//    }
 
     @И("^нажимает кнопку “войти”$")
     public void EnterArm() {
-        page.findPatientPage().Clicable();
+        page.findPatientPage().clickBtn();
     }
 
     @Тогда("^в колонке появится строка содержащая следующие поля:$")
-    public void Patient() {
+    public void Patient() throws Throwable {
         oms.shouldHave(Condition.text("Единый полис ОМС"));
     }
 
-    @Когда("^Андрей заполняет данные ФИО и телефон пациента$")
-    public void EnterFio() {
-        page.findPatientPage().FindByFio();
+    @Когда("^Андрей заполняет данные \"([^\"]*)\"$")
+    public void EnterFio(String kartashev) throws Throwable {
+        page.findPatientPage().findByFio(kartashev);
     }
 
     @Дано("^очистка поиска$")
@@ -51,20 +57,20 @@ public class MyStepdefs extends AbstractTest implements SElements {
 
     @Дано("^Андрей хочет записать пациента к терапевту$")
     public void RecordToDocor() {
-        mcod.shouldBe(Condition.visible);
+//        mcod.shouldBe(Condition.visible);
     }
 
-    @Когда("^Андрей выбирает “СТЕНД ЕМИАС МО”$")
+    @Когда("^Андрей выбирает \"([^\"]*)\"$")
     public void FiendLpu() {
-        lpu.click();
+//        lpu.click();
     }
 
-    @И("^затем выбирает специальность “Терапия”$")
+    @И("^затем выбирает специальность \"([^\"]*)\"$")
     public void FiendSrec() {
         spec.click();
     }
 
-    @И("^выбирает ближайшую запись у Ай Бо Лит$")
+    @И("^выбирает ближайшую запись у \"([^\"]*)\"$")
     public void FiendDay() {
         dayz.click();
     }
@@ -80,7 +86,9 @@ public class MyStepdefs extends AbstractTest implements SElements {
     }
 
     @Тогда("^появится всплывающее окно$")
-    public void WinModal() {
+    public void WinModal(String profile) {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         closemodal.click();
     }
 
@@ -89,12 +97,12 @@ public class MyStepdefs extends AbstractTest implements SElements {
         waitbutton.shouldBe(Condition.visible);
     }
 
-    @И("^выбирает “Оформить лист ожидания” у специальности “Психиатрия”$")
+    @И("^выбирает “Оформить лист ожидания” у специальности \"([^\"]*)\"$")
     public void RecWait() {
         waitbutton.click();
     }
 
-    @И("^заполняет поле жалобы$")
+    @И("^заполняет поле \"([^\"]*)\"$")
     public void Complaint() {
         complain.sendKeys("тест ожидания");
     }
@@ -110,11 +118,12 @@ public class MyStepdefs extends AbstractTest implements SElements {
     }
 
 
-    @И("^найден пациент$")
-    public void Scenar() {
-        page.findPatientPage().EnterPol();
-        page.findPatientPage().Clicable();
-    }
+//    @И("^найден пациент $")
+//    public void Scenar() {
+//
+//        page.findPatientPage().enterPol();
+//        page.findPatientPage().clickBtn();
+//    }
 
     @Допустим("^Андрей захотел просмотреть записи пациента$")
     public void WatchPatientRecord() {
@@ -243,12 +252,12 @@ public class MyStepdefs extends AbstractTest implements SElements {
 
     @Допустим("^Андрей захотел просмотреть направления пациента$")
     public void WantDirectionList()  {
-        apoinmentsList.shouldBe(Condition.visible);
+//        apoinmentsList.shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей выбрал “Записать по направлению”$")
     public void DirectionList() {
-        apoinmentsList.click();
+//        apoinmentsList.click();
     }
 
     @Тогда("^открылась вкладка с активными направлениями, где указано куда направлен пациент, специализация, ФИО врача и период действия направления$")
@@ -257,12 +266,12 @@ public class MyStepdefs extends AbstractTest implements SElements {
 
     @Допустим("^Андрей захотел записать пациента по направлению$")
     public void WantDirection()  {
-        apoLpu.shouldBe(Condition.visible);
+//        apoLpu.shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей нажал на выбранное направление$")
     public void Direction()  {
-        apoLpu.click();
+//        apoLpu.click();
     }
 
     @То("^появляется расписание врачей этой специальности$")
@@ -290,7 +299,7 @@ public class MyStepdefs extends AbstractTest implements SElements {
     }
 
     @Когда("^Андрей заполняет обязательные поля$")
-    public void андрейЗаполняетОбязательныеПоля() {
+    public void андрейЗаполняетОбязательныеПоля(String kartashev) {
     }
 
     @Тогда("^вводит название ЛПУ в фильтре списка учреждений$")
@@ -310,6 +319,13 @@ public class MyStepdefs extends AbstractTest implements SElements {
     }
 
     @Тогда("^Андрей заполняет поля$")
-    public void андрейЗаполняетПоля() {
+    public void андрейЗаполняетПоля(String kartashev) {
+    }
+
+    @И("^найден пациент \"([^\"]*)\"$")
+    public void найденПациент(String name) throws Throwable {
+        page.findPatientPage().enterPol(name);
+        page.findPatientPage().clickBtn();
+        throw new PendingException();
     }
 }

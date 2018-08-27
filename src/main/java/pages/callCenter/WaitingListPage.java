@@ -16,7 +16,7 @@ public class WaitingListPage extends AbstractPage implements SElements {
     }
 
     public void waitingList() {
-        lpu.click();
+//        lpu.click();
         waitspec.click();
         waitbutton.click();
         complain.sendKeys("тест ожидания");

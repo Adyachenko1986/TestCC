@@ -2,13 +2,20 @@ package pages.callCenter;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
 import pages.SElements;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+
+import org.json.simple.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import pages.callCenter.connections.Setup;
+
 
 public class RecordDoctorPage extends AbstractPage implements SElements {
-//    @FindBy(xpath = "//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")
+    //    @FindBy(xpath = "//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")
 //    WebElement lpu;
 //    @FindBy(xpath = "//div[@id='department-11400']")
 //    WebElement special;
@@ -30,8 +37,8 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
     public RecordDoctorPage() {
     }
 
-    public void recordDoctor()  {
-        lpu.click();
+    public void recordDoctor() {
+//        lpu.click();
         spec.click();
         dayz.click();
         timerec.click();
@@ -43,4 +50,32 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         System.out.println(name + " " + time + " " + number);
         closemodal.click();
     }
+
+    public void createNewCall(String profile, String nameGen, String searchPolis) throws IOException {
+//        File reader = new File("src\\main\\java\\pages\\callCenter\\profiles\\" + profile + ".json");
+//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+//        if (searchPolis.equals("n")) {
+//            recordDoctor()
+//                    .lpuName(proData)
+//                    .adress(proData)
+//                    .vozrastKat(proData)
+//                    .birthDay(proData)
+//                    .adressAddition(proData)
+//                    .sex(proData)
+//                    .complaint(proData)
+//                    .polis(proData)
+//                    .FIO(nameGen, proData)
+//                    .caller(nameGen, proData)
+//                    .telephone(proData)
+//                    .saveBtn()
+//                    .adressAlarma(proData);
+//        }
+    }
+
+//    public RecordDoctorPage verifyCallProfile1(String profile, String nameGen) throws IOException {
+//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+//        Map proData = new ObjectMapper().readValue(reader, Map.class);
+//        System.out.println("Корректность данных на странице редактирования выполнена! " + driver.getCurrentUrl());
+//        return this;
+//    }
 }
