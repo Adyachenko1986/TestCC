@@ -306,8 +306,9 @@ public class MyStepdefs extends AbstractTest implements SElements {
     public void вводитНазваниеЛПУВФильтреСпискаУчреждений() {
     }
 
-    @Также("^нажимает “Вызвать врача”$")
-    public void нажимаетВызватьВрача() {
+    @Также("^нажимает \"([^\"]*)\"$")
+    public void нажимаетВызватьВрача(String arg0) {
+
     }
 
     @То("^появится всплывающие окно с заполненными полями$")
@@ -328,4 +329,5 @@ public class MyStepdefs extends AbstractTest implements SElements {
         page.findPatientPage().clickBtn();
         throw new PendingException();
     }
+
 }
