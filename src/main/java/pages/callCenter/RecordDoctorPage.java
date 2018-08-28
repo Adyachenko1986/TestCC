@@ -5,12 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.AbstractPage;
 import pages.SElements;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-
-import org.json.simple.JSONObject;
-import com.fasterxml.jackson.databind.ObjectMapper;
 //import pages.callCenter.connections.Setup;
 
 

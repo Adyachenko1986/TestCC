@@ -1,17 +1,9 @@
 package pages.callCenter;
 
-import com.codeborne.selenide.Condition;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.exec.util.StringUtils;
-import org.json.simple.JSONObject;
-import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.SElements;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
