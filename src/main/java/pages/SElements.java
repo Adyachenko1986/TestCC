@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 public interface SElements {
 
 //    String url = "http://local.call/cc_dev/to_work/";
-//    String url = "http://call.emias.mosreg.ru/cc_dev/to_work/";
+    String url = "http://call.emias.mosreg.ru/call2_dev/to_work//";
 
 //    String snpol = "5056900835000459";
 //    String snpol = "45 558320";
@@ -32,7 +32,12 @@ public interface SElements {
     SelenideElement talonNumber2 = $(By.xpath("//*[@id='talon-list']/tr/td[2]"));
     SelenideElement docName2 = $(By.xpath("//*[@id='talon-list']/tr/td[4]"));
     SelenideElement talonTime2 = $(By.xpath("//*[@id='talon-list']/tr/td[7]"));
-    SelenideElement oms = $(By.id("fond-patients"));
+    SelenideElement oms = $(By.id("polisType"));
+    SelenideElement omsDate = $(By.id("polisDate"));
+    SelenideElement fondPatient1 = $(By.xpath("//*[@id='fond-patients']/tr/td[2]"));
+    SelenideElement fondPatient2 = $(By.xpath("//*[@id='fond-patients']/tr/td[3]"));
+    SelenideElement fondPatient3 = $(By.xpath("//*[@id='fond-patients']/tr/td[4]"));
+
 
     SelenideElement log = $(By.id("USER_LOGIN"));
     SelenideElement pass = $(By.id("USER_PASSWORD"));

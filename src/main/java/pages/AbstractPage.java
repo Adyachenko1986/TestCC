@@ -11,7 +11,7 @@ abstract public class AbstractPage {
     public WebDriver driver;
     public static String perek = "тест";
 
-    public static String url;
+//    public static String url;
     static String snpol;
     static String fam;
     static String bd;
@@ -23,14 +23,14 @@ abstract public class AbstractPage {
         this.driver = getWebDriver();
     }
 
-     public void setUp(String base) {
-        switch (base) {
-            case "тест":
-                this.url = "http://local.call/cc_dev/to_work/";
-                break;
-            case "прод":
-                this. url = "http://call.emias.mosreg.ru/cc_dev/to_work/";
-                break;
-        }
-    }
+//     public void setUp(String base) {
+//        switch (base) {
+//            case "тест":
+//                this.url = "http://local.call/cc_dev/to_work/";
+//                break;
+//            case "прод":
+//                this. url = "http://call.emias.mosreg.ru/cc_dev/to_work/";
+//                break;
+//        }
+//    }
 }

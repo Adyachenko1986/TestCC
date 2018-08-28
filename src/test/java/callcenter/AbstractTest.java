@@ -5,11 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
-import cucumber.api.junit.Cucumber;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -18,7 +13,6 @@ import pages.Pages;
 
 import java.io.File;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.close;
 
 
@@ -72,8 +66,8 @@ public class AbstractTest {
 //        }
 //    }
 
-    @BeforeClass
-     public static void setupTimeout() {
+    @Before
+    public static void setupTimeout() {
         chromeDriverService = new ChromeDriverService.Builder()
                 .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
                 .usingAnyFreePort()
@@ -83,20 +77,18 @@ public class AbstractTest {
         driver = new ChromeDriver(chromeDriverService, chromeOptions);
         WebDriverRunner.setWebDriver(driver);
         Configuration.timeout = 8000;
+//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+//        Configuration.browser = "chrome";
         page = new Pages();
-
-//        new AbstractTest().setUp(perek);
     }
-
-//    @AfterClass
-//    static public void afterTests() {
-//        close();
-//    }
 
     @After
-    static public void afterTests() {
+    public void afterTests() {
         close();
+//        driver.quit();
+//        driver.close();
     }
+
 
 //    @AfterClass
 //    static public void afterTests(Scenario scenario) {
