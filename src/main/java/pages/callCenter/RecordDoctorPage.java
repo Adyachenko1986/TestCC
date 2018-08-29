@@ -1,5 +1,7 @@
 package pages.callCenter;
 
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.AbstractPage;
@@ -7,6 +9,7 @@ import pages.SElements;
 
 import java.io.IOException;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 //import pages.callCenter.connections.Setup;
 
@@ -34,10 +37,15 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
     public RecordDoctorPage() {
     }
 
-    public void recordDoctor() {
+    public void recordDoctor(String arg0) {
 //        lpu.click();
-        spec.click();
-        dayz.click();
+//        spec.click();
+//        dayz.click();
+        String lp="Стенд ЕМИАС МО";
+        String sp="Терапия";
+        changeLpu(lp);
+        changeSpec(sp);
+        changeDoc(arg0);
         timerec.click();
         recordbutton.click();
 
@@ -45,10 +53,10 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
 //        String time = talonTime.getText();
 //        String number = talonNumber.getAttribute("innerHTML");
 //        System.out.println(name + " " + time + " " + number);
-        closemodal.click();
+//        closemodal.click();
     }
 
-    public void assertDoc(String lpu, String special, String fioDoc, String kab, String date, String time, String ticketNumber) {
+    public void assertDoc(String lpu, String special, String fioDoc, String kab) {
 
         String eq1 = lpuName.getText();
         String eq2 = specName.getText();
@@ -68,12 +76,84 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         System.out.println(eq3+" есть");
         assertTrue(kab.contains(eq4));
         System.out.println(eq4+" есть");
-        assertTrue(date.contains(eq5));
+        assertTrue(eq5 != null);
         System.out.println(eq5+" есть");
-        assertTrue(time.contains(eq6));
+        assertTrue(eq6 != null);
         System.out.println(eq6+" есть");
-        assertTrue(ticketNumber.contains(eq7));
+        assertTrue(eq7 != null);
         System.out.println(eq7+" есть");
+    }
+
+    public void EqualDoc() {
+
+        String eq1 = lpuName.getText();
+        String eq2 = specName.getText();
+        String eq3 = doctor.getText();
+        String eq4 = kabName.getText();
+        String eq5 = dateTicket.getText();
+        String eq6 = timeTicket.getText();
+        String eq7 = numTicket.getText();
+
+        String equal7 = $(By.xpath("//*[@id='talon-list']/tr/td[2]")).getText();
+        String equal2 = $(By.xpath("//*[@id='talon-list']/tr/td[4]")).getText();
+        String equal3 = $(By.xpath("//*[@id='talon-list']/tr/td[3]")).getText();
+        String equal6 = $(By.xpath("//*[@id='talon-list']/tr/td[7]")).getText();
+        String istok = $(By.xpath("//*[@id='talon-list']/tr/td[5]")).getText();
+        String equal5 = $(By.xpath("//*[@id='talon-list']/tr/td[6]")).getText();
+//        String equal8 = $(By.xpath("//*[@id='talon-list']/tr/td[2]")).getText();
+
+        System.out.println("Код гавно2");
+
+//        assertTrue(equal.contains(eq1));
+//        System.out.println(eq1+" есть");
+        assertTrue(equal2.contains(eq2));
+        System.out.println(eq2+" есть");
+        assertTrue(equal3.contains(eq3));
+        System.out.println(eq3+" есть");
+//        assertTrue(kab.contains(eq4));
+//        System.out.println(eq4+" есть");
+        assertTrue(equal5.contains(eq5));
+        System.out.println(eq5+" есть");
+        assertTrue(equal6.contains(eq6));
+        System.out.println(eq6+" есть");
+        assertTrue(equal7.contains(eq7));
+        System.out.println(eq7+" есть");
+        assertTrue(istok.contains("Колл-центр"));
+    }
+
+    public void EqualDetal() {
+
+        String eq1 = lpuName.getText();
+
+        String equal8 = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/h4")).getText();
+        String equal9 = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/p[4]")).getText();
+        String istok = $(By.xpath("//*[@id='talon-list']/tr/td[5]")).getText();
+
+        System.out.println("Код гавно3");
+
+        assertTrue(istok.contains("Колл-центр"));
+        assertTrue(equal8.contains(eq1));
+        System.out.println(eq1+" есть");
+        assertTrue(istok.contains(equal9));
+        System.out.println(" есть");
+    }
+
+    public void changeLpu(String arg0){
+
+        SelenideElement lpu = $(By.xpath("//button[contains(text("+arg0+")]"));
+        lpu.click();
+    }
+
+    public void changeSpec(String arg0){
+
+        SelenideElement spec = $(By.xpath("//button[@data-department-name='"+arg0+"']"));
+        spec.click();
+    }
+
+    public void changeDoc(String arg0){
+
+        SelenideElement fastDoc = $(By.xpath("//id[@id='week-doc-schedule-table-body'] and span='"+arg0+"'] and contains(., 'Ближайшая запись')]"));
+        fastDoc.click();
     }
 
     public void createNewCall(String profile, String nameGen, String searchPolis) throws IOException {

@@ -1,5 +1,6 @@
 package pages.callCenter;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 public class CallDoctorPage extends AbstractPage {
     public CallDoctorPage() {
@@ -46,5 +48,63 @@ public class CallDoctorPage extends AbstractPage {
         $(By.xpath("//tbody[@id='call-doc-list']//button[@class='btn btn-danger']")).click();
         Alert alert = driver.switchTo().alert();
         alert.accept();
+    }
+
+    public void writePat(String comp,String porch,String floor,String intercomCode, String phone, String adr){
+        $(By.name("complaint")).val(comp);
+        $(By.name("porch")).val(porch);
+        $(By.name("floor")).val(floor);
+        $(By.name("intercomCode")).val(intercomCode);
+        $(By.name("phone")).val(phone);
+        $(By.name("address")).clear();
+        $(By.name("address")).val(adr);
+    }
+
+    public void eqCallDoc(String arg1,String arg2,String arg3,String arg4,String arg5,String arg6,String arg7,String arg8,String arg9){
+        SelenideElement lp = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[1]"));
+        SelenideElement fi = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[2]"));
+        SelenideElement bir = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[3]"));
+        SelenideElement adr = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[4]"));
+        SelenideElement por = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[5]"));
+        SelenideElement flo = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[6]"));
+        SelenideElement in = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[7]"));
+        SelenideElement pho = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[8]"));
+        SelenideElement com = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[9]"));
+
+        String lpu=lp.getText();
+        String fio=fi.getText();
+        String birthday=bir.getText();
+        String adress=adr.getText();
+        String porch=por.getText();
+        String floor=flo.getText();
+        String intercom=in.getText();
+        String phone=pho.getText();
+        String complaint=com.getText();
+
+        assertTrue(arg1.contains(lpu));
+        System.out.println(lpu+" есть");
+        assertTrue(arg2.contains(fio));
+        System.out.println(fio+" есть");
+        assertTrue(arg3.contains(birthday));
+        System.out.println(birthday+" есть");
+        assertTrue(arg4.contains(adress));
+        System.out.println(adress+" есть");
+        assertTrue(arg5.contains(porch));
+        System.out.println(porch+" есть");
+        assertTrue(arg6.contains(floor));
+        System.out.println(floor+" есть");
+        assertTrue(arg7.contains(intercom));
+        System.out.println(intercom+" есть");
+        assertTrue(arg8.contains(phone));
+        System.out.println(phone+" есть");
+        assertTrue(arg9.contains(complaint));
+        System.out.println(complaint+" есть");
+    }
+
+    public void getLpu(String arg0){
+        SelenideElement lpuIn = $(By.id("searchLPU"));
+        lpuIn.val(arg0);
+        SelenideElement lpu = $(By.xpath("//button[contains(text("+arg0+")]"));
+        lpu.click();
     }
 }

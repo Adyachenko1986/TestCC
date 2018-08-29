@@ -1,6 +1,6 @@
 package callcenter.steps;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelenideElement;
+
 import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.PendingException;
 import cucumber.api.Scenario;
@@ -26,15 +26,6 @@ public class MyStepdefs implements SElements {
     public static ChromeOptions chromeOptions;
     public static ChromeDriverService chromeDriverService;
 
-    static String perek = "тест";
-    static String url;
-    static String snpol;
-    static String fam;
-    static String bd;
-    static SelenideElement lpu;
-    static SelenideElement mcod;
-    static SelenideElement apoinmentsList;
-    static SelenideElement apoLpu;
 
     @Before
     public static void setupTimeout() {
@@ -112,26 +103,28 @@ public class MyStepdefs implements SElements {
 
     @Дано("^Андрей хочет записать пациента к терапевту$")
     public void RecordToDocor() {
+
 //        mcod.shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей выбирает \"([^\"]*)\"$")
-    public void FiendLpu() {
-//        lpu.click();
-    }
+    public void FindLpu(String arg0) {
+        page.recordDoctorPage().changeLpu(arg0);
+        }
 
     @И("^затем выбирает \"([^\"]*)\"$")
-    public void FiendSrec() {
-        spec.click();
+    public void FindSrec(String arg0) {
+        page.recordDoctorPage().changeSpec(arg0);
     }
 
     @И("^выбирает ближайшую запись у \"([^\"]*)\"$")
-    public void FiendDay() {
-        dayz.click();
+    public void FindDay(String arg0) {
+        page.recordDoctorPage().changeDoc(arg0);
+//        dayz.click();
     }
 
     @И("^выбирает время приема$")
-    public void FiendTime() {
+    public void FindTime() {
         timerec.click();
     }
 
@@ -140,10 +133,10 @@ public class MyStepdefs implements SElements {
         recordbutton.click();
     }
 
-    @Тогда("^появится всплывающее окно с полями \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
-    public void WinModal(String lpu, String special, String fioDoc, String kab, String date, String time, String ticketNumber) {
+    @Тогда("^появится всплывающее окно с полями \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+    public void WinModal(String lpu, String special, String fioDoc, String kab) {
 
-        page.recordDoctorPage().assertDoc(lpu, special, fioDoc, kab, date, time, ticketNumber);
+        page.recordDoctorPage().assertDoc(lpu, special, fioDoc, kab);
 //        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
 //        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         closemodal.click();
@@ -154,17 +147,17 @@ public class MyStepdefs implements SElements {
         waitbutton.shouldBe(Condition.visible);
     }
 
-    @И("^выбирает “Оформить лист ожидания” у специальности \"([^\"]*)\"$")
+    @И("^выбирает Оформить лист ожидания$")
     public void RecWait() {
         waitbutton.click();
     }
 
     @И("^заполняет поле \"([^\"]*)\"$")
-    public void Complaint() {
-        complain.sendKeys("тест ожидания");
+    public void Complaint(String com) {
+        complain.sendKeys(com);
     }
 
-    @И("^выбирает “Оформить”$")
+    @И("^выбирает Оформить$")
     public void Oformit() {
         oform.click();
     }
@@ -208,17 +201,18 @@ public class MyStepdefs implements SElements {
         $(By.xpath("//*[@class='waiting-list-item']/div/button")).click();
     }
 
-    @То("^появится всплывающие окно с полями:$")
-    public void DetailModal() {
-        $(By.xpath("//*[@class='waiting-list-item']/div")).getText();
+    @То("^появится всплывающие окно с полями: \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+    public void DetailModal(String arg0, String arg1, String arg2) {
+        page.waitingListPage().assertWL(arg0,arg1,arg2);
+//        $(By.xpath("//*[@class='waiting-list-item']/div")).getText();
     }
 
-    @Тогда("^Андрей нажимает “История”$")
+    @Тогда("^Андрей нажимает История$")
     public void ChangeHistory() {
         $(By.xpath("//*[@class='waiting-list-item']/div[2]/button")).click();
     }
 
-    @И("^появится всплывающие окно с таблицей с полями:$")
+    @И("^появится всплывающие окно с таблицей с полями Дата, Автор, Что изменилось, Изменение$")
     public void HistoryModal() {
         $(By.xpath("//*[@id='waiting-list-history']/table/tbody[2]")).getText();
     }
@@ -228,7 +222,7 @@ public class MyStepdefs implements SElements {
         $(By.xpath("//input[@id='show-all-waiting-list']")).shouldBe(Condition.visible);
     }
 
-    @Когда("^Андрей ставит отметку “Показать все”$")
+    @Когда("^Андрей ставит отметку Показать все$")
     public void WiewAll() {
         $(By.xpath("//input[@id='show-all-waiting-list']")).click();
     }
@@ -243,7 +237,7 @@ public class MyStepdefs implements SElements {
         reschedule.shouldBe(Condition.visible);
     }
 
-    @Когда("^Андрей нажимает “Перенести запись”$")
+    @Когда("^Андрей нажимает Перенести запись$")
     public void ClickRerecord() {
         reschedule.click();
     }
@@ -273,12 +267,12 @@ public class MyStepdefs implements SElements {
         $(By.xpath("//*[@class='waiting-list-item']/td[7]/button")).shouldBe(Condition.visible);
     }
 
-    @Когда("^Андрей нажимает “Удалить”$")
+    @Когда("^Андрей нажимает Удалить$")
     public void DeleteWl() {
         $(By.xpath("//*[@class='waiting-list-item']/td[7]/button")).click();
     }
 
-    @Тогда("^у вызова проставляется статус “Отменена”$")
+    @Тогда("^у вызова проставляется статус Отменена$")
     public void CancelWl() {
         $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Отменена"));
     }
@@ -288,21 +282,22 @@ public class MyStepdefs implements SElements {
         delete.shouldBe(Condition.visible);
     }
 
-    @Когда("^Андрей нажимает “Удалить запись”$")
+    @Когда("^Андрей нажимает Удалить запись$")
     public void CancelRecord() {
         delete.click();
     }
 
-    @Тогда("^запись пропадает из поля “записи на прием”$")
-    public void ClearRecord() {
+    @Тогда("^запись к \"([^\"]*)\" пропадает из поля Записи на прием$")
+    public void ClearRecord(String arg0) {
+        zapis.shouldNotHave(Condition.text(arg0));
     }
 
-    @И("^создана запись на прием$")
-    public void CreateRecord()  {
-        page.recordDoctorPage().recordDoctor();
+    @И("^создана запись на прием к \"([^\"]*)\"$")
+    public void CreateRecord(String arg0)  {
+        page.recordDoctorPage().recordDoctor(arg0);
     }
 
-    @И("^создан запись в ЛО$")
+    @И("^создана запись в ЛО к Клименко$")
     public void CreateWl()  {
         page.waitingListPage().waitingList();
     }
@@ -317,18 +312,19 @@ public class MyStepdefs implements SElements {
 //        apoinmentsList.click();
     }
 
-    @Тогда("^открылась вкладка с активными направлениями, где указано куда направлен пациент, специализация, ФИО врача и период действия направления$")
-    public void ActiveDirectionList() {
+    @Тогда("^открылась вкладка с активными направлениями,с указанием \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+    public void ActiveDirectionList(String arg0, String arg1,String arg2) {
+        page.apoinmentsPage().eqNapr(arg0, arg1, arg2);
     }
 
     @Допустим("^Андрей захотел записать пациента по направлению$")
     public void WantDirection()  {
-//        apoLpu.shouldBe(Condition.visible);
+        apolpu.shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей нажал на выбранное направление$")
     public void Direction()  {
-//        apoLpu.click();
+        apolpu.click();
     }
 
     @То("^появляется расписание врачей этой специальности$")
@@ -341,73 +337,87 @@ public class MyStepdefs implements SElements {
         closemodal.shouldBe(Condition.visible);
     }
 
-    @То("^в “Записях пациента” появится активная запись на прием$")
-    public void ActiveRecordDirection()  {
+    @То("^в Записях пациента появится активная запись на прием к \"([^\"]*)\"$")
+    public void ActiveRecordDirection(String arg0)  {
         allrecord.click();
-        reschedule.shouldBe(Condition.visible);
+        zapis.shouldNotHave(Condition.text(arg0));
     }
 
     @Допустим("^Андрей перешел на страницу вызова врача$")
     public void CalldoctorPage() {
+        calldoc.click();
     }
-
+//
     @Допустим("^Андрей не известен пациент$")
     public void PatientNoFound() {
+        fondPatient1.shouldNotHave(Condition.text("АСТАХОВА"));
     }
+//
+//    @Когда("^Андрей заполняет обязательные поля$")
+//    public void FillInField(String kartashev) {
+//    }
 
-    @Когда("^Андрей заполняет обязательные поля$")
-    public void андрейЗаполняетОбязательныеПоля(String kartashev) {
-    }
-
-    @Тогда("^вводит название ЛПУ в фильтре списка учреждений$")
-    public void вводитНазваниеЛПУВФильтреСпискаУчреждений() {
+    @Тогда("^вводит \"([^\"]*)\" в фильтре списка учреждений$")
+    public void LpuFilter(String arg0) {
+        page.callDoctorPage().getLpu(arg0);
     }
 
     @Также("^нажимает “Вызвать врача”$")
-    public void нажимаетВызватьВрача() {
+    public void CallDoc() {
+        $(By.xpath("//button[@id='call-doctor-button']")).click();
     }
 
-    @То("^появится всплывающие окно с заполненными полями$")
-    public void появитсяВсплывающиеОкноСЗаполненнымиПолями() {
+    @То("^появится всплывающие окно с заполненными полями \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+    public void aseertModal(String arg1,String arg2,String arg3,String arg4,String arg5,String arg6,String arg7,String arg8,String arg9) {
+        page.callDoctorPage().eqCallDoc(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
     }
 
     @Допустим("^Андрей хочет вызвать врача$")
-    public void андрейХочетВызватьВрача() {
+    public void WantCall() {
+        calldocdom.click();
+        fondPatient1.click();
     }
 
-    @Тогда("^Андрей заполняет поля$")
-    public void андрейЗаполняетПоля(String kartashev) {
+    @Тогда("^Андрей заполняет поля \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+    public void FillInFields(String comp,String porch,String floor,String intercomCode, String phone, String adr) {
+        page.callDoctorPage().writePat(comp, porch, floor, intercomCode, phone, adr);
+
     }
 
     @И("^найден пациент Астахова$")
-    public void найденПациент() throws Throwable {
+    public void FindPat() throws Throwable {
         page.findPatientPage().findPatient();
-//        page.findPatientPage().enterPol(name);
-//        page.findPatientPage().clickBtn();
         throw new PendingException();
     }
 
-    @Дано("^Андрей хочет найти пациента по ФИО и Дате рождения$")
-    public void андрейХочетНайтиПациентаПоФИОИДатеРождения() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
+//    @Дано("^Андрей хочет найти пациента по ФИО и Дате рождения$")
+//    public void WantFindByFioAndDate() throws Throwable {
+//        // Write code here that turns the phrase above into concrete actions
+//        throw new PendingException();
+//    }
 
     @Когда("^Андрей заполняет данные \"([^\"]*)\" и \"([^\"]*)\"$")
-    public void андрейЗаполняетДанныеФИОИДатаРождения(String arg1, String arg2) throws Throwable {
+    public void FindByFioAndDate(String arg1, String arg2) throws Throwable {
         page.findPatientPage().findByFio(arg1,arg2);
 
     }
 
-    @Когда("^Андрей заполняет данные <ФИО> и <Дата рождения>$")
-    public void андрейЗаполняетДанныеФИОИДатаРождения() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+    @Допустим("^Андрей захотел проверить корректость полей: Номер талона, Врач, Специальность, Дата создания записи, Дата приема, Время приема$")
+    public void EqRec() throws Throwable {
+        page.recordDoctorPage().EqualDoc();
+
         throw new PendingException();
     }
 
+    @То("^появится всплывающие окно с полями ЛПУ, адрес ЛПУ, Источник вызова, Дата создания$")
+    public void modWind() throws Throwable {
+        page.recordDoctorPage().EqualDetal();
+        throw new PendingException();
+    }
 
-    public void появитсяВсплывающееОкноСПолями(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5, String arg6) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+    @И("^подтверждает создание вызова$")
+    public void confirmCall() throws Throwable {
+        $(By.xpath("//button[@class='btn btn-success']")).click();
         throw new PendingException();
     }
 }
