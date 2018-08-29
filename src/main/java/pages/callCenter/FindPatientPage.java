@@ -13,6 +13,10 @@ public class FindPatientPage extends AbstractPage implements SElements {
     public FindPatientPage() {
     }
 
+    public void findPatient() throws IOException {
+        String pol = "45 558320";
+        enterPol(pol);
+    }
 
     public void enterPol(String name) throws IOException {
 //        File reader = new File("src\\main\\java\\pages\\callCenter\\profiles\\" + profile + ".json");

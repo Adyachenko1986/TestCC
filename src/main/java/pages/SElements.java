@@ -39,6 +39,15 @@ public interface SElements {
     SelenideElement fondPatient3 = $(By.xpath("//*[@id='fond-patients']/tr/td[4]"));
 
 
+    SelenideElement lpuName = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[1]"));
+    SelenideElement specName = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[2]"));
+    SelenideElement doctor = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[3]"));
+    SelenideElement kabName = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[4]"));
+    SelenideElement dateTicket = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[5]"));
+    SelenideElement timeTicket = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[6]"));
+    SelenideElement numTicket = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[7]"));
+
+
     SelenideElement log = $(By.id("USER_LOGIN"));
     SelenideElement pass = $(By.id("USER_PASSWORD"));
     SelenideElement loginButton = $(By.xpath("//button[@type='submit']"));

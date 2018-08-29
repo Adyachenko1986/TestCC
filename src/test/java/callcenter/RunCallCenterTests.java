@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/java/callcenter/features",
         glue = "callcenter/steps",
         tags = "@acceptanceTest"
+        
 //        snippets = SnippetType.UNDERSCORE
 )
 
