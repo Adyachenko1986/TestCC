@@ -32,6 +32,7 @@ public interface SElements {
     SelenideElement talonNumber2 = $(By.xpath("//*[@id='talon-list']/tr/td[2]"));
     SelenideElement docName2 = $(By.xpath("//*[@id='talon-list']/tr/td[4]"));
     SelenideElement talonTime2 = $(By.xpath("//*[@id='talon-list']/tr/td[7]"));
+    SelenideElement zapis = $(By.xpath("//*[@id='talon-list']"));
     SelenideElement oms = $(By.id("polisType"));
     SelenideElement omsDate = $(By.id("polisDate"));
     SelenideElement fondPatient1 = $(By.xpath("//*[@id='fond-patients']/tr/td[2]"));
@@ -63,7 +64,7 @@ public interface SElements {
 //    SelenideElement mcod = $(By.xpath("//button[@data-lpucode='330501']"));
     SelenideElement spec = $(By.xpath("//div[@id='department-12400']"));
     SelenideElement dayz = $(By.xpath("//*[contains(text(),'Ближайшая запись')]"));
-    SelenideElement timerec = $(By.xpath("//*[contains(text(),'17:30')]"));
+    SelenideElement timerec = $(By.xpath("//button[@class='btn btn-success']")); //(text(),'17:30')
     SelenideElement recordbutton = $(By.xpath("//*[contains(text(),'Записать на прием')]"));
     SelenideElement closemodal = $(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button"));
 
@@ -76,9 +77,14 @@ public interface SElements {
 //    SelenideElement apoinment = $(By.xpath("//*[@id='direction-list']/div/div[2]/button"));
 //    SelenideElement apoLpu = $(By.xpath("//*[@id='c3c977af-c3b4-4517-9d57-50a6844ec660B70332CC-940B-4284-BB44-48AA981F3AB9']/td[6]/button"));
 //    SelenideElement apoLpu = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb123326f407bc-01c7-4e64-ae16-80ae909b1574']/td[6]/button"));
+    SelenideElement apolpu = $(By.xpath("//button[contains(text('СТЕНД ЕМИАС МО'))]"));
 
 //    SelenideElement apoinment = $(By.xpath("//*[@id='direction-list']/div/div[2]/button"));
 //    SelenideElement apoinment = $(By.xpath("//*[@id='direction-list']/div/div[2]/button"));
+
+    SelenideElement calldoc = $(By.xpath("//div[@class='fast-buttons']//button[text()='Вызов врача']"));
+    SelenideElement calldocdom = $(By.xpath("//a[contains(.,' Вызвать врача на дом')]"));
+
 
 
 

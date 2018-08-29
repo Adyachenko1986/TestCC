@@ -15,6 +15,10 @@ public class WaitingListPage extends AbstractPage implements SElements {
     public WaitingListPage() {
     }
 
+    public void assertWL(String arg0, String arg1, String arg2){
+
+    }
+
     public void waitingList() {
 //        lpu.click();
         waitspec.click();
