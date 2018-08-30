@@ -13,9 +13,11 @@ public class FindPatientPage extends AbstractPage implements SElements {
     public FindPatientPage() {
     }
 
-    public void findPatient() throws IOException {
+    public void findPatient() throws IOException, InterruptedException {
         String pol = "45 558320";
         enterPol(pol);
+        clickBtn();
+        Thread.sleep(5000);
     }
 
     public void enterPol(String name) throws IOException {

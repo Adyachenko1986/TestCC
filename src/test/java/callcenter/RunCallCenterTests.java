@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
         plugin = {"html:target/cucumber-report/acceptanceTest", "json:target/cucumber.json"},
         features = "src/test/java/callcenter/features",
         glue = "callcenter/steps",
-        tags = "@acceptanceTest"
-        
+//        tags = "@acceptanceTest"
+        tags = "@Test"
+
 //        snippets = SnippetType.UNDERSCORE
 )
 

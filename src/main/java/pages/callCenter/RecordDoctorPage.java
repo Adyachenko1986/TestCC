@@ -140,7 +140,7 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
 
     public void changeLpu(String arg0){
 
-        SelenideElement lpu = $(By.xpath("//button[contains(text("+arg0+")]"));
+        SelenideElement lpu = $(By.xpath("//button[contains(.,'"+arg0+"')]"));
         lpu.click();
     }
 
@@ -152,7 +152,9 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
 
     public void changeDoc(String arg0){
 
-        SelenideElement fastDoc = $(By.xpath("//id[@id='week-doc-schedule-table-body'] and span='"+arg0+"'] and contains(., 'Ближайшая запись')]"));
+        SelenideElement fastDoc = $(By.xpath("//tr[contains(.,'"+arg0+"')]//button[@class='btn btn-little btn-block btn-success']"));
+//        SelenideElement fastDoc = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50']//td[contains(.,'Ближайшая запись')]")); //$(By.xpath("//td[contains(.,'"+arg0+"')]")).
+        //*[@id="a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50"]
         fastDoc.click();
     }
 

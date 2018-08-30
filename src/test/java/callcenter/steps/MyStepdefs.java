@@ -17,6 +17,7 @@ import pages.SElements;
 import com.codeborne.selenide.Condition;
 
 import java.io.File;
+import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -48,14 +49,14 @@ public class MyStepdefs implements SElements {
 //        close();
         driver.quit();
     }
-    @After
-    public void getScenarioInfo(Scenario scenario) {
-        System.out.println(scenario.getId());
-        System.out.println(scenario.getName());
-        System.out.println(scenario.getStatus());
-        System.out.println(scenario.isFailed());
-        System.out.println(scenario.getSourceTagNames());
-    }
+//    @After
+//    public void getScenarioInfo(Scenario scenario) {
+//        System.out.println(scenario.getId());
+//        System.out.println(scenario.getName());
+//        System.out.println(scenario.getStatus());
+//        System.out.println(scenario.isFailed());
+//        System.out.println(scenario.getSourceTagNames());
+//    }
 
 
     /*Вход в АРМ */
@@ -104,7 +105,7 @@ public class MyStepdefs implements SElements {
     @Дано("^Андрей хочет записать пациента к терапевту$")
     public void RecordToDocor() {
 
-//        mcod.shouldBe(Condition.visible);
+        clear.shouldBe(Condition.visible);
     }
 
     @Когда("^Андрей выбирает \"([^\"]*)\"$")
@@ -279,6 +280,7 @@ public class MyStepdefs implements SElements {
 
     @Допустим("^Андрей захотел отменить запись на прием$")
     public void WantCancelRecord() {
+        allrecord.click();
         delete.shouldBe(Condition.visible);
     }
 
@@ -385,9 +387,8 @@ public class MyStepdefs implements SElements {
     }
 
     @И("^найден пациент Астахова$")
-    public void FindPat() throws Throwable {
+    public void FindPat() throws IOException, InterruptedException {
         page.findPatientPage().findPatient();
-        throw new PendingException();
     }
 
 //    @Дано("^Андрей хочет найти пациента по ФИО и Дате рождения$")
