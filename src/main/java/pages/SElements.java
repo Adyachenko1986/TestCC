@@ -85,6 +85,10 @@ public interface SElements {
     SelenideElement calldoc = $(By.xpath("//div[@class='fast-buttons']//button[text()='Вызов врача']"));
     SelenideElement calldocdom = $(By.xpath("//a[contains(.,' Вызвать врача на дом')]"));
 
+    SelenideElement notyfyRec = $(By.xpath("//div[@id='notifies']/div/p"));
+
+
+
 
 
 

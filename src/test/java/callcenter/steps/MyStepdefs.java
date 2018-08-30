@@ -29,7 +29,7 @@ public class MyStepdefs implements SElements {
 
 
     @Before
-    public static void setupTimeout() {
+    public static void setupTimeout() throws InterruptedException {
         chromeDriverService = new ChromeDriverService.Builder()
                 .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
                 .usingAnyFreePort()
@@ -42,6 +42,7 @@ public class MyStepdefs implements SElements {
 //        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 //        Configuration.browser = "chrome";
         page = new Pages();
+//        page.patientRecordsPage().deleteRecord();
     }
 
     @After
@@ -287,6 +288,7 @@ public class MyStepdefs implements SElements {
     @Когда("^Андрей нажимает Удалить запись$")
     public void CancelRecord() {
         delete.click();
+        yes.click();
     }
 
     @Тогда("^запись к \"([^\"]*)\" пропадает из поля Записи на прием$")
@@ -419,6 +421,24 @@ public class MyStepdefs implements SElements {
     @И("^подтверждает создание вызова$")
     public void confirmCall() throws Throwable {
         $(By.xpath("//button[@class='btn btn-success']")).click();
+        throw new PendingException();
+    }
+
+    @Допустим("^Андрей захотел увидеть ошибку при создании повторной записи к врачу$")
+    public void WantWatchEx() throws Throwable {
+        fondPatient1.shouldHave(Condition.text("АСТАХОВА"));
+        throw new PendingException();
+    }
+
+    @Тогда("^он увидит ошибку содержащую \"([^\"]*)\"$")
+    public void WatchEx(String arg0) throws Throwable {
+        notyfyRec.shouldHave(Condition.text(arg0));
+        throw new PendingException();
+    }
+
+    @Когда("^Андрей хочет записать пациента повторно к \"([^\"]*)\"$")
+    public void DoubleRecord(String arg0) throws Throwable {
+        page.recordDoctorPage().createNewCall(arg0);
         throw new PendingException();
     }
 }

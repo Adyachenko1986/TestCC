@@ -68,6 +68,10 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
 
         System.out.println("Код гавно2");
 
+        System.out.println("текст в lpu и eq1 = "+lpu+" и "+eq1);
+
+        System.out.println("ЗБС");
+
         assertTrue(lpu.contains(eq1));
         System.out.println(eq1+" есть");
         assertTrue(special.contains(eq2));
@@ -158,7 +162,16 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         fastDoc.click();
     }
 
-    public void createNewCall(String profile, String nameGen, String searchPolis) throws IOException {
+    public void createNewCall(String arg0) throws IOException {
+        SelenideElement lpu = $(By.xpath("//button[contains(.,'Стенд ЕМИАС МО')]"));
+        lpu.click();
+        SelenideElement spec = $(By.xpath("//button[@data-department-name='Терапия']"));
+        spec.click();
+        SelenideElement fastDoc = $(By.xpath("//tr[contains(.,'"+arg0+"')]//button[@class='btn btn-little btn-block btn-success']"));
+        fastDoc.click();
+        timerec.click();
+        recordbutton.click();
+
 //        File reader = new File("src\\main\\java\\pages\\callCenter\\profiles\\" + profile + ".json");
 //        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
 //        if (searchPolis.equals("n")) {

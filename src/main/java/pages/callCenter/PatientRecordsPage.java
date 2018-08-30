@@ -1,11 +1,12 @@
 package pages.callCenter;
+import pages.Pages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.SElements;
 
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class PatientRecordsPage extends AbstractPage implements SElements {
     String name2;
@@ -32,15 +33,19 @@ public class PatientRecordsPage extends AbstractPage implements SElements {
     }
 
     public void deleteRecord() throws InterruptedException {
-        //SelenideElement element = delete;
-        //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-        Thread.sleep(1000);
-        //driver.findElement(B y $.By.xpath("//button[@title='Удалить запись']")).click();
-        //Thread.sleep(2000);
-        //driver.findElement(B y $.By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button[2]")).click();
-        //wait.until(ExpectedConditions.elementToBeClickable(delete));
+        System.out.println("Поехале");
+        open("http://call.emias.mosreg.ru/");
+        log.val("ccg");
+        pass.val("ccg123");
+        loginButton.click();
+        open(url);
+        polis.val("45 558320");
+        find.click();
+        Thread.sleep(5000);
+        allrecord.click();
         delete.click();
         yes.click();
+        close();
     }
 
     public void asserts() {
