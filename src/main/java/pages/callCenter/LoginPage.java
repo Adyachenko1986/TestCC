@@ -23,7 +23,7 @@ public class LoginPage extends AbstractPage implements SElements {
 //        if ($("h2").getText() == "Пожалуйста, авторизуйтесь:")
 //        {
         log.val("ccg");
-        pass.val("ccg123");
+        pass.val("ccg1234");
         loginButton.click();
         open(url);
 //        }

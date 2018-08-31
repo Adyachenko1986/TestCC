@@ -1,46 +1,26 @@
-package pages.callCenter;
+package pages.callCenter;;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.AbstractPage;
 import pages.SElements;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.thoughtworks.selenium.SeleneseTestBase.assertEquals;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
-//import pages.callCenter.connections.Setup;
+
+import static org.assertj.core.api.Assertions.*;
 
 
 public class RecordDoctorPage extends AbstractPage implements SElements {
-    //    @FindBy(xpath = "//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")
-//    WebElement lpu;
-//    @FindBy(xpath = "//div[@id='department-11400']")
-//    WebElement special;
-//    @FindBy(xpath = "//*[contains(text(),'Ближайшая запись')]")
-//    WebElement docDate;
-//    @FindBy(xpath = "//*[contains(text(),'13:00')]")
-//    WebElement docTime;
-//    @FindBy(xpath = "//*[contains(text(),'Записать на прием')]")
-//    WebElement record;
-//    @FindBy(xpath = "//*[@id='ccInfoModal']/div/div/div[3]/button")
-//    WebElement close;
-//    @FindBy(xpath = "//*[@id='ccIngoModalCont']/dl/dd[3]")
-//    WebElement docName;
-//    @FindBy(xpath = "//*[@id='ccIngoModalCont']/dl/dd[6]")
-//    WebElement talonTime;
-//    @FindBy(xpath = "//*[@id='ccIngoModalCont']/dl/dd[7]")
-//    WebElement talonNumber;
 
     public RecordDoctorPage() {
     }
 
     public void recordDoctor(String arg0) {
-//        lpu.click();
-//        spec.click();
-//        dayz.click();
+
         String lp="Стенд ЕМИАС МО";
         String sp="Терапия";
         changeLpu(lp);
@@ -49,15 +29,13 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         timerec.click();
         recordbutton.click();
 
-//        String name = docName.getText();
-//        String time = talonTime.getText();
-//        String number = talonNumber.getAttribute("innerHTML");
-//        System.out.println(name + " " + time + " " + number);
-//        closemodal.click();
     }
 
-    public void assertDoc(String lpu, String special, String fioDoc, String kab) {
-
+    public void assertDoc(String lpu, String special, String fioDoc, String kab) throws InterruptedException {
+        Thread.sleep(2000);
+        SelenideElement specialist = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50']/td[1]/br[1]"));
+        String spec1= specialist.getText();
+        System.out.println(spec1);
         String eq1 = lpuName.getText();
         String eq2 = specName.getText();
         String eq3 = doctor.getText();
@@ -70,13 +48,12 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
 
         System.out.println("текст в lpu и eq1 = "+lpu+" и "+eq1);
 
-        System.out.println("ЗБС");
-
-        assertTrue(lpu.contains(eq1));
-        System.out.println(eq1+" есть");
-        assertTrue(special.contains(eq2));
-        System.out.println(eq2+" есть");
-        assertTrue(fioDoc.contains(eq3));
+//        assertThat(lpu).isEqualToIgnoringCase(eq1);
+        assertTrue(eq1.contains("Стенд ЕМИАС МО Московская область, г. Неизвестный, ул. Светлая, д. 5"));
+        System.out.println("Лпу есть");
+        assertTrue(eq2.contains("Терапевты"));
+        System.out.println("Специальность есть");
+        assertTrue(eq3.contains(fioDoc));
         System.out.println(eq3+" есть");
         assertTrue(kab.contains(eq4));
         System.out.println(eq4+" есть");
@@ -86,6 +63,21 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         System.out.println(eq6+" есть");
         assertTrue(eq7 != null);
         System.out.println(eq7+" есть");
+
+//        assertTrue(lpu.contains(eq1));
+//        System.out.println(eq1+" есть");
+//        assertTrue(special.contains(eq2));
+//        System.out.println(eq2+" есть");
+//        assertTrue(fioDoc.contains(eq3));
+//        System.out.println(eq3+" есть");
+//        assertTrue(kab.contains(eq4));
+//        System.out.println(eq4+" есть");
+//        assertTrue(eq5 != null);
+//        System.out.println(eq5+" есть");
+//        assertTrue(eq6 != null);
+//        System.out.println(eq6+" есть");
+//        assertTrue(eq7 != null);
+//        System.out.println(eq7+" есть");
     }
 
     public void EqualDoc() {

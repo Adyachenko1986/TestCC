@@ -136,7 +136,7 @@ public class MyStepdefs implements SElements {
     }
 
     @Тогда("^появится всплывающее окно с полями \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
-    public void WinModal(String lpu, String special, String fioDoc, String kab) {
+    public void WinModal(String lpu, String special, String fioDoc, String kab) throws InterruptedException {
 
         page.recordDoctorPage().assertDoc(lpu, special, fioDoc, kab);
 //        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
