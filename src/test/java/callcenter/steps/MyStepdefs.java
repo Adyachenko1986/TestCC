@@ -18,6 +18,7 @@ import com.codeborne.selenide.Condition;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -42,6 +43,9 @@ public class MyStepdefs implements SElements {
 //        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 //        Configuration.browser = "chrome";
         page = new Pages();
+        long threadId = Thread.currentThread().getId();
+        String processName = ManagementFactory.getRuntimeMXBean().getName();
+        System.out.println("Started in thread: " + threadId + ", in JVM: " + processName);
 //        page.patientRecordsPage().deleteRecord();
     }
 
@@ -439,6 +443,46 @@ public class MyStepdefs implements SElements {
     @Когда("^Андрей хочет записать пациента повторно к \"([^\"]*)\"$")
     public void DoubleRecord(String arg0) throws Throwable {
         page.recordDoctorPage().createNewCall(arg0);
+        throw new PendingException();
+    }
+
+    @Дано("^Андрей авторизуется в ВебМис$")
+    public void андрейАвторизуетсяВВебМис() throws Throwable {
+        page.loginPage().loginMis();
+        throw new PendingException();
+    }
+
+    @И("^открывает расписание врача \"([^\"]*)\"$")
+    public void открываетРасписаниеВрача(String arg0) throws Throwable {
+        $(By.xpath("//a[text()='Расписание приёма']/@href")).click();
+        $(By.id("sinpdocprvdgrid1")).val(arg0);
+        $(By.id("btnfinddocprvdgrid1")).click();
+        $(By.id("docprvdgrid1")).click();
+
+        throw new PendingException();
+    }
+
+    @Тогда("^Проверяет наличие созданной записи на прием$")
+    public void проверяетНаличиеСозданнойЗаписиНаПрием() throws Throwable {
+        $(By.xpath("//div[class='qtip-titlebar ui-widget-header ui-tooltip-header']")).shouldHave(Condition.text("Астахова"));
+        throw new PendingException();
+    }
+
+    @И("^найден пациент Темников$")
+    public void найденПациентТемников() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @И("^создана карта диспансеризации$")
+    public void созданаКартаДиспансеризации() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Тогда("^в колонке \"([^\"]*)\" отобразится действующий маршрутный лист$")
+    public void вКолонкеОтобразитсяДействующийМаршрутныйЛист(String arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
 }

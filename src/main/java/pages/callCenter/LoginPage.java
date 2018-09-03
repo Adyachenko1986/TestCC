@@ -1,6 +1,7 @@
 package pages.callCenter;
 
 import com.codeborne.selenide.Condition;
+import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.SElements;
 
@@ -33,5 +34,12 @@ public class LoginPage extends AbstractPage implements SElements {
 //        log.val("ccg");
 //        pass.val("ccg123");
 //        loginButton.click();
+    }
+
+    public void loginMis() {
+        open("http://emias.mosreg.ru/demonstration/");
+        $(By.id("Login")).setValue("admin");
+        $(By.id("Password")).setValue("RChS2014");
+        $(By.id("loginBtn")).click();
     }
 }

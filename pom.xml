@@ -131,7 +131,7 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <forkCount>1</forkCount>
+                            <forkCount>3</forkCount>
                             <reuseForks>true</reuseForks>
                             <includes>
                                 <include>**/*RunCallCenterTests.class</include>
@@ -165,6 +165,28 @@
                 <configuration>
                     <reportVersion>2.6.0</reportVersion>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.temyers</groupId>
+                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+                <version>5.0.0</version>
+                <executions>
+                    <execution>
+                        <id>generateRunners</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>generateRunners</goal>
+                        </goals>
+                        <configuration>
+                            <glue>callcenter/steps</glue>
+                            <featuresDirectory>src/test/java/callcenter/features</featuresDirectory>
+                            <cucumberOutputDir>target</cucumberOutputDir>
+                            <format>json,html</format>
+                            <tags>"@acceptanceTest"</tags>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!--<plugin>-->
