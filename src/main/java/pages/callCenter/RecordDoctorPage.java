@@ -2,6 +2,9 @@ package pages.callCenter;;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Keyboard;
 import pages.AbstractPage;
 import pages.SElements;
 
@@ -189,5 +192,26 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
 //        Map proData = new ObjectMapper().readValue(reader, Map.class);
 //        System.out.println("Корректность данных на странице редактирования выполнена! " + driver.getCurrentUrl());
 //        return this;
+//    }
+
+//    public void createShedule() throws InterruptedException {
+////        waitAllEmias();
+//
+//        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
+//        String a = "2330", b = "2344";
+//        String c = "2344", d = "2359";
+//        createShedule.click();
+//
+//        setTimeCalendar(a, b);
+//        setTypeOfReception(priemNaDomu);
+//
+//        setTimeCalendar(c, d);
+//        setTypeOfReception(priemPoOcheredi);
+//
+////        waitWhileClickable(btn_save_schedule);
+//        btn_save_schedule.click();                   //нажимаем кнопку сохранить
+//        keyboard.pressKey(Keys.ENTER);
+////        waitAllEmias();
+////        Waiter.waitAllEmias();
 //    }
 }
