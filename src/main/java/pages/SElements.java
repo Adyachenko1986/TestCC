@@ -41,6 +41,8 @@ public interface SElements {
 
 
     SelenideElement lpuName = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[1]"));
+    //*[@id="ccIngoModalCont"]/dl/dd[1]/text()
+
     SelenideElement specName = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[2]"));
     SelenideElement doctor = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[3]"));
     SelenideElement kabName = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[4]"));
@@ -68,10 +70,12 @@ public interface SElements {
     SelenideElement recordbutton = $(By.xpath("//*[contains(text(),'Записать на прием')]"));
     SelenideElement closemodal = $(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button"));
 
-    SelenideElement waitspec = $(By.xpath("//div[@id='department-12202'"));
+    SelenideElement waitspec = $(By.xpath("//div[@id='department-12102']/button[1]"));
+    //*[@id="department-12102"]/button[1]
     SelenideElement waitbutton = $(By.xpath("//*[contains(text(),'Записать в лист ожидания')]"));
     SelenideElement complain = $(By.xpath("//*[@id='complain']"));
-    SelenideElement oform = $(By.xpath("//*[contains(text(),'Оформить')]"));
+    SelenideElement oform = $(By.xpath("//*[@id='createWaitingListRecordForm']/div[2]/div[2]/button"));
+    //*[@id="createWaitingListRecordForm"]/div[2]/div[2]/button
 
 //    SelenideElement apoinmentsList = $(By.xpath("//*[@id='direction-list-tab']"));
 //    SelenideElement apoinment = $(By.xpath("//*[@id='direction-list']/div/div[2]/button"));

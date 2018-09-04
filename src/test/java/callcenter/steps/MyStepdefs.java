@@ -149,8 +149,8 @@ public class MyStepdefs implements SElements {
     }
 
     @Когда("^Андрей хочет записать пациента в лист ожидания$")
-    public void RecordWait() {
-        waitbutton.shouldBe(Condition.visible);
+    public void RecordWait() throws InterruptedException {
+        clear.shouldBe(Condition.visible);
     }
 
     @И("^выбирает Оформить лист ожидания$")
@@ -199,27 +199,28 @@ public class MyStepdefs implements SElements {
 
     @Допустим("^Андрей захотел просмотреть активный лист ожидания$")
     public void WatchActiveWl() {
+        allrecord.click();
         $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Создана"));
     }
 
-    @Когда("^Андрей нажимает “Подробная информация”$")
+    @Когда("^Андрей нажимает “Подробная информация” в записи на прием$")
     public void DetailsWl() {
-        $(By.xpath("//*[@class='waiting-list-item']/div/button")).click();
+        $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/button[2]")).click();
     }
 
     @То("^появится всплывающие окно с полями: \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
     public void DetailModal(String arg0, String arg1, String arg2) {
         page.waitingListPage().assertWL(arg0,arg1,arg2);
-//        $(By.xpath("//*[@class='waiting-list-item']/div")).getText();
     }
 
     @Тогда("^Андрей нажимает История$")
     public void ChangeHistory() {
-        $(By.xpath("//*[@class='waiting-list-item']/div[2]/button")).click();
+        $(By.xpath("//*[@id='waiting-list']/tr[2]/td[1]/div[2]/button")).click();
     }
 
     @И("^появится всплывающие окно с таблицей с полями Дата, Автор, Что изменилось, Изменение$")
     public void HistoryModal() {
+        page.waitingListPage().assertWLHis();
         $(By.xpath("//*[@id='waiting-list-history']/table/tbody[2]")).getText();
     }
 
@@ -302,7 +303,7 @@ public class MyStepdefs implements SElements {
 
     @И("^создана запись на прием к \"([^\"]*)\"$")
     public void CreateRecord(String arg0)  {
-        page.recordDoctorPage().recordDoctor(arg0);
+        page.recordDoctorPage().recordDoctor2(arg0);
     }
 
     @И("^создана запись в ЛО к Клименко$")
@@ -412,44 +413,36 @@ public class MyStepdefs implements SElements {
     @Допустим("^Андрей захотел проверить корректость полей: Номер талона, Врач, Специальность, Дата создания записи, Дата приема, Время приема$")
     public void EqRec() throws Throwable {
         page.recordDoctorPage().EqualDoc();
-
-        throw new PendingException();
     }
 
     @То("^появится всплывающие окно с полями ЛПУ, адрес ЛПУ, Источник вызова, Дата создания$")
     public void modWind() throws Throwable {
         page.recordDoctorPage().EqualDetal();
-        throw new PendingException();
     }
 
     @И("^подтверждает создание вызова$")
     public void confirmCall() throws Throwable {
         $(By.xpath("//button[@class='btn btn-success']")).click();
-        throw new PendingException();
     }
 
     @Допустим("^Андрей захотел увидеть ошибку при создании повторной записи к врачу$")
     public void WantWatchEx() throws Throwable {
         fondPatient1.shouldHave(Condition.text("АСТАХОВА"));
-        throw new PendingException();
     }
 
     @Тогда("^он увидит ошибку содержащую \"([^\"]*)\"$")
     public void WatchEx(String arg0) throws Throwable {
         notyfyRec.shouldHave(Condition.text(arg0));
-        throw new PendingException();
     }
 
     @Когда("^Андрей хочет записать пациента повторно к \"([^\"]*)\"$")
     public void DoubleRecord(String arg0) throws Throwable {
         page.recordDoctorPage().createNewCall(arg0);
-        throw new PendingException();
     }
 
     @Дано("^Андрей авторизуется в ВебМис$")
     public void андрейАвторизуетсяВВебМис() throws Throwable {
         page.loginPage().loginMis();
-        throw new PendingException();
     }
 
     @И("^открывает расписание врача \"([^\"]*)\"$")
@@ -458,31 +451,25 @@ public class MyStepdefs implements SElements {
         $(By.id("sinpdocprvdgrid1")).val(arg0);
         $(By.id("btnfinddocprvdgrid1")).click();
         $(By.id("docprvdgrid1")).click();
-
-        throw new PendingException();
     }
 
     @Тогда("^Проверяет наличие созданной записи на прием$")
     public void проверяетНаличиеСозданнойЗаписиНаПрием() throws Throwable {
         $(By.xpath("//div[class='qtip-titlebar ui-widget-header ui-tooltip-header']")).shouldHave(Condition.text("Астахова"));
-        throw new PendingException();
     }
 
     @И("^найден пациент Темников$")
     public void найденПациентТемников() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
     }
 
     @И("^создана карта диспансеризации$")
     public void созданаКартаДиспансеризации() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
     }
 
     @Тогда("^в колонке \"([^\"]*)\" отобразится действующий маршрутный лист$")
     public void вКолонкеОтобразитсяДействующийМаршрутныйЛист(String arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
     }
 }

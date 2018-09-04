@@ -24,14 +24,26 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
 
     public void recordDoctor(String arg0) {
 
-        String lp="Стенд ЕМИАС МО";
+        String lp="СТЕНД ЕМИАС МО";
         String sp="Терапия";
         changeLpu(lp);
         changeSpec(sp);
         changeDoc(arg0);
         timerec.click();
         recordbutton.click();
+        closemodal.click();
 
+    }
+
+    public void recordDoctor2(String arg0) {
+
+        String lp="СТЕНД ЕМИАС МО";
+        String sp="Терапия";
+        changeLpu(lp);
+        changeSpec(sp);
+        changeDoc(arg0);
+        timerec.click();
+        recordbutton.click();
     }
 
     public void assertDoc(String lpu, String special, String fioDoc, String kab) throws InterruptedException {
@@ -83,8 +95,8 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
 //        System.out.println(eq7+" есть");
     }
 
-    public void EqualDoc() {
-
+    public void EqualDoc() throws InterruptedException {
+        System.out.println("метка1");
         String eq1 = lpuName.getText();
         String eq2 = specName.getText();
         String eq3 = doctor.getText();
@@ -92,6 +104,13 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         String eq5 = dateTicket.getText();
         String eq6 = timeTicket.getText();
         String eq7 = numTicket.getText();
+        closemodal.click();
+
+        System.out.println("метка2");
+        Thread.sleep(2000);
+
+        allrecord.click();
+        Thread.sleep(2000);
 
         String equal7 = $(By.xpath("//*[@id='talon-list']/tr/td[2]")).getText();
         String equal2 = $(By.xpath("//*[@id='talon-list']/tr/td[4]")).getText();
@@ -99,61 +118,69 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         String equal6 = $(By.xpath("//*[@id='talon-list']/tr/td[7]")).getText();
         String istok = $(By.xpath("//*[@id='talon-list']/tr/td[5]")).getText();
         String equal5 = $(By.xpath("//*[@id='talon-list']/tr/td[6]")).getText();
-//        String equal8 = $(By.xpath("//*[@id='talon-list']/tr/td[2]")).getText();
-
         System.out.println("Код гавно2");
 
-//        assertTrue(equal.contains(eq1));
-//        System.out.println(eq1+" есть");
-        assertTrue(equal2.contains(eq2));
+        assertTrue(equal2.contains("Терапия"));
         System.out.println(eq2+" есть");
-        assertTrue(equal3.contains(eq3));
+        assertTrue(equal3.contains("Ай Бо Лит"));
         System.out.println(eq3+" есть");
-//        assertTrue(kab.contains(eq4));
-//        System.out.println(eq4+" есть");
-        assertTrue(equal5.contains(eq5));
-        System.out.println(eq5+" есть");
         assertTrue(equal6.contains(eq6));
         System.out.println(eq6+" есть");
         assertTrue(equal7.contains(eq7));
         System.out.println(eq7+" есть");
         assertTrue(istok.contains("Колл-центр"));
+        System.out.println("Код гавно3");
     }
 
     public void EqualDetal() {
 
-        String eq1 = lpuName.getText();
+//        String eq1 = lpuName.getText();
+//
+//        String equal8 = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/h4")).getText();
+//        String equal9 = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/p[4]")).getText();
+//        String istok = $(By.xpath("//*[@id='talon-list']/tr/td[5]")).getText();
+//
+//        System.out.println("Код гавно3");
+//
+//        assertTrue(istok.contains("Колл-центр"));
+//        assertTrue(equal8.contains(eq1));
+//        System.out.println(eq1+" есть");
+//        assertTrue(istok.contains(equal9));
+//        System.out.println(" есть");
+        SelenideElement lpuName2 = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/h4"));
+        //*[@id="talon-list"]/tr/td[1]/div/ul/li/div/h4
+        SelenideElement adress = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/p[1]"));
+        SelenideElement istok = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/p[3]"));
+        SelenideElement createData = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/p[4]"));
 
-        String equal8 = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/h4")).getText();
-        String equal9 = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/p[4]")).getText();
-        String istok = $(By.xpath("//*[@id='talon-list']/tr/td[5]")).getText();
 
-        System.out.println("Код гавно3");
+        String eq1 = lpuName2.getText();
+        String eq2 = adress.getText();
+        String eq3 = istok.getText();
+        String eq4 = createData.getText();
 
-        assertTrue(istok.contains("Колл-центр"));
-        assertTrue(equal8.contains(eq1));
+        assertTrue(eq1.contains("Стенд ЕМИАС МО"));
         System.out.println(eq1+" есть");
-        assertTrue(istok.contains(equal9));
-        System.out.println(" есть");
+        assertTrue(eq2.contains("Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5"));
+        System.out.println(eq2+" есть");
+        assertTrue(eq3.contains("Источник: Колл-центр"));
+        System.out.println(eq3+" есть");
+        assertTrue(eq4 != null);
+        System.out.println(eq4+" есть");
     }
 
     public void changeLpu(String arg0){
-
         SelenideElement lpu = $(By.xpath("//button[contains(.,'"+arg0+"')]"));
         lpu.click();
     }
 
     public void changeSpec(String arg0){
-
         SelenideElement spec = $(By.xpath("//button[@data-department-name='"+arg0+"']"));
         spec.click();
     }
 
     public void changeDoc(String arg0){
-
         SelenideElement fastDoc = $(By.xpath("//tr[contains(.,'"+arg0+"')]//button[@class='btn btn-little btn-block btn-success']"));
-//        SelenideElement fastDoc = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50']//td[contains(.,'Ближайшая запись')]")); //$(By.xpath("//td[contains(.,'"+arg0+"')]")).
-        //*[@id="a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50"]
         fastDoc.click();
     }
 
@@ -162,56 +189,10 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         lpu.click();
         SelenideElement spec = $(By.xpath("//button[@data-department-name='Терапия']"));
         spec.click();
-        SelenideElement fastDoc = $(By.xpath("//tr[contains(.,'"+arg0+"')]//button[@class='btn btn-little btn-block btn-success']"));
+        SelenideElement fastDoc = $(By.xpath("//tr[contains(.,'" + arg0 + "')]//button[@class='btn btn-little btn-block btn-success']"));
         fastDoc.click();
         timerec.click();
         recordbutton.click();
-
-//        File reader = new File("src\\main\\java\\pages\\callCenter\\profiles\\" + profile + ".json");
-//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-//        if (searchPolis.equals("n")) {
-//            recordDoctor()
-//                    .lpuName(proData)
-//                    .adress(proData)
-//                    .vozrastKat(proData)
-//                    .birthDay(proData)
-//                    .adressAddition(proData)
-//                    .sex(proData)
-//                    .complaint(proData)
-//                    .polis(proData)
-//                    .FIO(nameGen, proData)
-//                    .caller(nameGen, proData)
-//                    .telephone(proData)
-//                    .saveBtn()
-//                    .adressAlarma(proData);
-//        }
     }
 
-//    public RecordDoctorPage verifyCallProfile1(String profile, String nameGen) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//        System.out.println("Корректность данных на странице редактирования выполнена! " + driver.getCurrentUrl());
-//        return this;
-//    }
-
-//    public void createShedule() throws InterruptedException {
-////        waitAllEmias();
-//
-//        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
-//        String a = "2330", b = "2344";
-//        String c = "2344", d = "2359";
-//        createShedule.click();
-//
-//        setTimeCalendar(a, b);
-//        setTypeOfReception(priemNaDomu);
-//
-//        setTimeCalendar(c, d);
-//        setTypeOfReception(priemPoOcheredi);
-//
-////        waitWhileClickable(btn_save_schedule);
-//        btn_save_schedule.click();                   //нажимаем кнопку сохранить
-//        keyboard.pressKey(Keys.ENTER);
-////        waitAllEmias();
-////        Waiter.waitAllEmias();
-//    }
 }
