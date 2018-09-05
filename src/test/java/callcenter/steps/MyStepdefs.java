@@ -2,8 +2,8 @@ package callcenter.steps;
 import com.codeborne.selenide.Configuration;
 
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.commands.PressEnter;
 import cucumber.api.PendingException;
-import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.ru.*;
@@ -30,7 +30,7 @@ public class MyStepdefs implements SElements {
 
 
     @Before
-    public static void setupTimeout() throws InterruptedException {
+    public static void setupTimeout()  {
         chromeDriverService = new ChromeDriverService.Builder()
                 .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
                 .usingAnyFreePort()
@@ -126,12 +126,15 @@ public class MyStepdefs implements SElements {
     @И("^выбирает ближайшую запись у \"([^\"]*)\"$")
     public void FindDay(String arg0) {
         page.recordDoctorPage().changeDoc(arg0);
+
 //        dayz.click();
     }
 
     @И("^выбирает время приема$")
     public void FindTime() {
-        timerec.click();
+
+        nextday.click();
+        recordTime.click();
     }
 
     @И("^затем выбирает: Записать на прием$")
@@ -142,14 +145,12 @@ public class MyStepdefs implements SElements {
     @Тогда("^появится всплывающее окно с полями \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
     public void WinModal(String lpu, String special, String fioDoc, String kab) throws InterruptedException {
 
-        page.recordDoctorPage().assertDoc(lpu, special, fioDoc, kab);
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        page.recordDoctorPage().assertDir(lpu, special, fioDoc, kab);
         closemodal.click();
     }
 
     @Когда("^Андрей хочет записать пациента в лист ожидания$")
-    public void RecordWait() throws InterruptedException {
+    public void RecordWait() {
         clear.shouldBe(Condition.visible);
     }
 
@@ -236,11 +237,12 @@ public class MyStepdefs implements SElements {
 
     @Тогда("^появляется список всех созданных листов ожидания$")
     public void ListWl() {
-        $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Отменена"));
+        $(By.xpath("//*[@class='waiting-list-item unactive']")).shouldHave(Condition.text("Отменена"));
     }
 
     @Допустим("^Андрей захотел перенести запись на прием$")
     public void WantRerecord() {
+        allrecord.click();
         reschedule.shouldBe(Condition.visible);
     }
 
@@ -266,7 +268,7 @@ public class MyStepdefs implements SElements {
 
     @То("^появляется всплывающее окно “Запись перенесена успешно”$")
     public void ModalSucsess() {
-        yes.click();
+        notyfyRec.shouldHave(Condition.text("Запись перенесена успешно"));
     }
 
     @Допустим("^Андрей захотел отменить лист ожидания$")
@@ -275,13 +277,17 @@ public class MyStepdefs implements SElements {
     }
 
     @Когда("^Андрей нажимает Удалить$")
-    public void DeleteWl() {
+    public void DeleteWl() throws InterruptedException {
         $(By.xpath("//*[@class='waiting-list-item']/td[7]/button")).click();
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();
     }
 
     @Тогда("^у вызова проставляется статус Отменена$")
     public void CancelWl() {
-        $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Отменена"));
+        $(By.xpath("//*[@id='show-all-waiting-list']")).click();
+        $(By.xpath("//*[@id='waiting-list']/tr[2]/td[6]")).shouldHave(Condition.text("Отменена"));
+//        $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Отменена"));
     }
 
     @Допустим("^Андрей захотел отменить запись на прием$")
@@ -328,17 +334,18 @@ public class MyStepdefs implements SElements {
 
     @Допустим("^Андрей захотел записать пациента по направлению$")
     public void WantDirection()  {
-        apolpu.shouldBe(Condition.visible);
+        directionList.shouldBe(Condition.visible).click();
     }
 
     @Когда("^Андрей нажал на выбранное направление$")
     public void Direction()  {
-        apolpu.click();
+        $(By.xpath("//*[@class='btn btn-default btn-Tblock']/strong[2]")).shouldHave(Condition.text("Терапия")).click();
+//        apolpu.click();
     }
 
     @То("^появляется расписание врачей этой специальности$")
     public void SheduleDoc()  {
-        recordDate.shouldBe(Condition.visible);
+        $(By.xpath("//tr[contains(.,'Ай Бо Лит')]//button[@class='btn btn-block btn-success']")).shouldBe(Condition.visible);
     }
 
     @Тогда("^появляется всплывающее окно с заполненными полями:$")
@@ -416,22 +423,22 @@ public class MyStepdefs implements SElements {
     }
 
     @То("^появится всплывающие окно с полями ЛПУ, адрес ЛПУ, Источник вызова, Дата создания$")
-    public void modWind() throws Throwable {
+    public void modWind() {
         page.recordDoctorPage().EqualDetal();
     }
 
     @И("^подтверждает создание вызова$")
-    public void confirmCall() throws Throwable {
+    public void confirmCall()  {
         $(By.xpath("//button[@class='btn btn-success']")).click();
     }
 
     @Допустим("^Андрей захотел увидеть ошибку при создании повторной записи к врачу$")
-    public void WantWatchEx() throws Throwable {
+    public void WantWatchEx()  {
         fondPatient1.shouldHave(Condition.text("АСТАХОВА"));
     }
 
     @Тогда("^он увидит ошибку содержащую \"([^\"]*)\"$")
-    public void WatchEx(String arg0) throws Throwable {
+    public void WatchEx(String arg0)  {
         notyfyRec.shouldHave(Condition.text(arg0));
     }
 
@@ -441,12 +448,12 @@ public class MyStepdefs implements SElements {
     }
 
     @Дано("^Андрей авторизуется в ВебМис$")
-    public void андрейАвторизуетсяВВебМис() throws Throwable {
+    public void misLogin() {
         page.loginPage().loginMis();
     }
 
     @И("^открывает расписание врача \"([^\"]*)\"$")
-    public void открываетРасписаниеВрача(String arg0) throws Throwable {
+    public void docShedule(String arg0) {
         $(By.xpath("//a[text()='Расписание приёма']/@href")).click();
         $(By.id("sinpdocprvdgrid1")).val(arg0);
         $(By.id("btnfinddocprvdgrid1")).click();
@@ -454,22 +461,27 @@ public class MyStepdefs implements SElements {
     }
 
     @Тогда("^Проверяет наличие созданной записи на прием$")
-    public void проверяетНаличиеСозданнойЗаписиНаПрием() throws Throwable {
+    public void checkRecordDoc()  {
         $(By.xpath("//div[class='qtip-titlebar ui-widget-header ui-tooltip-header']")).shouldHave(Condition.text("Астахова"));
     }
 
     @И("^найден пациент Темников$")
-    public void найденПациентТемников() throws Throwable {
+    public void findTemnikov()  {
         // Write code here that turns the phrase above into concrete actions
     }
 
     @И("^создана карта диспансеризации$")
-    public void созданаКартаДиспансеризации() throws Throwable {
+    public void createDisp()  {
         // Write code here that turns the phrase above into concrete actions
     }
 
     @Тогда("^в колонке \"([^\"]*)\" отобразится действующий маршрутный лист$")
-    public void вКолонкеОтобразитсяДействующийМаршрутныйЛист(String arg0) throws Throwable {
+    public void marshrutka(String arg0)  {
         // Write code here that turns the phrase above into concrete actions
+    }
+
+    @Тогда("^Андрей выбирает дату привема$")
+    public void андрейВыбираетДатуПривема()  {
+        $(By.xpath("//tr[contains(.,'Ай Бо Лит')]//button[@class='btn btn-block btn-success']")).click();
     }
 }

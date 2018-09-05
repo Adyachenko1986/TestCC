@@ -46,6 +46,37 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         recordbutton.click();
     }
 
+    public void assertDir(String lpu, String special, String fioDoc, String kab) throws InterruptedException {
+        Thread.sleep(2000);
+        SelenideElement specialist = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50']/td[1]/br[1]"));
+        String spec1= specialist.getText();
+        System.out.println(spec1);
+        String eq1 = lpuName.getText();
+        String eq2 = specName.getText();
+        String eq3 = doctor.getText();
+        String eq4 = kabName.getText();
+        String eq5 = dateTicket.getText();
+        String eq6 = timeTicket.getText();
+
+        System.out.println("Код гавно2");
+
+        System.out.println("текст в lpu и eq1 = "+lpu+" и "+eq1);
+        System.out.println("текст в фио док и eq3 = "+fioDoc+" и "+eq3);
+
+        assertTrue(eq1.contains("Стенд ЕМИАС МО | Московская область, г. Неизвестный, ул. Светлая, д. 5"));
+        System.out.println("Лпу есть");
+        assertTrue(eq2.contains(special));
+        System.out.println("Специальность есть");
+        assertTrue(eq3.contains(fioDoc));
+        System.out.println(eq3+" есть");
+        assertTrue(kab.contains(eq4));
+        System.out.println(eq4+" есть");
+        assertTrue(eq5 != null);
+        System.out.println(eq5+" есть");
+        assertTrue(eq6 != null);
+        System.out.println(eq6+" есть");
+
+    }
     public void assertDoc(String lpu, String special, String fioDoc, String kab) throws InterruptedException {
         Thread.sleep(2000);
         SelenideElement specialist = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50']/td[1]/br[1]"));
@@ -79,20 +110,6 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         assertTrue(eq7 != null);
         System.out.println(eq7+" есть");
 
-//        assertTrue(lpu.contains(eq1));
-//        System.out.println(eq1+" есть");
-//        assertTrue(special.contains(eq2));
-//        System.out.println(eq2+" есть");
-//        assertTrue(fioDoc.contains(eq3));
-//        System.out.println(eq3+" есть");
-//        assertTrue(kab.contains(eq4));
-//        System.out.println(eq4+" есть");
-//        assertTrue(eq5 != null);
-//        System.out.println(eq5+" есть");
-//        assertTrue(eq6 != null);
-//        System.out.println(eq6+" есть");
-//        assertTrue(eq7 != null);
-//        System.out.println(eq7+" есть");
     }
 
     public void EqualDoc() throws InterruptedException {
