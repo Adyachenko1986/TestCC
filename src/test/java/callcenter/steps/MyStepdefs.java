@@ -22,6 +22,7 @@ import java.lang.management.ManagementFactory;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 public class MyStepdefs implements SElements {
     public static Pages page;
@@ -508,22 +509,35 @@ public class MyStepdefs implements SElements {
 
     @Когда("^Андрей захотел проверить корректость прикрепления пациента$")
     public void prikrepCorrect()  {
-        // Write code here that turns the phrase above into concrete actions
+        $(By.xpath("//*[@id='accretionsPatient']/tbody/tr/td[1]/span")).shouldHave(Condition.text("СТЕНД ЕМИАС МО"));
+        $(By.id("areaType")).shouldHave(Condition.text("Терапевтический (в т.ч. цеховой) Терапевтический щ-2"));
+        $(By.id("docName")).shouldHave(Condition.text("Моков Павел Александрович"));
+
     }
 
     @Тогда("^в поле данные пациента будут отображено: Медучереждение, Участок и Врач$")
     public void polePatientData()  {
-        // Write code here that turns the phrase above into concrete actions
+        System.out.println("Все ок");
     }
 
     @Когда("^Андрей захотел проверить корректость количества талонов в фильтре специальностей$")
-    public void checkCorrectNumTalon()  {
-        // Write code here that turns the phrase above into concrete action
+    public void checkCorrectNumTalon() {
+        $(By.id("select2-searchDepartment-container")).click();
+        String spec1 = $(By.xpath("//*[@id='select2-searchDepartment-result-tt9f-11802']")).getText();
+        String spec2 = $(By.xpath("//*[@id='select2-searchDepartment-result-l52g-12100']")).getText();
+        String spec3 = $(By.xpath("//*[@id='select2-searchDepartment-result-dra1-12102']")).getText();
+        String specEq1 = $(By.xpath("//*[@id='department-11802']/button/span[2]")).getText();
+        String specEq2 = $(By.xpath("//*[@id='department-12100']/button/span[2]")).getText();
+        String specEq3 = $(By.xpath("//*[@id='department-12102']/button/span[2]")).getText();
+        assertTrue(spec1.contains(specEq1));
+        assertTrue(spec2.contains(specEq2));
+        assertTrue(spec3.contains(specEq3));
+
     }
 
     @Тогда("^количество талонов совпадает$")
     public void CheckTalonDone()  {
-        // Write code here that turns the phrase above into concrete actions
+        System.out.println("Все ок");
     }
 
     @Тогда("^Андрей заполняет поля \"([^\"]*)\", Телефон, \"([^\"]*)\", \"([^\"]*)\"$")
