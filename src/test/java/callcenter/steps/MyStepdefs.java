@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.lang.management.ManagementFactory;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class MyStepdefs implements SElements {
     public static Pages page;
@@ -205,8 +206,13 @@ public class MyStepdefs implements SElements {
     }
 
     @Когда("^Андрей нажимает “Подробная информация” в записи на прием$")
-    public void DetailsWl() {
+    public void DetailsRDL() {
         $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/button[2]")).click();
+    }
+
+    @Когда("^Андрей нажимает “Подробная информация” в листах ожидания$")
+    public void DetailsWl() {
+        $(By.xpath("//*[@id='waiting-list']/tr[2]/td[1]/div[1]/button")).click();
     }
 
     @То("^появится всплывающие окно с полями: \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
@@ -384,19 +390,19 @@ public class MyStepdefs implements SElements {
     }
 
     @То("^появится всплывающие окно с заполненными полями \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
-    public void aseertModal(String arg1,String arg2,String arg3,String arg4,String arg5,String arg6,String arg7,String arg8,String arg9) {
+    public void aseertModal(String arg1,String arg2,String arg3,String arg4,String arg5,String arg6,String arg7,String arg8,String arg9) throws InterruptedException {
         page.callDoctorPage().eqCallDoc(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+        System.out.println("welldone");
     }
 
     @Допустим("^Андрей хочет вызвать врача$")
     public void WantCall() {
         calldocdom.click();
-        fondPatient1.click();
     }
 
-    @Тогда("^Андрей заполняет поля \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
-    public void FillInFields(String comp,String porch,String floor,String intercomCode, String phone, String adr) {
-        page.callDoctorPage().writePat(comp, porch, floor, intercomCode, phone, adr);
+    @Тогда("^Андрей заполняет поля \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", Телефон, \"([^\"]*)\"$")
+    public void FillInFields(String comp,String porch,String floor,String intercomCode, String adr) {
+        page.callDoctorPage().writePat(comp, porch, floor, intercomCode, adr);
 
     }
 
@@ -481,7 +487,85 @@ public class MyStepdefs implements SElements {
     }
 
     @Тогда("^Андрей выбирает дату привема$")
-    public void андрейВыбираетДатуПривема()  {
+    public void priemDate()  {
         $(By.xpath("//tr[contains(.,'Ай Бо Лит')]//button[@class='btn btn-block btn-success']")).click();
+    }
+
+    @Допустим("^Андрей захотел просмотреть все вызовы на дом$")
+    public void watchAllCd()  {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @Тогда("^появляется список всех созданных вызовов$")
+    public void callList()  {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @И("^Андрей удаляет созданный вызов$")
+    public void deleteCallToDoc()  {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @Когда("^Андрей захотел проверить корректость прикрепления пациента$")
+    public void prikrepCorrect()  {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @Тогда("^в поле данные пациента будут отображено: Медучереждение, Участок и Врач$")
+    public void polePatientData()  {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @Когда("^Андрей захотел проверить корректость количества талонов в фильтре специальностей$")
+    public void checkCorrectNumTalon()  {
+        // Write code here that turns the phrase above into concrete action
+    }
+
+    @Тогда("^количество талонов совпадает$")
+    public void CheckTalonDone()  {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @Тогда("^Андрей заполняет поля \"([^\"]*)\", Телефон, \"([^\"]*)\", \"([^\"]*)\"$")
+    public void zapisToCallDoc(String arg0, String arg2, String arg3)  {
+        page.callDoctorPage().writePatSMP(arg0,arg2,arg3);
+    }
+
+    @Ктомуже("^отмечает галочку Частный сектор$")
+    public void chastnik()  {
+        $(By.xpath("//*[@id='createHomeVisitForm']/div[3]/div[1]/label[2]/input")).click();
+        //*[@id="createHomeVisitForm"]/div[3]/div[1]/label[2]/input
+        //        $(By.xpath("//input[contains(.,'Частный сектор')]")).click();
+    }
+
+    @То("^появится всплывающие окно с заполненными полями ЛПУ, \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+    public void checkModalCallDoc(String arg1, String arg2, String arg3, String arg4, String arg5) throws Throwable {
+        page.callDoctorPage().eqCallDocSMP(arg1,arg2,arg3,arg4,arg5);
+        System.out.println("welldone");
+    }
+
+    @То("^в журнале вызовов будет указан тип операции - 12$")
+    public void journalOper()  {
+        open("http://call.emias.mosreg.ru/cc_dev/users/usrlog.php");
+        $("#search").val("АСТАХОВА ВИКТОРИЯ ПАВЛОВНА");
+        $("#type_search").click();
+        $("#UF_PATIENT_FIO").click();
+        $("#submitform").click();
+        $(By.xpath("//*[@class='table table-bordered table-striped']/tbody/tr[1]/td[2]")).shouldHave(Condition.text("12"));
+        System.out.println("вроде ок");
+
+    }
+
+    @Допустим("^Андрей создал вызов и передал его в 112$")
+    public void createCallTo112()  {
+        PatientNoFound();
+        WantCall();
+        zapisToCallDoc("Температура","Московская обл, г Красногорск","АСТАХОВА ВИКТОРИЯ ПАВЛОВНА");
+        chastnik();
+        LpuFilter("СТЕНД ЕМИАС МО");
+        FindLpu("СТЕНД ЕМИАС МО");
+        CallDoc();
+        $(By.xpath("//button[@class='btn btn-default btn-info']")).click();
+        System.out.println("вроде ок");
     }
 }

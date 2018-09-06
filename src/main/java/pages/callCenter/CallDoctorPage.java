@@ -50,17 +50,27 @@ public class CallDoctorPage extends AbstractPage {
         alert.accept();
     }
 
-    public void writePat(String comp,String porch,String floor,String intercomCode, String phone, String adr){
+    public void writePat(String comp,String porch,String floor,String intercomCode, String adr){
         $(By.name("complaint")).val(comp);
         $(By.name("porch")).val(porch);
         $(By.name("floor")).val(floor);
         $(By.name("intercomCode")).val(intercomCode);
-        $(By.name("phone")).val(phone);
+        $(By.name("phone")).val("1234567899");
         $(By.name("address")).clear();
         $(By.name("address")).val(adr);
     }
 
-    public void eqCallDoc(String arg1,String arg2,String arg3,String arg4,String arg5,String arg6,String arg7,String arg8,String arg9){
+    public void writePatSMP(String comp, String adr, String fio){
+        $(By.name("surnameNamePatronymic")).val(fio);
+        $("#isChild").click();
+        $(By.xpath("//*[@id='createHomeVisitForm']/div/div/label[2]/input")).click();
+        $(By.name("complaint")).val(comp);
+        $(By.name("address")).clear();
+        $(By.name("address")).val(adr);
+        $(By.name("phone")).val("1234567899");
+    }
+
+    public void eqCallDoc(String arg1,String arg2,String arg3,String arg4,String arg5,String arg6,String arg7,String arg8,String arg9) throws InterruptedException {
         SelenideElement lp = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[1]"));
         SelenideElement fi = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[2]"));
         SelenideElement bir = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[3]"));
@@ -81,7 +91,7 @@ public class CallDoctorPage extends AbstractPage {
         String phone=pho.getText();
         String complaint=com.getText();
 
-        assertTrue(arg1.contains(lpu));
+        assertTrue(lpu.contains("Стенд ЕМИАС МО"));
         System.out.println(lpu+" есть");
         assertTrue(arg2.contains(fio));
         System.out.println(fio+" есть");
@@ -99,12 +109,53 @@ public class CallDoctorPage extends AbstractPage {
         System.out.println(phone+" есть");
         assertTrue(arg9.contains(complaint));
         System.out.println(complaint+" есть");
+
+    }
+
+    public void eqCallDocSMP(String arg1,String arg2,String arg3,String arg4,String arg5) throws InterruptedException {
+        SelenideElement lp = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[1]"));
+        SelenideElement fi = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[2]"));
+        SelenideElement bir = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[3]"));
+        SelenideElement adr = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[4]"));
+        SelenideElement por = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[5]"));
+        SelenideElement flo = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[6]"));
+        SelenideElement in = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[7]"));
+        SelenideElement pho = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[8]"));
+        SelenideElement com = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[9]"));
+
+        String lpu=lp.getText();
+        String fio=fi.getText();
+        String birthday=bir.getText();
+        String adress=adr.getText();
+        String porch=por.getText();
+        String floor=flo.getText();
+        String intercom=in.getText();
+        String phone=pho.getText();
+        String complaint=com.getText();
+
+        assertTrue(lpu.contains("Стенд ЕМИАС МО"));
+        System.out.println(lpu+" есть");
+        assertTrue(arg1.contains(fio));
+        System.out.println(fio+" есть");
+        assertTrue(birthday.contains(""));
+        System.out.println(birthday+" есть");
+        assertTrue(arg3.contains(adress));
+        System.out.println(adress+" есть");
+        assertTrue(porch.contains(""));
+        System.out.println(porch+" есть");
+        assertTrue(floor.contains(""));
+        System.out.println(floor+" есть");
+        assertTrue(intercom.contains(""));
+        System.out.println(intercom+" есть");
+        assertTrue(arg4.contains(phone));
+        System.out.println(phone+" есть");
+        assertTrue(arg5.contains(complaint));
+        System.out.println(complaint+" есть");
+
     }
 
     public void getLpu(String arg0){
-        SelenideElement lpuIn = $(By.id("searchLPU"));
-        lpuIn.val(arg0);
-        SelenideElement lpu = $(By.xpath("//button[contains(text("+arg0+")]"));
-        lpu.click();
+        $(By.xpath("//*[@id='searchLPUForm']/div[1]/div/input")).val(arg0);
+        $(By.xpath("//*[@id='patientLpuList']/div[2]/button")).click();
     }
 }
