@@ -1,8 +1,8 @@
 package pages;
 
-import pages.callDoctor.*;
+import pages.callCenter.*;
 
-public class Pages {
+public class Pages extends AbstractPage {
 
     public Pages() {
     }
@@ -27,9 +27,9 @@ public class Pages {
         return waitingListPage;
     }
 
-    public ApoinmentsPage apoinmentsPage() {
-        ApoinmentsPage apoinmentsPage = new ApoinmentsPage();//.initElements(driver, ApoinmentsPage.class);
-        return apoinmentsPage;
+    public DirectionsPage apoinmentsPage() {
+        DirectionsPage directionsPage = new DirectionsPage();//.initElements(driver, DirectionsPage.class);
+        return directionsPage;
     }
 
     public PatientRecordsPage patientRecordsPage() {

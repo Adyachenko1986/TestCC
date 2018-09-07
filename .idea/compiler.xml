@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="1" />
         <module name="CallCenter" />
+        <module name="TestCC" />
       </profile>
     </annotationProcessing>
   </component>
