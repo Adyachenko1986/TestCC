@@ -2,8 +2,6 @@ package callcenter.steps;
 import com.codeborne.selenide.Configuration;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.commands.PressEnter;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.ru.*;
@@ -16,12 +14,14 @@ import pages.Pages;
 import pages.SElements;
 import com.codeborne.selenide.Condition;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 public class MyStepdefs implements SElements {
@@ -40,8 +40,14 @@ public class MyStepdefs implements SElements {
         chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("window-size=1240,1020");
         driver = new ChromeDriver(chromeDriverService, chromeOptions);
+
         WebDriverRunner.setWebDriver(driver);
         Configuration.timeout = 8000;
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        System.out.println("Monitor resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());
+        System.out.println("Chrome window resolution: " + getWebDriver().manage().window().getSize());
+
 //        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 //        Configuration.browser = "chrome";
         page = new Pages();
