@@ -412,11 +412,6 @@ public class MyStepdefs implements SElements {
         page.findPatientPage().findPatient();
     }
 
-//    @Дано("^Андрей хочет найти пациента по ФИО и Дате рождения$")
-//    public void WantFindByFioAndDate() throws Throwable {
-//        // Write code here that turns the phrase above into concrete actions
-//        throw new PendingException();
-//    }
 
     @Когда("^Андрей заполняет данные \"([^\"]*)\" и \"([^\"]*)\"$")
     public void FindByFioAndDate(String arg1, String arg2) throws Throwable {
@@ -494,17 +489,20 @@ public class MyStepdefs implements SElements {
 
     @Допустим("^Андрей захотел просмотреть все вызовы на дом$")
     public void watchAllCd()  {
-        // Write code here that turns the phrase above into concrete actions
+        $(By.id("call-doc-home-list-tab")).click();
     }
 
     @Тогда("^появляется список всех созданных вызовов$")
     public void callList()  {
-        // Write code here that turns the phrase above into concrete actions
+        $(By.xpath("//*[@id='all-patient-records']/div/div/div/div")).shouldHave(Condition.text("Список заявок вызова доктора на дом"));
+        $(By.xpath("//*[@id='patientLpuList']/div[2]/button")).click();
     }
 
     @И("^Андрей удаляет созданный вызов$")
     public void deleteCallToDoc()  {
-        // Write code here that turns the phrase above into concrete actions
+        $(By.xpath("//tbody[@id='call-doc-list']//button[@class='btn btn-danger']")).click();
+        driver.switchTo().alert().accept();
+        System.out.println("welldone");
     }
 
     @Когда("^Андрей захотел проверить корректость прикрепления пациента$")
@@ -532,7 +530,6 @@ public class MyStepdefs implements SElements {
         assertTrue(spec1.contains(specEq1));
         assertTrue(spec2.contains(specEq2));
         assertTrue(spec3.contains(specEq3));
-
     }
 
     @Тогда("^количество талонов совпадает$")
@@ -548,8 +545,6 @@ public class MyStepdefs implements SElements {
     @Ктомуже("^отмечает галочку Частный сектор$")
     public void chastnik()  {
         $(By.xpath("//*[@id='createHomeVisitForm']/div[3]/div[1]/label[2]/input")).click();
-        //*[@id="createHomeVisitForm"]/div[3]/div[1]/label[2]/input
-        //        $(By.xpath("//input[contains(.,'Частный сектор')]")).click();
     }
 
     @То("^появится всплывающие окно с заполненными полями ЛПУ, \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
