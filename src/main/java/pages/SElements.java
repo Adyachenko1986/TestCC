@@ -14,6 +14,8 @@ public interface SElements {
     SelenideElement reschedule = $(By.xpath("//button[@title='Перенести запись']"));
     SelenideElement recordDate = $(By.xpath("//tr[contains(.,'Ай Бо Лит')]//button[@class='btn btn-little btn-block btn-success']"));//*[@id='week-doc-schedule-table-body']/tr[2]/td[7]/button
     SelenideElement recordTime = $(By.xpath("//*[@id='day-doc-schedule']/div/div/div[2]/button[17]"));
+    SelenideElement recordTimeRandom = $(By.xpath("//*[@id='day-doc-schedule']/div/div/div[2]/button[@class='btn btn-success']"));
+    //*[@id="5b2ec87d-377e-4c93-b8e3-c2ddef9279cc"]
     SelenideElement rerecord = $(By.xpath("//*[@id='record-to-doc-form']/div/div[2]/button"));
     SelenideElement yes = $(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button[2]"));
     SelenideElement delete = $(By.xpath("//button[@title='Удалить запись']"));

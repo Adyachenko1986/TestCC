@@ -1,6 +1,6 @@
 #   language: ru
 
-@acceptanceTest
+@acceptanceTes
 
 Функция: Просмотр Диспансеризации пациента
 

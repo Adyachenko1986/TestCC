@@ -1,6 +1,6 @@
 #   language: ru
 
-@acceptanceTest1
+@acceptanceTest
 
 Функция: Вызов врача на дом
   Как оператор КЦ

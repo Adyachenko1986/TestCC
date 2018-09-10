@@ -1,6 +1,6 @@
 #   language: ru
 
-@acceptanceTest1
+@acceptanceTest
 
 Функция: Записи вызовов на дом
   Как оператор КЦ

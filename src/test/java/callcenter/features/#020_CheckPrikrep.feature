@@ -1,6 +1,6 @@
 #   language: ru
 
-@acceptanceTest1
+@acceptanceTest
 
 Функция: Проверка коррекности записей пациента
   Задействованные роли:

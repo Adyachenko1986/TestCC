@@ -1,6 +1,5 @@
 package pages.callCenter;
 
-import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.SElements;
@@ -18,22 +17,11 @@ public class LoginPage extends AbstractPage implements SElements {
     }
 
     public void login() {
-        System.out.println("компилятр дошел до сюдова!");
         open("http://call.emias.mosreg.ru/");
-
-//        if ($("h2").getText() == "Пожалуйста, авторизуйтесь:")
-//        {
         log.val("ccg");
         pass.val("ccg123");
         loginButton.click();
         open(url);
-//        }
-//        else {
-//            System.out.println("Уже залогинен");
-//        }
-//        log.val("ccg");
-//        pass.val("ccg123");
-//        loginButton.click();
     }
 
     public void loginMis() {

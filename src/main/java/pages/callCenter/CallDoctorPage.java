@@ -152,6 +152,7 @@ public class CallDoctorPage extends AbstractPage {
         assertTrue(arg5.contains(complaint));
         System.out.println(complaint+" есть");
 
+
     }
 
     public void getLpu(String arg0){
