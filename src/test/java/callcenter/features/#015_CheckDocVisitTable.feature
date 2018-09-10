@@ -1,6 +1,6 @@
 #   language: ru
 
-@acceptanceTest
+@acceptanceTest1
 
 Функция: Проверка наличия записи к врачу
   Задействованные роли:

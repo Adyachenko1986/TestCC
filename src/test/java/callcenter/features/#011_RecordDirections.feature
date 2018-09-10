@@ -1,6 +1,6 @@
 #   language: ru
 
-@acceptanceTest
+@acceptanceTest1
 
 Функция: Работа с направлениями
   Задействованные роли:
