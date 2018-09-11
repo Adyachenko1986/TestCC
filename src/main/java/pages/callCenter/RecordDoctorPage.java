@@ -1,5 +1,6 @@
 package pages.callCenter;;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -193,20 +194,30 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
     public void changeSpec(String arg0){
         SelenideElement spec = $(By.xpath("//button[@data-department-name='"+arg0+"']"));
         spec.click();
+//        $(By.id("week-doc-schedule")).shouldBe(Condition.visible);
     }
 
     public void changeDoc(String arg0){
-        SelenideElement fastDoc = $(By.xpath("//tr[contains(.,'"+arg0+"')]//button[@class='btn btn-little btn-block btn-success']"));
+        SelenideElement fastDoc =
+                $(By.xpath("//*[contains(text(),'"+arg0+"')]"))
+                .$(By.xpath("../../."))
+                .$(By.xpath(".//button[@class='btn btn-little btn-block btn-success']"));
         fastDoc.click();
     }
 
     public void createNewCall(String arg0) throws IOException {
-        SelenideElement lpu = $(By.xpath("//button[contains(.,'Стенд ЕМИАС МО')]"));
+        SelenideElement lpu = $(By.xpath("//button[contains(.,'СТЕНД ЕМИАС МО')]"));
+        lpu.hover();
         lpu.click();
         SelenideElement spec = $(By.xpath("//button[@data-department-name='Терапия']"));
         spec.click();
+        // TODO: 11.09.2018 переделать
         SelenideElement fastDoc = $(By.xpath("//tr[contains(.,'" + arg0 + "')]//button[@class='btn btn-little btn-block btn-success']"));
+
         fastDoc.click();
+//        $(By.xpath("//button[contains(.,'СТЕНД ЕМИАС МО')]")).click();
+//        $(By.xpath("//button[@data-department-name='Терапия']")).click();
+//        $(By.xpath("//tr[contains(.,'" + arg0 + "')]//button[@class='btn btn-little btn-block btn-success']")).click();
         timerec.click();
         recordbutton.click();
     }

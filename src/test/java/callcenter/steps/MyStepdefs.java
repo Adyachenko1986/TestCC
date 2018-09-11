@@ -8,10 +8,12 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.ru.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import pages.Pages;
 import pages.SElements;
 import com.codeborne.selenide.Condition;
@@ -40,11 +42,11 @@ public class MyStepdefs implements SElements {
                 .usingAnyFreePort()
                 .build();
         chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("window-size=1240,1020");
+        chromeOptions.addArguments("window-size=1240,1800");
         driver = new ChromeDriver(chromeDriverService, chromeOptions);
 
         WebDriverRunner.setWebDriver(driver);
-        Configuration.timeout = 8000;
+        Configuration.timeout = 5000;
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         System.out.println("Monitor resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());
@@ -300,6 +302,14 @@ public class MyStepdefs implements SElements {
 
     @Допустим("^Тестовый оператор захотел отменить запись на прием$")
     public void WantCancelRecord() {
+//        Actions actions = new Actions(driver);
+//        actions.moveToElement(find);
+//        actions.perform();
+//        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();"
+//                ,find);
+        createShedule.hover();
+//        find.hover();
+//        allrecord.hover();
         allrecord.click();
         delete.shouldBe(Condition.visible);
     }
@@ -444,7 +454,7 @@ public class MyStepdefs implements SElements {
     @Допустим("^Тестовый оператор захотел увидеть ошибку при создании повторной записи к врачу$")
     public void WantWatchEx()  {
         fondPatient1.shouldHave(Condition.text("АСТАХОВА"));
-        $(By.xpath("//button[contains(.,'Стенд ЕМИАС МО')]")).shouldBe(Condition.visible);
+        $(By.xpath("//button[contains(.,'СТЕНД ЕМИАС МО')]")).shouldBe(Condition.visible);
     }
 
     @Тогда("^он увидит ошибку содержащую \"([^\"]*)\"$")

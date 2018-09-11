@@ -18,6 +18,7 @@ public interface SElements {
     //*[@id="5b2ec87d-377e-4c93-b8e3-c2ddef9279cc"]
     SelenideElement rerecord = $(By.xpath("//*[@id='record-to-doc-form']/div/div[2]/button"));
     SelenideElement yes = $(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button[2]"));
+    //*[@id='ccInfoModal']/div/div/div[3]/button[2]
     SelenideElement delete = $(By.xpath("//button[@title='Удалить запись']"));
     SelenideElement talonNumber2 = $(By.xpath("//*[@id='talon-list']/tr/td[2]"));
     SelenideElement docName2 = $(By.xpath("//*[@id='talon-list']/tr/td[4]"));
@@ -41,6 +42,7 @@ public interface SElements {
 
     SelenideElement polis = $(By.name("snPol"));
     SelenideElement find = $(By.xpath("//button[@id='search-patient']"));
+    SelenideElement createShedule = $(By.xpath("//*[contains(text(),'Запись на прием')]"));
     SelenideElement fio = $(By.name("surnameNamePatronymic"));
     SelenideElement birthday = $(By.name("birthday"));
 
