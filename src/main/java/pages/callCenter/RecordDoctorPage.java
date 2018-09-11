@@ -24,10 +24,8 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
 
     public void recordDoctor(String arg0) {
 
-        String lp="СТЕНД ЕМИАС МО";
-        String sp="Терапия";
-        changeLpu(lp);
-        changeSpec(sp);
+        changeLpu("СТЕНД ЕМИАС МО");
+        changeSpec("Терапия");
         changeDoc(arg0);
         timerec.click();
         recordbutton.click();

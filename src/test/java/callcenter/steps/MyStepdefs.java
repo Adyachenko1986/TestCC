@@ -73,8 +73,9 @@ public class MyStepdefs implements SElements {
 
     /*Вход в АРМ */
     @Допустим("^что Андрей вошел в АРМ оператора под своей учетной записью$")
-    public void LoginCC() {
+    public void LoginCC() throws InterruptedException {
         page.loginPage().login();
+        Thread.sleep(1000);
     }
 
     @Тогда("^Андрей успешно входит в АРМ оператора$")
@@ -614,5 +615,12 @@ public class MyStepdefs implements SElements {
     @Дано("^Андрей хочет найти пациента по ФИО и Дате рождения$")
     public void андрейХочетНайтиПациентаПоФИОИДатеРождения()  {
         find.shouldBe(Condition.visible);
+    }
+
+    @Тогда("^отобразится всплывающее окно с полями \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+    public void отобразитсяВсплывающееОкноСПолями(String lpu, String special, String fioDoc, String kab) throws InterruptedException {
+        page.recordDoctorPage().assertDir(lpu, special, fioDoc, kab);
+        closemodal.click();
+
     }
 }
