@@ -22,13 +22,14 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
     public RecordDoctorPage() {
     }
 
-    public void recordDoctor(String arg0) {
+    public void recordDoctor(String arg0) throws InterruptedException {
 
         changeLpu("СТЕНД ЕМИАС МО");
         changeSpec("Терапия");
         changeDoc(arg0);
         timerec.click();
         recordbutton.click();
+        Thread.sleep(1000);
         closemodal.click();
 
     }

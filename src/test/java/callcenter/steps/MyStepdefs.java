@@ -63,9 +63,9 @@ public class MyStepdefs implements SElements {
     public static void afterTests(Scenario scenario) {
 //        close();
         driver.quit();
-        System.out.println(scenario.getId());
-        System.out.println(scenario.getName());
-        System.out.println(scenario.getStatus());
+//        System.out.println(scenario.getId());
+//        System.out.println(scenario.getName());
+//        System.out.println(scenario.getStatus());
         System.out.println(scenario.isFailed());
         System.out.println(scenario.getSourceTagNames());
     }
@@ -317,7 +317,7 @@ public class MyStepdefs implements SElements {
     }
 
     @И("^создана запись на прием к \"([^\"]*)\"$")
-    public void CreateRecord(String arg0)  {
+    public void CreateRecord(String arg0) throws InterruptedException {
         page.recordDoctorPage().recordDoctor(arg0);
     }
 
@@ -444,6 +444,7 @@ public class MyStepdefs implements SElements {
     @Допустим("^Тестовый оператор захотел увидеть ошибку при создании повторной записи к врачу$")
     public void WantWatchEx()  {
         fondPatient1.shouldHave(Condition.text("АСТАХОВА"));
+        $(By.xpath("//button[contains(.,'Стенд ЕМИАС МО')]")).shouldBe(Condition.visible);
     }
 
     @Тогда("^он увидит ошибку содержащую \"([^\"]*)\"$")
@@ -622,5 +623,10 @@ public class MyStepdefs implements SElements {
         page.recordDoctorPage().assertDir(lpu, special, fioDoc, kab);
         closemodal.click();
 
+    }
+
+    @И("^сделана запись на прием к \"([^\"]*)\"$")
+    public void сделанаЗаписьНаПриемК(String arg0)  {
+        page.recordDoctorPage().recordDoctor2(arg0);
     }
 }
