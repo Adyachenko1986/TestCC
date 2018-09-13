@@ -30,14 +30,15 @@ public class Mis extends AbstractPage implements SElements {
     SelenideElement pickTime_okonClose = $(By.xpath("(//button[@type='button'])[2]"));
     SelenideElement deleteShedule = $(By.xpath("//button[@id='btn_delete']/span[2]"));
     SelenideElement deleteSheduleBtnWindow = $(By.id("btn_delete_schedule"));
+    SelenideElement deleteSheduleBtnOk = $(By.xpath("//button[contains(.,'Да']"));
 
 
     @Step("установить время календаря")
     public void setTimeCalendar(String a, String b) throws InterruptedException {
-        pickTime_nach.setValue(a);          //нажимаем на поле начала интервала
+        pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
         pickTime_nachClose.click();
         Thread.sleep(500);
-        pickTime_okon.setValue(b);          //нажимаем на поле окончание интервала
+        pickTime_okon.sendKeys(b);          //нажимаем на поле окончание интервала
         pickTime_okonClose.click();      //нажали закрыть календарь
     }
 
@@ -51,11 +52,8 @@ public class Mis extends AbstractPage implements SElements {
 
     public void createShedule() throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
-//        String a = "0700", b = "2344";
         String c = "1500", d = "1530";
         createShedule.click();
-//        setTimeCalendar(a, b);
-//        setTypeOfReception(priemNaDomu);
         setTimeCalendar(c, d);
         setTypeOfReception(priemPoOcheredi);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
@@ -101,6 +99,8 @@ public class Mis extends AbstractPage implements SElements {
         deleteShedule.click();                     //кнопка удалить расписание
         deleteSheduleBtnWindow.click();            //подтверждение удаления
         Thread.sleep(1000);
+//        deleteSheduleBtnOk.click();
+//
         new PressEnter();
     }
 }
