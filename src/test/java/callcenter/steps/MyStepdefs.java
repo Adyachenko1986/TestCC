@@ -23,6 +23,9 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 
+import static com.codeborne.selenide.Condition.enabled;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -36,17 +39,17 @@ public class MyStepdefs implements SElements {
 
 
     @Before
-    public static void setupTimeout()  {
+    public static void setupTimeout() throws InterruptedException {
         chromeDriverService = new ChromeDriverService.Builder()
                 .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
                 .usingAnyFreePort()
                 .build();
         chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("window-size=1240,1800");
+        chromeOptions.addArguments("window-size=1240,1020");
         driver = new ChromeDriver(chromeDriverService, chromeOptions);
 
         WebDriverRunner.setWebDriver(driver);
-        Configuration.timeout = 5000;
+        Configuration.timeout = 20000;
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         System.out.println("Monitor resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());
@@ -58,7 +61,8 @@ public class MyStepdefs implements SElements {
         long threadId = Thread.currentThread().getId();
         String processName = ManagementFactory.getRuntimeMXBean().getName();
         System.out.println("Started in thread: " + threadId + ", in JVM: " + processName);
-//        page.patientRecordsPage().deleteRecord();
+        page.mis().deleteSheduleDoc();
+        page.mis().createSheduleDoc();
     }
 
     @After
@@ -119,17 +123,17 @@ public class MyStepdefs implements SElements {
     }
 
     @Когда("^Тестовый оператор выбирает \"([^\"]*)\"$")
-    public void FindLpu(String arg0) {
+    public void FindLpu(String arg0) throws InterruptedException {
         page.recordDoctorPage().changeLpu(arg0);
         }
 
     @И("^затем выбирает \"([^\"]*)\"$")
-    public void FindSrec(String arg0) {
+    public void FindSrec(String arg0) throws InterruptedException {
         page.recordDoctorPage().changeSpec(arg0);
     }
 
     @И("^выбирает ближайшую запись у \"([^\"]*)\"$")
-    public void FindDay(String arg0) {
+    public void FindDay(String arg0) throws InterruptedException {
         page.recordDoctorPage().changeDoc(arg0);
     }
 
@@ -173,7 +177,7 @@ public class MyStepdefs implements SElements {
 
     @И("^Появится всплывающее окно с записью \"([^\"]*)\"$")
     public void ModalWin(String arg0) {
-        $(By.xpath("//div[@id='notifies']")).shouldHave(Condition.text(arg0));
+        $(By.xpath("//div[@id='notifies']")).shouldHave(text(arg0));
     }
 
 
@@ -196,14 +200,14 @@ public class MyStepdefs implements SElements {
 
     @Тогда("^открылась вкладка с записями \"([^\"]*)\" \"([^\"]*)\"$")
     public void OpeninigTabRecord(String arg0, String arg1) {
-        $(By.xpath("//div[contains(text()]")).shouldHave(Condition.text(arg0));
-        $(By.xpath("//div[contains(text()]")).shouldHave(Condition.text(arg1));
+        $(By.xpath("//div[contains(text()]")).shouldHave(text(arg0));
+        $(By.xpath("//div[contains(text()]")).shouldHave(text(arg1));
     }
 
     @Допустим("^Тестовый оператор захотел просмотреть активный лист ожидания$")
     public void WatchActiveWl() {
         allrecord.click();
-        $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(Condition.text("Создана"));
+        $(By.xpath("//*[@class='waiting-list-item']")).shouldHave(text("Создана"));
     }
 
     @Когда("^Тестовый оператор нажимает “Подробная информация” в записи на прием$")
@@ -245,7 +249,7 @@ public class MyStepdefs implements SElements {
 
     @Тогда("^появляется список всех созданных листов ожидания$")
     public void ListWl() {
-        $(By.xpath("//*[@class='waiting-list-item unactive']")).shouldHave(Condition.text("Отменена"));
+        $(By.xpath("//*[@class='waiting-list-item unactive']")).shouldHave(text("Отменена"));
         System.out.println("Фича 17");
     }
 
@@ -262,7 +266,7 @@ public class MyStepdefs implements SElements {
 
     @Тогда("^открывается окно “перенос записи талона” с расписанием врачей этой специальности$")
     public void RerecordWindow() {
-        $(By.xpath("//div[@class='modal-header']")).shouldHave(Condition.text("Перенос записи талона"));
+        $(By.xpath("//div[@class='modal-header']")).shouldHave(text("Перенос записи талона"));
     }
 
     @И("^Тестовый оператор выбирает дату$")
@@ -277,7 +281,7 @@ public class MyStepdefs implements SElements {
 
     @То("^появляется всплывающее окно “Запись перенесена успешно”$")
     public void ModalSucsess() {
-        notyfyRec.shouldHave(Condition.text("Запись перенесена успешно"));
+        notyfyRec.shouldHave(text("Запись перенесена успешно"));
         System.out.println("Фича 9");
     }
 
@@ -296,20 +300,19 @@ public class MyStepdefs implements SElements {
     @Тогда("^у вызова проставляется статус Отменена$")
     public void CancelWl() {
         $(By.xpath("//*[@id='show-all-waiting-list']")).click();
-        $(By.xpath("//*[@id='waiting-list']/tr[2]/td[6]")).shouldHave(Condition.text("Отменена"));
+        $(By.xpath("//*[@id='waiting-list']/tr[2]/td[6]")).shouldHave(text("Отменена"));
         System.out.println("Фича 10");
     }
 
     @Допустим("^Тестовый оператор захотел отменить запись на прием$")
-    public void WantCancelRecord() {
+    public void WantCancelRecord() throws InterruptedException {
 //        Actions actions = new Actions(driver);
 //        actions.moveToElement(find);
 //        actions.perform();
 //        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();"
 //                ,find);
+        Thread.sleep(2000);
         createShedule.hover();
-//        find.hover();
-//        allrecord.hover();
         allrecord.click();
         delete.shouldBe(Condition.visible);
     }
@@ -322,7 +325,7 @@ public class MyStepdefs implements SElements {
 
     @Тогда("^запись к \"([^\"]*)\" пропадает из поля Записи на прием$")
     public void ClearRecord(String arg0) {
-        zapis.shouldNotHave(Condition.text(arg0));
+        zapis.shouldNotHave(text(arg0));
         System.out.println("Фича 16");
     }
 
@@ -359,7 +362,7 @@ public class MyStepdefs implements SElements {
 
     @Когда("^Тестовый оператор нажал на выбранное направление$")
     public void Direction()  {
-        $(By.xpath("//*[@class='btn btn-default btn-Tblock']/strong[2]")).shouldHave(Condition.text("Терапия")).click();
+        $(By.xpath("//*[@class='btn btn-default btn-Tblock']/strong[2]")).shouldHave(text("Терапия")).click();
 //        apolpu.click();
     }
 
@@ -376,7 +379,7 @@ public class MyStepdefs implements SElements {
     @То("^в Записях пациента появится активная запись на прием к \"([^\"]*)\"$")
     public void ActiveRecordDirection(String arg0)  {
         allrecord.click();
-        zapis.shouldNotHave(Condition.text(arg0));
+        zapis.shouldNotHave(text(arg0));
         System.out.println("Фича 11");
     }
 
@@ -387,7 +390,7 @@ public class MyStepdefs implements SElements {
 //
     @Допустим("^Тестовый оператор не известен пациент$")
     public void PatientNoFound() {
-        fondPatient1.shouldNotHave(Condition.text("АСТАХОВА"));
+        fondPatient1.shouldNotHave(text("АСТАХОВА"));
     }
 //
 //    @Когда("^Тестовый оператор заполняет обязательные поля$")
@@ -453,13 +456,13 @@ public class MyStepdefs implements SElements {
 
     @Допустим("^Тестовый оператор захотел увидеть ошибку при создании повторной записи к врачу$")
     public void WantWatchEx()  {
-        fondPatient1.shouldHave(Condition.text("АСТАХОВА"));
+        fondPatient1.shouldHave(text("АСТАХОВА"));
         $(By.xpath("//button[contains(.,'СТЕНД ЕМИАС МО')]")).shouldBe(Condition.visible);
     }
 
     @Тогда("^он увидит ошибку содержащую \"([^\"]*)\"$")
     public void WatchEx(String arg0)  {
-        notyfyRec.shouldHave(Condition.text(arg0));
+        notyfyRec.shouldHave(text(arg0));
         System.out.println("Фича 14");
     }
 
@@ -470,20 +473,18 @@ public class MyStepdefs implements SElements {
 
     @Дано("^Тестовый оператор авторизуется в ВебМис$")
     public void misLogin() {
-        page.loginPage().loginMis();
+        page.mis().loginMis();
     }
 
     @И("^открывает расписание врача \"([^\"]*)\"$")
-    public void docShedule(String arg0) {
-        $(By.xpath("//a[text()='Расписание приёма']/@href")).click();
-        $(By.id("sinpdocprvdgrid1")).val(arg0);
-        $(By.id("btnfinddocprvdgrid1")).click();
-        $(By.id("docprvdgrid1")).click();
+    public void docShedule(String arg0) throws InterruptedException {
+        page.mis().OpenShedule(arg0);;
     }
 
     @Тогда("^Проверяет наличие созданной записи на прием$")
     public void checkRecordDoc()  {
-        $(By.xpath("//div[class='qtip-titlebar ui-widget-header ui-tooltip-header']")).shouldHave(Condition.text("Астахова"));
+
+        $(By.xpath("//div[class='qtip-content']")).shouldHave(text(" Астахова Виктория Павловна, 1999 г.р."));
         System.out.println("Фича 15");
     }
 
@@ -515,7 +516,7 @@ public class MyStepdefs implements SElements {
 
     @Тогда("^появляется список всех созданных вызовов$")
     public void callList()  {
-        $(By.xpath("//*[@id='all-patient-records']/div/div/div/div")).shouldHave(Condition.text("Список заявок вызова доктора на дом"));
+        $(By.xpath("//*[@id='all-patient-records']/div/div/div/div")).shouldHave(text("Список заявок вызова доктора на дом"));
         $(By.xpath("//*[@id='patientLpuList']/div[2]/button")).click();
     }
 
@@ -528,9 +529,9 @@ public class MyStepdefs implements SElements {
 
     @Когда("^Тестовый оператор захотел проверить корректость прикрепления пациента$")
     public void prikrepCorrect()  {
-        $(By.xpath("//*[@id='accretionsPatient']/tbody/tr/td[1]/span")).shouldHave(Condition.text("СТЕНД ЕМИАС МО"));
-        $(By.id("areaType")).shouldHave(Condition.text("Терапевтический (в т.ч. цеховой) Терапевтический щ-2"));
-        $(By.id("docName")).shouldHave(Condition.text("Моков Павел Александрович"));
+        $(By.xpath("//*[@id='accretionsPatient']/tbody/tr/td[1]/span")).shouldHave(text("СТЕНД ЕМИАС МО"));
+        $(By.id("areaType")).shouldHave(text("Терапевтический (в т.ч. цеховой) Терапевтический щ-2"));
+        $(By.id("docName")).shouldHave(text("Моков Павел Александрович"));
 
     }
 
@@ -582,13 +583,13 @@ public class MyStepdefs implements SElements {
         $("#type_search").click();
         $("#UF_PATIENT_FIO").click();
         $("#submitform").click();
-        $(By.xpath("//*[@class='table table-bordered table-striped']/tbody/tr[1]/td[2]")).shouldHave(Condition.text("12"));
+        $(By.xpath("//*[@class='table table-bordered table-striped']/tbody/tr[1]/td[2]")).shouldHave(text("12"));
         System.out.println("Фича 22");
 
     }
 
     @Допустим("^Тестовый оператор создал вызов и передал его в 112$")
-    public void createCallTo112()  {
+    public void createCallTo112() throws InterruptedException {
         PatientNoFound();
         WantCall();
         zapisToCallDoc("Температура","Московская обл, г Красногорск","АСТАХОВА ВИКТОРИЯ ПАВЛОВНА");
@@ -601,7 +602,7 @@ public class MyStepdefs implements SElements {
     }
 
     @И("^Тестовый оператор удаляет запись на прием$")
-    public void ClearAfterRec()  {
+    public void ClearAfterRec() throws InterruptedException {
        WantCancelRecord();
        CancelRecord();
        System.out.println("Фича 4");
@@ -636,7 +637,13 @@ public class MyStepdefs implements SElements {
     }
 
     @И("^сделана запись на прием к \"([^\"]*)\"$")
-    public void сделанаЗаписьНаПриемК(String arg0)  {
+    public void сделанаЗаписьНаПриемК(String arg0) throws InterruptedException {
         page.recordDoctorPage().recordDoctor2(arg0);
+    }
+
+    @Тогда("^Тестовый оператор запоминает время и номер талона$")
+    public void тестовыйОператорЗапоминаетВремяИНомерТалона()  {
+       String eq = timeTicket.getText();
+       closemodal.click();
     }
 }

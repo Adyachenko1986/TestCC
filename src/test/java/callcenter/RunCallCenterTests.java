@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 //        monochrome = true,
         features = "src/test/java/callcenter/features",
         glue = "callcenter/steps",
-        tags = "@acceptanceTest1"
+        tags = "@acceptanceTest11"
 //        tags = "@Test"
 
 

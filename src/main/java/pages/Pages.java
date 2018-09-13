@@ -47,6 +47,11 @@ public class Pages extends AbstractPage {
         return callCenterTests;
     }
 
+    public Mis mis() {
+        Mis mis = new Mis();//.initElements(driver, CallCenterTests.class);
+        return mis;
+    }
+
 }
 
 //    public steps.AdmissionSchedule admissionSchedule() {

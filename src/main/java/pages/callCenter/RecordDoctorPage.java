@@ -1,21 +1,14 @@
 package pages.callCenter;;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.HasInputDevices;
-import org.openqa.selenium.interactions.Keyboard;
 import pages.AbstractPage;
 import pages.SElements;
-
 import java.io.IOException;
 
+import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Selenide.$;
-import static com.thoughtworks.selenium.SeleneseTestBase.assertEquals;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
-
-import static org.assertj.core.api.Assertions.*;
 
 
 public class RecordDoctorPage extends AbstractPage implements SElements {
@@ -24,26 +17,20 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
     }
 
     public void recordDoctor(String arg0) throws InterruptedException {
-
         changeLpu("СТЕНД ЕМИАС МО");
         changeSpec("Терапия");
         changeDoc(arg0);
-        timerec.click();
-        recordbutton.click();
-        Thread.sleep(1000);
-        closemodal.click();
-
+        timerec.shouldBe(enabled).click();
+        recordbutton.shouldBe(enabled).click();
+        closemodal.shouldBe(enabled).click();
     }
 
-    public void recordDoctor2(String arg0) {
-
-        String lp="СТЕНД ЕМИАС МО";
-        String sp="Терапия";
-        changeLpu(lp);
-        changeSpec(sp);
+    public void recordDoctor2(String arg0) throws InterruptedException {
+        changeLpu("СТЕНД ЕМИАС МО");
+        changeSpec("Терапия");
         changeDoc(arg0);
-        timerec.click();
-        recordbutton.click();
+        timerec.shouldBe(enabled).click();
+        recordbutton.shouldBe(enabled).click();
     }
 
     public void assertDir(String lpu, String special, String fioDoc, String kab) throws InterruptedException {
@@ -186,22 +173,25 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         System.out.println(eq4+" есть");
     }
 
-    public void changeLpu(String arg0){
+    public void changeLpu(String arg0) throws InterruptedException {
+        Thread.sleep(1000);
         SelenideElement lpu = $(By.xpath("//button[contains(.,'"+arg0+"')]"));
-        lpu.click();
+        lpu.shouldBe(enabled).click();
     }
 
-    public void changeSpec(String arg0){
+    public void changeSpec(String arg0) throws InterruptedException {
+        Thread.sleep(1000);
         SelenideElement spec = $(By.xpath("//button[@data-department-name='"+arg0+"']"));
-        spec.click();
-//        $(By.id("week-doc-schedule")).shouldBe(Condition.visible);
+        spec.shouldBe(enabled).click();
     }
 
-    public void changeDoc(String arg0){
+    public void changeDoc(String arg0) throws InterruptedException {
+        Thread.sleep(1000);
         SelenideElement fastDoc =
                 $(By.xpath("//*[contains(text(),'"+arg0+"')]"))
                 .$(By.xpath("../../."))
                 .$(By.xpath(".//button[@class='btn btn-little btn-block btn-success']"));
+        fastDoc.shouldBe(enabled);
         fastDoc.click();
     }
 
@@ -212,9 +202,12 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         SelenideElement spec = $(By.xpath("//button[@data-department-name='Терапия']"));
         spec.click();
         // TODO: 11.09.2018 переделать
-        SelenideElement fastDoc = $(By.xpath("//tr[contains(.,'" + arg0 + "')]//button[@class='btn btn-little btn-block btn-success']"));
-
+        SelenideElement fastDoc =
+                $(By.xpath("//*[contains(text(),'"+arg0+"')]"))
+                        .$(By.xpath("../../."))
+                        .$(By.xpath(".//button[@class='btn btn-little btn-block btn-success']"));
         fastDoc.click();
+
 //        $(By.xpath("//button[contains(.,'СТЕНД ЕМИАС МО')]")).click();
 //        $(By.xpath("//button[@data-department-name='Терапия']")).click();
 //        $(By.xpath("//tr[contains(.,'" + arg0 + "')]//button[@class='btn btn-little btn-block btn-success']")).click();
