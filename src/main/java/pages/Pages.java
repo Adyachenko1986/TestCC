@@ -2,71 +2,73 @@ package pages;
 
 import pages.callCenter.*;
 
+import static com.codeborne.selenide.Selenide.page;
+
 public class Pages extends AbstractPage {
 
     public Pages() {
     }
 
     public LoginPage loginPage() {
-        LoginPage loginPage = new LoginPage();//.initElements(driver, LoginPage.class);
-        return loginPage;
+//        LoginPage loginPage = new LoginPage();//.initElements(driver, LoginPage.class);
+        return page(LoginPage.class);
     }
 
     public FindPatientPage findPatientPage() {
-        FindPatientPage findPatientPage = new FindPatientPage();//.initElements(driver, FindPatientPage.class);
-        return findPatientPage;
+//        FindPatientPage findPatientPage = new FindPatientPage();//.initElements(driver, FindPatientPage.class);
+        return page(FindPatientPage.class);
     }
 
     public RecordDoctorPage recordDoctorPage() {
-        RecordDoctorPage recordDoctorPage = new RecordDoctorPage();//.initElements(driver, RecordDoctorPage.class);
-        return recordDoctorPage;
+//        RecordDoctorPage recordDoctorPage = new RecordDoctorPage();//.initElements(driver, RecordDoctorPage.class);
+        return page(RecordDoctorPage.class);
     }
 
     public WaitingListPage waitingListPage() {
-        WaitingListPage waitingListPage = new WaitingListPage();//.initElements(driver, WaitingListPage.class);
-        return waitingListPage;
+//        WaitingListPage waitingListPage = new WaitingListPage();//.initElements(driver, WaitingListPage.class);
+        return page(WaitingListPage.class);
     }
 
     public DirectionsPage apoinmentsPage() {
-        DirectionsPage directionsPage = new DirectionsPage();//.initElements(driver, DirectionsPage.class);
-        return directionsPage;
+//        DirectionsPage directionsPage = new DirectionsPage();//.initElements(driver, DirectionsPage.class);
+        return page(DirectionsPage.class);
     }
 
     public PatientRecordsPage patientRecordsPage() {
-        PatientRecordsPage patientRecordsPage = new PatientRecordsPage();//.initElements(driver, PatientRecordsPage.class);
-        return patientRecordsPage;
+//        PatientRecordsPage patientRecordsPage = new PatientRecordsPage();//.initElements(driver, PatientRecordsPage.class);
+        return page(PatientRecordsPage.class);
     }
 
     public CallDoctorPage callDoctorPage() {
-        CallDoctorPage callDoctorPage = new CallDoctorPage();//.initElements(driver, CallDoctorPage.class);
-        return callDoctorPage;
+//        CallDoctorPage callDoctorPage = new CallDoctorPage();//.initElements(driver, CallDoctorPage.class);
+        return page(CallDoctorPage.class);
     }
 
     public CallCenterTests callCentreTests() {
-        CallCenterTests callCenterTests = new CallCenterTests();//.initElements(driver, CallCenterTests.class);
-        return callCenterTests;
+//        CallCenterTests callCenterTests = new CallCenterTests();//.initElements(driver, CallCenterTests.class);
+        return page(CallCenterTests.class);
     }
 
     public Mis mis() {
-        Mis mis = new Mis();//.initElements(driver, CallCenterTests.class);
-        return mis;
+//        Mis mis = new Mis();//.initElements(driver, CallCenterTests.class);
+        return page(Mis.class);
     }
 
 }
 
 //    public steps.AdmissionSchedule admissionSchedule() {
 //        steps.AdmissionSchedule admissionSchedule = PageFactory.initElements(driver, steps.AdmissionSchedule.class);
-//        return admissionSchedule;
+//        return page(admissionSchedule;
 //    }
 //
 //    public steps.TransferRecords transferRecords() {
 //        steps.TransferRecords transferRecords = PageFactory.initElements(driver, steps.TransferRecords.class);
-//        return transferRecords;
+//        return page(transferRecords;
 //    }
 //
 //    public steps.LoginPage loginPage() {
 //        steps.LoginPage loginPage = PageFactory.initElements(driver, steps.LoginPage.class);
-//        return loginPage;
+//        return page(loginPage;
 //    }
 
 

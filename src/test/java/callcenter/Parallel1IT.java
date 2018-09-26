@@ -8,9 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"html:target/cucumber-report/acceptanceTest", "json:target/cucumber.json"}, //,"rerun:target/rerun.txt"
 //        monochrome = true,
-        features = "src/test/java/callcenter/features",
-        glue = "callcenter/steps",
-//        tags = "@acceptanceTest2"
+        features = "src/test/resources/stationar/features",
+        glue = "stationar/steps",
         tags = "@stat"
 //        tags = "@Test"
 
@@ -19,6 +18,6 @@ import org.junit.runner.RunWith;
 )
 
 
-public class RunCallCenterTests {
+public class Parallel1IT {
 
 }

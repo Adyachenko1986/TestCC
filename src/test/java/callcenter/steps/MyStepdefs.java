@@ -14,14 +14,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import pages.Pages;
 import pages.SElements;
 import com.codeborne.selenide.Condition;
+import pages.WebDriverInstansiator;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import java.net.MalformedURLException;
 
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.exactText;
@@ -33,23 +36,25 @@ import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 public class MyStepdefs implements SElements {
     public static Pages page;
-    public static WebDriver driver;
+    public static RemoteWebDriver driver;
     public static ChromeOptions chromeOptions;
     public static ChromeDriverService chromeDriverService;
 
 
     @Before
-    public static void setupTimeout() throws InterruptedException {
-        chromeDriverService = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
-                .usingAnyFreePort()
-                .build();
-        chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("window-size=1240,1020");
-        driver = new ChromeDriver(chromeDriverService, chromeOptions);
+    public static void setupTimeout() throws InterruptedException, MalformedURLException {
+//        chromeDriverService = new ChromeDriverService.Builder()
+//                .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
+//                .usingAnyFreePort()
+//                .build();
+//        chromeOptions = new ChromeOptions();
+//        chromeOptions.addArguments("window-size=1240,1020");
+//        driver = new ChromeDriver(chromeDriverService, chromeOptions);
+//        WebDriverRunner.setWebDriver(driver);
+//        Configuration.timeout = 20000;
 
-        WebDriverRunner.setWebDriver(driver);
-        Configuration.timeout = 20000;
+
+        driver = new WebDriverInstansiator("chrome").setDriver(false);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         System.out.println("Monitor resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());
