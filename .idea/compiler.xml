@@ -11,5 +11,8 @@
         <module name="TestCC" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="TestCC" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

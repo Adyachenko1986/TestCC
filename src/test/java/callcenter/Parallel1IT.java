@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 //        monochrome = true,
         features = "src/test/resources/stationar/features",
         glue = "stationar/steps",
-        tags = "@stat"
+        tags = "@stat1"
 //        tags = "@Test"
 
 

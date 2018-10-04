@@ -54,6 +54,10 @@ public class Pages extends AbstractPage {
         return page(Mis.class);
     }
 
+    public Utils utils() {
+        return page(Utils.class);
+    }
+
 }
 
 //    public steps.AdmissionSchedule admissionSchedule() {

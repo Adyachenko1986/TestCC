@@ -18,46 +18,48 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class Mis extends AbstractPage implements SElements {
-    SelenideElement createShedule = $(By.xpath("//button[@id='btn_create']/span[2]"));
-    SelenideElement ddlbusytypeButton = $(By.xpath("//a[@id='ddlbusytype-button']/span[2]"));
-    SelenideElement pickTime_nach = $(By.id("pickTime_nach"));
-    SelenideElement schedule_add_button = $(By.id("schedule_add_button"));
-    SelenideElement priemNaDomu = $(By.linkText("Прием на дому (вызов на дом)"));
-    SelenideElement priemPoOcheredi = $(By.linkText("Прием по очереди"));
-    SelenideElement btn_save_schedule = $(By.xpath("//button[@id='btn_save_schedule']/span"));
-    SelenideElement pickTime_nachClose = $(By.xpath("(//button[@type='button'])[2]"));
-    SelenideElement pickTime_okon = $(By.id("pickTime_okon"));
-    SelenideElement pickTime_okonClose = $(By.xpath("(//button[@type='button'])[2]"));
-    SelenideElement deleteShedule = $(By.xpath("//button[@id='btn_delete']/span[2]"));
-    SelenideElement deleteSheduleBtnWindow = $(By.id("btn_delete_schedule"));
-    SelenideElement deleteSheduleBtnOk = $(By.xpath("//button[contains(.,'Да']"));
-
+//    public SelenideElement createShedule = $(By.xpath("//button[@id='btn_create']/span[2]"));
+//    public SelenideElement ddlbusytypeButton = $(By.xpath("//a[@id='ddlbusytype-button']/span[2]"));
+//    public SelenideElement pickTime_nach = $(By.id("pickTime_nach"));
+//    public SelenideElement schedule_add_button = $(By.id("schedule_add_button"));
+//    public SelenideElement priemNaDomu = $(By.linkText("Прием на дому (вызов на дом)"));
+//    public SelenideElement priemPoOcheredi = $(By.linkText("Прием по очереди"));
+//    public SelenideElement btn_save_schedule = $(By.xpath("//button[@id='btn_save_schedule']/span"));
+//    public SelenideElement pickTime_nachClose = $(By.xpath("(//button[@type='button'])[2]"));
+//    public SelenideElement pickTime_okon = $(By.id("pickTime_okon"));
+//    public SelenideElement pickTime_okonClose = $(By.xpath("(//button[@type='button'])[2]"));
+//    public SelenideElement deleteShedule = $(By.id("btn_delete"));
+//    public SelenideElement deleteSheduleBtnWindow = $(By.id("btn_delete_schedule"));
+//    public SelenideElement deleteSheduleBtnOk = $(By.xpath("//button[contains(.,'Да']"));
+//*[@id="btn_delete"]
 
     @Step("установить время календаря")
     public void setTimeCalendar(String a, String b) throws InterruptedException {
-        pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
-        pickTime_nachClose.click();
+        $(By.id("pickTime_nach")).sendKeys(a);          //нажимаем на поле начала интервала
+        $(By.xpath("(//button[@type='button'])[2]")).click();
         Thread.sleep(500);
-        pickTime_okon.sendKeys(b);          //нажимаем на поле окончание интервала
-        pickTime_okonClose.click();      //нажали закрыть календарь
+        $(By.id("pickTime_okon")).sendKeys(b);          //нажимаем на поле окончание интервала
+        $(By.xpath("(//button[@type='button'])[2]")).click();      //нажали закрыть календарь
     }
 
     @Step("установить тип приема")
     public void setTypeOfReception(WebElement typeOfReception) {
-        ddlbusytypeButton.click();                  //нажимаем на выпадающий список тип приема
+        $(By.xpath("//a[@id='ddlbusytype-button']/span[2]")).click();                  //нажимаем на выпадающий список тип приема
         typeOfReception.click();                     //выбор типа приема
-        schedule_add_button.click();                 //нажали кнопу добавить
+        $(By.id("schedule_add_button")).click();                 //нажали кнопу добавить
     }
 
 
     public void createShedule() throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
-        String c = "1500", d = "1530";
-        createShedule.click();
+        String c = "1459", d = "1530";
+        $(By.xpath("//button[@id='btn_create']/span[2]")).click();
         setTimeCalendar(c, d);
-        setTypeOfReception(priemPoOcheredi);
-        btn_save_schedule.click();                   //нажимаем кнопку сохранить
-        keyboard.pressKey(Keys.ENTER);
+        setTypeOfReception($(By.linkText("Прием по очереди")));
+        $(By.xpath("//button[@id='btn_save_schedule']/span")).click();                   //нажимаем кнопку сохранить
+//        keyboard.pressKey(Keys.ENTER);
+        Thread.sleep(2000);
+        new PressEnter();
     }
 
     public void loginMis() {
@@ -66,7 +68,8 @@ public class Mis extends AbstractPage implements SElements {
         $(By.id("Password")).shouldBe(enabled).setValue("RChS2014");
         $(By.id("loginBtn")).shouldBe(enabled).click();
     }
-    public void OpenShedule (String arg0) throws InterruptedException {
+
+    public void OpenShedule(String arg0) throws InterruptedException {
         open("http://emias.mosreg.ru/demonstration/Schedule");
         $(By.id("sinpdocprvdgrid1")).shouldBe(enabled).val(arg0);
         $(By.id("btnfinddocprvdgrid1")).shouldBe(enabled).click();
@@ -96,8 +99,11 @@ public class Mis extends AbstractPage implements SElements {
     }
 
     public void deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
-        deleteShedule.click();                     //кнопка удалить расписание
-        deleteSheduleBtnWindow.click();            //подтверждение удаления
+//        deleteShedule.click();
+        $(By.id("btn_delete")).click();
+//        кнопка удалить расписание
+//        deleteSheduleBtnWindow.click();            //подтверждение удаления
+        $(By.id("btn_delete_schedule")).click();
         Thread.sleep(1000);
 //        deleteSheduleBtnOk.click();
 //
