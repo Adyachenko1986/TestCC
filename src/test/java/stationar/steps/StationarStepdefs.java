@@ -2,6 +2,7 @@ package stationar.steps;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.PendingException;
 import cucumber.api.Scenario;
@@ -173,95 +174,101 @@ public class StationarStepdefs {
         Date dateNow = new Date();
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd.MM.yyyy");
         $(By.xpath("//*[@placeholder='Дата направления']")).val(formatForDateNow.format(dateNow));
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("02");
-            $(By.xpath("//*[contains(text(),'Направление')]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("Z55");
-            $(By.xpath("//*[contains(text(),'Проблемы')]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("Z55");
-            $(By.xpath("//*[contains(text(),'Проблемы')]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("11");
-            $(By.xpath("//*[contains(text(),'Запах')]")).click();
-        $(By.xpath("//*[contains(text(),'Впервые')]")).click();
-        $(By.xpath("//*[contains(text(),'Планово')]")).click();
-        $(By.xpath("//*[contains(text(),'в первые 6 часов')]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("2");
-            $(By.xpath("//*[contains(text(),'Прочие)]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("777");
-            $(By.xpath("//*[contains(text(),'отделение')]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).shouldHave(Condition.text(formatForDateNow.format(dateNow)));
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("59136");
-            $(By.xpath("//*[contains(text(),'Иващенкова')]")).click();
+        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("02").pressTab();
+//            $(By.xpath("//*[contains(text(),'Направление')]")).click();
+        $(By.xpath("//*[@id='reception']/flow/form/div[3]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("Z55.2").pressTab();//*[@id="reception"]/flow/form/div[3]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]
+//            $(By.xpath("//*[contains(text(),'Проблемы')]")).click();
+        $(By.xpath("//*[@id='reception']/flow/form/div[4]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("Z55.1").pressTab();//*[@id="reception"]/flow/form/div[4]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]
+//            $(By.xpath("//*[contains(text(),'Отставание')]")).click();
+        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("11").pressTab();//*[@id="reception"]/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]
+//            $(By.xpath("//*[contains(text(),'Запах')]")).click();
+//        $(By.xpath("//*[contains(text(),'Впервые')]")).click();
+//        $(By.xpath("//*[contains(text(),'Планово')]")).click();
+//        $(By.xpath("//*[contains(text(),'в первые 6 часов')]")).click();
+        $(By.xpath("//*[@id='reception']/flow/form/div[8]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("5").pressTab();//*[@id="reception"]/flow/form/div[8]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]
+//            $(By.xpath("//*[contains(text(),'Производственная)]")).click();
+//        $(By.xpath("//*[@id='reception']/flow/form/div[9]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("777");//*[@id="reception"]/flow/form/div[9]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]
+//            $(By.xpath("//*[contains(text(),'отделение')]")).click();
+//        $(By.xpath("//*[@id='reception']/flow/form/div[9]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).shouldHave(Condition.text(formatForDateNow.format(dateNow)));//*[@id="reception"]/flow/form/div[9]/div[2]/date-time/div/div[1]/st-date/mat-form-field/div/div[1]/div[1]
+        SelenideElement time = $(By.xpath("//*[@id='reception']/flow/form/div[9]/div[2]/date-time/div/div[2]/input-time/mat-form-field/div/div[1]/div/input"));
+        String timeGosp = time.getValue();
+        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("90855").pressTab();//*[@id="reception"]/flow/form/div[9]/div[3]/st-autocomplete/mat-form-field/div/div[1]/div[1]
+//            $(By.xpath("//*[contains(text(),'Иващенкова')]")).click();
 //        $(By.name("hospitalizationAccept")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("001");
-            $(By.xpath("//*[contains(text(),'Хирургическое')]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("02");
-            $(By.xpath("//*[contains(text(),'терапевтические')]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).shouldHave(Condition.text(formatForDateNow.format(dateNow)));
-        $(By.xpath("//div[contains(text(),'Обследован на RW:')]/mat-radio-group/mat-radio-button")).click();
-        $(By.xpath("//div[contains(text(),'Обследован на AIDS:')]/mat-radio-group/mat-radio-button")).click();
+        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("001").pressTab();
+//            $(By.xpath("//*[contains(text(),'Хирургическое')]")).click();
+        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("02").pressTab();
+//            $(By.xpath("//*[contains(text(),'терапевтические')]")).click();
+//        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val(formatForDateNow.format(dateNow));
+        $(By.xpath("//*[@id='reception']/flow/form/div[10]/div[2]/div[3]/date-time/div/div[2]/input-time/mat-form-field/div/div[1]/div/input")).val(timeGosp);
+
+//        $(By.xpath("//div[contains(text(),'Обследован на RW:')]/mat-radio-group/mat-radio-button")).click();
+//        $(By.xpath("//div[contains(text(),'Обследован на AIDS:')]/mat-radio-group/mat-radio-button")).click();
     }
 
     @Тогда("^Пушкарева заполняет блок “Витальная информация”$")
     public void пушкареваЗаполняетБлокВитальнаяИнформация() {
-        $(By.xpath("//*[@placeholder='Группа крови']")).val("Четвертая");
-            $(By.xpath("//*[contains(text(),'группа')]")).click();
-        $(By.xpath("//*[@placeholder='резус-фактор']")).val("-");
-            $(By.xpath("//*[contains(text(),'отрицательный')]")).click();
-        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-blood-type-rh/form/div/div[3]/div/mat-card/mat-card-content/div/div[4]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("20006");
-            $(By.xpath("//*[contains(text(),'реакции')]")).click();
-        $(By.xpath("//*[@placeholder='Тип реакции']")).val("20");
-            $(By.xpath("//*[contains(text(),'реакции')]")).click();
-        $(By.xpath("//*[@placeholder='Аллерген по МНН']")).val("1");
-            $(By.xpath("//*[contains(text(),'Дипивефрин')]")).click();
-        $(By.xpath("//*[@placeholder='Проявление реакции']")).val("2");
-            $(By.xpath("//*[contains(text(),'Ангионевротический')]")).click();
-        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[2]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("54040");
-            $(By.xpath("//*[contains(text(),'Семешко')]")).click();
+        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-blood-type-rh/form/div/div[3]/div/div/button")).click();//*[@id='vitalinformation']/vital-information/app-blood-type-rh/form/div/div[3]/div/div/button
+        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-blood-type-rh/form/div/div[3]/div/mat-card/mat-card-content/div/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("Четвертая").pressTab();//*[@id='vitalinformation']/vital-information/app-blood-type-rh/form/div/div[3]/div/mat-card/mat-card-content/div/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input
+//            $(By.xpath("//*[contains(text(),'группа')]")).click();
+        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-blood-type-rh/form/div/div[3]/div/mat-card/mat-card-content/div/div[3]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("-").pressTab();
+//            $(By.xpath("//*[contains(text(),'отрицательный')]")).click();
+        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-blood-type-rh/form/div/div[3]/div/mat-card/mat-card-content/div/div[4]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("20006").pressTab();
+//            $(By.xpath("//*[contains(text(),'реакции')]")).click();
+        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/div/button")).click();//*[@id="vitalinformation"]/vital-information/app-pathological-reaction/div/div/div[3]/div/div/button
+        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[1]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("20").pressTab();//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[1]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]
+//            $(By.xpath("//*[contains(text(),'реакции')]")).click();
+        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[1]/div[3]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("183").pressTab();
+//            $(By.xpath("//*[contains(text(),'Дипивефрин')]")).click();
+        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[2]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("12").pressTab();
+//            $(By.xpath("//*[contains(text(),'Ангионевротический')]")).click();
+        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[2]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("54040").pressTab();
+//            $(By.xpath("//*[contains(text(),'Семешко')]")).click();
 
 
     }
 
-    @И("^Пушкарева заполняет блок “Представители пациента”$")
-    public void пушкареваЗаполняетБлокПредставителиПациента() {
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Фамилия']")).val("Тестовый");
-            $(By.xpath("//div[@id='reception']//input[@placeholder='Имя']")).val("Представитель");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Отчество']")).val("Один");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Дата рождения']")).val("01.01.2001");
-        $(By.xpath("//div[@id='reception']//span[contains(.,'муж.')]"))
-                .$(By.xpath("../."))
-                .click();
-        $(By.xpath("//*[@formcontrolname='isBasic']/label/div/input")).click();
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Родственная связь']")).val("42");
-        $(By.xpath("//div[@id='reception']//*[contains(text(),'иное')]")).click();
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Тип документа']")).val("14");
-        $(By.xpath("//div[@id='reception']//*[contains(text(),'паспорт')]")).click();
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Серия']")).val("1234");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Номер']")).val("567890");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Кем выдан']")).val("Мной");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Когда выдан']")).val("02.02.2002");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='СНИЛС']")).val("12345678999");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Гражданство']")).val("010");
-        $(By.xpath("//div[@id='reception']//*[contains(text(),'АНТАРКТИДА')]")).click();
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Телефон']")).val("123456");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Адрес']")).val("Белгородская обл., Прохоровский р-н., с. Прелестное,");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Дом']")).val("1");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Корпус']")).val("2");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Строение']")).val("3");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Квартира']")).val("4");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Тип полиса']")).val("1");
-        $(By.xpath("//div[@id='reception']//*[contains(text(),'ОМС')]")).click();
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Серия']")).val("123");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Номер']")).val("789");
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Выдан']")).val("05501");
-        $(By.xpath("//div[@id='reception']//*[contains(text(),'МАКС')]")).click();
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Социальный статус']")).val("1");
-        $(By.xpath("//div[@id='reception']//*[contains(text(),'Работающий')]")).click();
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Категория льгот']")).val("809");
-        $(By.xpath("//div[@id='reception']//*[contains(text(),'Лепра')]")).click();
-        $(By.xpath("//div[@id='reception']//*[@placeholder='Тип информации']")).click();
-        $(By.xpath("//div[@id='reception']//*[contains(text(),'Телефон')]")).click();
-        $(By.xpath("//div[@id='reception']//*[@id='person']/person/div/form/div[2]/div/div/div/div/div[2]/mat-form-field/div/div[1]/div")).val("12345678999");
-    }
+//    @И("^Пушкарева заполняет блок “Представители пациента”$")
+//    public void пушкареваЗаполняетБлокПредставителиПациента() {
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Фамилия']")).val("Тестовый");
+//            $(By.xpath("//div[@id='reception']//input[@placeholder='Имя']")).val("Представитель");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Отчество']")).val("Один");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Дата рождения']")).val("01.01.2001");
+//        $(By.xpath("//div[@id='reception']//span[contains(.,'муж.')]"))
+//                .$(By.xpath("../."))
+//                .click();
+//        $(By.xpath("//*[@formcontrolname='isBasic']/label/div/input")).click();
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Родственная связь']")).val("42");
+//        $(By.xpath("//div[@id='reception']//*[contains(text(),'иное')]")).click();
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Тип документа']")).val("14");
+//        $(By.xpath("//div[@id='reception']//*[contains(text(),'паспорт')]")).click();
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Серия']")).val("1234");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Номер']")).val("567890");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Кем выдан']")).val("Мной");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Когда выдан']")).val("02.02.2002");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='СНИЛС']")).val("12345678999");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Гражданство']")).val("010");
+//        $(By.xpath("//div[@id='reception']//*[contains(text(),'АНТАРКТИДА')]")).click();
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Телефон']")).val("123456");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Адрес']")).val("Белгородская обл., Прохоровский р-н., с. Прелестное,");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Дом']")).val("1");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Корпус']")).val("2");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Строение']")).val("3");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Квартира']")).val("4");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Тип полиса']")).val("1");
+//        $(By.xpath("//div[@id='reception']//*[contains(text(),'ОМС')]")).click();
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Серия']")).val("123");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Номер']")).val("789");
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Выдан']")).val("05501");
+//        $(By.xpath("//div[@id='reception']//*[contains(text(),'МАКС')]")).click();
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Социальный статус']")).val("1");
+//        $(By.xpath("//div[@id='reception']//*[contains(text(),'Работающий')]")).click();
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Категория льгот']")).val("809");
+//        $(By.xpath("//div[@id='reception']//*[contains(text(),'Лепра')]")).click();
+//        $(By.xpath("//div[@id='reception']//*[@placeholder='Тип информации']")).click();
+//        $(By.xpath("//div[@id='reception']//*[contains(text(),'Телефон')]")).click();
+//        $(By.xpath("//div[@id='reception']//*[@id='person']/person/div/form/div[2]/div/div/div/div/div[2]/mat-form-field/div/div[1]/div")).val("12345678999");
+//    }
 
     @Когда("^Пушкарева нажимает на кнопку Сохранить$")
     public void пушкареваНажимаетНаКнопкуСохранить() throws Throwable {
