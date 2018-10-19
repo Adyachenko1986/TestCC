@@ -49,7 +49,7 @@ public class StationarStepdefs {
     @After
     public static void afterTests(Scenario scenario) {
 //        close();
-        driver.quit();
+//        driver.quit();
 //        System.out.println(scenario.getId());
 //        System.out.println(scenario.getName());
 //        System.out.println(scenario.getStatus());
@@ -58,7 +58,7 @@ public class StationarStepdefs {
     }
 
 
-    @Дано("^Каплин авторизовался в интерфейсе стационара$")
+    @Дано("^Пушкарева авторизовался в интерфейсе стационара$")
     public void каплинАвторизовалсяВИнтерфейсеСтационара() throws InterruptedException {
         open("http://109.95.224.42:2165/test/stationar/stationar_ui/login");
         Thread.sleep(2000);
@@ -225,18 +225,18 @@ public class StationarStepdefs {
         /** Ввод кем доставлен
          * диагноз направившего учреждения
          * диагноз приемного учреждения
-         * состояние*/
+         * состояние
+         * вид транспорта*/
         $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("02");
-            $(byText("02 - Направление Минздравсоцразвития России")).click();//*[@id="reception"]/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]
-//           $(By.xpath("//*[contains(text(),'02 - Направление Минздравсоцразвития России')]")).pressTab();
+            $(byText("02 - Направление Минздравсоцразвития России")).click();
         $(By.xpath("//*[@id='reception']/flow/form/div[3]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("Z55.2");
         $(byText("Z55.2 - Провал на экзаменах")).click();
-//            $(By.xpath("//*[contains(text(),'Проблемы')]")).click();
         $(By.xpath("//*[@id='reception']/flow/form/div[4]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("Z55.1");
             $(byText("Z55.1 - Отсутствие способности к обучению")).click();
-//            $(By.xpath("//*[contains(text(),'Отставание')]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("11");//*[@id="reception"]/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]
+        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("11");
             $(byText("11 - Запах алкоголя")).click();
+        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("3");
+            $(byText("3 - Может идти")).click();
 
         /** Ввод впервые
          * планово
@@ -249,7 +249,7 @@ public class StationarStepdefs {
         $(By.xpath("//*[@id='reception']/flow/form/div[8]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("5");
             $(byText("5 - Производственные прочие")).click();
 
-        /** Копирование ремени приемного отделения для вставки в госпитализацию
+        /** Копирование времени приемного отделения для вставки в госпитализацию
          * ввод врача приемного отделения*/
         SelenideElement time = $(By.xpath("//*[@id='reception']/flow/form/div[9]/div[2]/date-time/div/div[2]/input-time/mat-form-field/div/div[1]/div/input"));
         String timeGosp = time.getValue();
@@ -382,16 +382,40 @@ public class StationarStepdefs {
     @Когда("^Пушкарева нажимает на кнопку Сохранить$")
     public void пушкареваНажимаетНаКнопкуСохранить() throws Throwable {
         $(By.xpath("//div[@id='buttonSaveCard']/button[3]")).hover().click();
-        $(byText("успешно сохранен")).waitUntil(Condition.visible,1000);
+        SelenideElement medCartNumber = $(By.name("medCardNum"));
+        String number = medCartNumber.getValue();
+        $(byText("Cлучай по карте № "+number+" успешно сохранен")).waitUntil(Condition.visible,5000);
 
     }
 
-    @Тогда("^заполненная карта сохраняется и происходит редирект в журнал пациентов$")
+    @Тогда("^Пушкарева нажимает выйти$")
     public void заполненнаяКартаСохраняетсяИПроисходитРедиректВЖурналПациентов() throws Throwable {
 //        $(byText("Журнал пациентов стационара")).shouldBe(Condition.visible);
+        $(By.xpath("//div[@id='buttonSaveCard']/button[2]")).hover().click();
         $(By.xpath("/html/body/app-root/app-statist/app-header/header/div/statist-header/div/div[1]/div/div/div[2]/span")).shouldHave(Condition.text("Журнал пациентов стационара"));
 //        $("title").shouldHave(Condition.attribute("text", "Your page title"));
-//        url()="http://109.95.224.42:2165/test/stationar/stationar_ui/statist/patient-journal";
+    }
+
+    @Когда("^Пушкарева ищет в поиске пациента$")
+    public void пушкареваИщетВПоискеПациента() throws Throwable {
+//        $(By.xpath("//*[@placeholder='Поиск по ФИО, СНИЛС (123-456-789 12), № страхового полиса']")).val("54585").pressEnter();
+        open("http://109.95.224.42:2165/test/stationar/stationar_ui/statist/edit/card/61960");
+
+    }
+
+    @Тогда("^в журнале отобразится фио$")
+    public void вЖурналеОтобразитсяФио() throws Throwable {
+
+    }
+
+    @И("^Пушкарева нажимает редактировать$")
+    public void пушкареваНажимаетРедактировать() throws Throwable {
+
+    }
+
+    @Тогда("^открылась лента стационарного случая пациента$")
+    public void открыласьЛентаСтационарногоСлучаяПациента() throws Throwable {
+
     }
 
 //    @Тогда("^Пушкарева заполняет блок “Медицинские записи”$")
