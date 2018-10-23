@@ -62,8 +62,8 @@ public class StationarStepdefs {
     public void каплинАвторизовалсяВИнтерфейсеСтационара() throws InterruptedException {
         open("http://109.95.224.42:2165/test/stationar/stationar_ui/login");
         Thread.sleep(2000);
-        $(By.xpath("//div[@class='login-form']/form/div[1]/input")).val("ЯКОВЛЕВСКАЯ ЦРБ");
-        $(By.xpath("//*[contains(text(),'ОГБУЗ')]")).click();
+        $(By.xpath("//div[@class='login-form']/form/div[1]/input")).val("Талдом");
+        $(By.xpath("//*[contains(text(),'Талдомская ЦРБ')]")).click();
 //        new PressEnter();
         $(By.xpath("//div[@class='login-form']/form/div[2]/input")).val("st_terapevt");
         $(By.xpath("//div[@class='login-form']/form/div[3]/input")).val("123");
@@ -105,8 +105,10 @@ public class StationarStepdefs {
 
     @Тогда("^открылась лента “Редактирование стационарного случая”$")
     public void открыласьЛентаРедактированиеСтационарногоСлучая() {
-        $(By.xpath("//input[@placeholder='ФИО пациента']"))
-                .val("Холод");
+//        $(By.xpath("//input[@placeholder='ФИО пациента']"))
+//                .val("Холод");
+        $(By.xpath("//input[@name='snilsNg']"))
+                .val("11111111111");
         $(By.xpath("//*[@id='find']/div[3]/div[3]/button"))
                 .click();
         $(By.xpath("//a[contains(.,'Создать новую карту')]"))
@@ -126,7 +128,7 @@ public class StationarStepdefs {
         $(By.xpath("//*[@placeholder='Особый случай']")).val("1");
             $(By.xpath("//*[contains(text(),'паспорт')]")).click();
 //        $(By.xpath("//*[@placeholder='Вид оплаты']")).shouldHave(Condition.attribute("value", "1 - ОМС"));
-        $(By.xpath("//*[@placeholder='Вид оплаты']")).val("1 ");
+        $(By.xpath("//div[@id='medicalcard']//*[@placeholder='Вид оплаты']")).val("1 ");//*[@placeholder='Вид оплаты']
             $(By.xpath("//*[contains(text(),'1 - ОМС')]")).click();
     }
 
@@ -138,21 +140,18 @@ public class StationarStepdefs {
          * отчества
          * даты рождения
          * пола*/
-        $(By.xpath("//*[@placeholder='Фамилия']")).val("Тестовый");
-        $(By.xpath("//*[@placeholder='Имя']")).val("Пациент");
-        $(By.xpath("//*[@placeholder='Отчество']")).val("Автотестович");
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/person-base/div/form/div/div[1]/div[4]/date-time/div/div/st-date/mat-form-field/div/div[1]/div[1]/input")).val("01.01.2001");
-//        $(By.xpath("//*[contains(.,'муж.')]"))
-//                .$(By.xpath("../."))
-//                .click();
+        $(By.xpath("//div[@id='person']//input[@placeholder='Фамилия']")).val("Тестовый");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Имя']")).val("Пациент");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Отчество']")).val("Автотестович");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Дата рождения']")).val("01.01.2001");
 
         /** Ввод тип документа
          * серия
          * номер*/
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/person-base/div/form/div/div[2]/div[1]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("14");
+        $(By.xpath("//*[@id='person']//input[@placeholder='Тип документа']")).hover().setValue("14");
             $(By.xpath("//*[contains(text(),'Паспорт')]")).click();
-        $(By.xpath("//*[@placeholder='Серия']")).val("1234");//*[@id="person"]/person/div/form/div[1]/person-base/div/form/div/div[2]/div[1]/div[2]/mat-form-field/div/div[1]/div
-        $(By.xpath("//*[@placeholder='Номер']")).val("567890");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Серия']")).val("1234");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Номер']")).val("567890");
 
         /** Ввод кем выдан документ
          * дата выдачи*/
@@ -161,8 +160,8 @@ public class StationarStepdefs {
 
         /** Ввод СНИЛС
          * Гражданство*/
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/person-base/div/form/div/div[3]/div[1]/mat-form-field/div/div[1]/div/input")).val("12345678999");
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/person-base/div/form/div/div[3]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("010");
+        $(By.xpath("//*[@id='person']//input[@placeholder='Снилс']")).val("12345678999");
+        $(By.xpath("//*[@id='person']//input[@placeholder='Гражданство']")).val("010");
             $(By.xpath("//*[contains(text(),'АНТАРКТИДА')]")).click();
 
         /** Ввод адреса по КЛАДР*/
@@ -177,24 +176,24 @@ public class StationarStepdefs {
 
         /** Ввод адреса не по КЛАДР*/
         $(By.xpath("//*[@id='person']/person/div/form/div[1]/person-base/div/form/div/div[4]/div/mat-checkbox/label/div")).click();
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/person-base/div/form/div/div[5]/div[1]/mat-form-field/div/div[1]/div/input")).val("Белгородская обл.,Прелестное,д.1");
+        $(By.xpath("//*[@id='person']//input[@placeholder='Адрес']")).val("Белгородская обл.,Прелестное,д.1");
 
         /** Ввод типа полиса
          * серия
          * номер
          * кем выдан*/
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/div[2]/div[1]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("1");
+        $(By.xpath("//*[@id='person']//input[@placeholder='Тип полиса']")).val("1");
             $(By.xpath("//*[contains(text(),'Полис ОМС')]")).click();
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/div[2]/div[1]/div[2]/mat-form-field/div/div[1]/div/input")).val("123");
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/div[2]/div[1]/div[3]/mat-form-field/div/div[1]/div/input")).val("789");
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/div[2]/div[2]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("05501");
+        $(By.xpath("//*[@id='person']//input[@placeholder='Серия']")).val("123");
+        $(By.xpath("//*[@id='person']//input[@placeholder='Номер']")).val("789");
+        $(By.xpath("//*[@id='person']//input[@placeholder='Кем выдан']")).val("05501");
             $(By.xpath("//*[contains(text(),'МАКС')]")).click();
 
         /** Ввод социального статуса
          * категории льгот*/
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/div[3]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("1");
+        $(By.xpath("//*[@id='person']//input[@placeholder='Социальный статус']")).val("1");
             $(By.xpath("//*[contains(text(),'Работающий')]")).click();
-        $(By.xpath("//*[@id='person']/person/div/form/div[1]/div[3]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("809");
+        $(By.xpath("//*[@id='person']//input[@placeholder='Категория льгот']")).val("809");
             $(By.xpath("//*[contains(text(),'Лепра')]")).click();
 
         /** Ввод телефона контактной информации*/
@@ -212,10 +211,10 @@ public class StationarStepdefs {
          * дата направления*/
         page.utils().randomDirection();
 //        $(By.xpath("//input[@placeholder='Кем направлен']")).val("2220100");
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("2223000");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Кем направлен']")).val("2223000");
             $(byText("2223000 - ДЕПАРТАМЕНТ ЗДРАВООХРАНЕНИЯ И СОЦИАЛЬНОЙ ЗАЩИТЫ НАСЕЛЕНИЯ БЕЛГОРОДСКОЙ ОБЛАСТИ")).click();
 //            $(By.xpath("//*[contains(text(),'ОБЛАСТНАЯ')]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[3]/mat-form-field/div/div[1]/div/input")).val("Иванов");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Врач']")).val("Иванов");
 //        $(By.xpath("//input[@placeholder='Врач']")).val("Иванов");
         // определяем текущую дату для направления и госпитализации
         Date dateNow = new Date();
@@ -227,15 +226,15 @@ public class StationarStepdefs {
          * диагноз приемного учреждения
          * состояние
          * вид транспорта*/
-        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[5]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("02");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Кем доставлен']")).val("02");
             $(byText("02 - Направление Минздравсоцразвития России")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[3]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("Z55.2");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Диагноз направившего учреждения']")).val("Z55.2");
         $(byText("Z55.2 - Провал на экзаменах")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[4]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("Z55.1");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Диагноз приемного отделения']")).val("Z55.1");
             $(byText("Z55.1 - Отсутствие способности к обучению")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("11");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Доставлен в состоянии опьянения']")).val("11");
             $(byText("11 - Запах алкоголя")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("3");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Вид транспорта']")).val("3");
             $(byText("3 - Может идти")).click();
 
         /** Ввод впервые
@@ -246,14 +245,14 @@ public class StationarStepdefs {
 //        $(By.xpath("//*[contains(text(),'Планово')]")).click();
 //        $(By.xpath("//*[contains(text(),'в первые 6 часов')]")).click();
 
-        $(By.xpath("//*[@id='reception']/flow/form/div[8]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("5");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Социальный статус']")).val("5");
             $(byText("5 - Производственные прочие")).click();
 
         /** Копирование времени приемного отделения для вставки в госпитализацию
          * ввод врача приемного отделения*/
-        SelenideElement time = $(By.xpath("//*[@id='reception']/flow/form/div[9]/div[2]/date-time/div/div[2]/input-time/mat-form-field/div/div[1]/div/input"));
+        SelenideElement time = $(By.xpath("//*[@id='reception']//input[@placeholder='Дата поступления']"));
         String timeGosp = time.getValue();
-        $(By.xpath("//*[@id='reception']/flow/form/div[9]/div[3]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("90855");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Врач приемного отделения']")).val("90855");
             $(byText("90855 - ПУШКАРЕВА Р. В.")).click();
 //            $(By.xpath("//*[contains(text(),'Иващенкова')]")).click();$(byText("02 - терапевтические")).click();
 //        $(By.name("hospitalizationAccept")).click();
@@ -262,16 +261,14 @@ public class StationarStepdefs {
          * профиля коек
          * даты
          * подстановка времени*/
-        $(By.xpath("//*[@id='reception']/flow/form/div[10]/div[2]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("001");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Отделение']")).val("001");
             $(byText("001 - Хирургическое отд.1")).click();
-//            $(By.xpath("//*[contains(text(),'Хирургическое')]")).click();
-        $(By.xpath("//*[@id='reception']/flow/form/div[10]/div[2]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("19");
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Профиль коек']")).val("19");
             $(byText("19 - хирургические для взрослых")).click();
-//            $(By.xpath("//*[contains(text(),'терапевтические')]")).click();
-//        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val(formatForDateNow.format(dateNow));
-        $(By.xpath("//*[@id='reception']/flow/form/div[10]/div[2]/div[3]/date-time/div/div[1]/st-date/mat-form-field/div/div[1]/div[1]/input")).val(formatForDateNow.format(dateNow));
+//        dateHospitalization
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Дата']")).val(formatForDateNow.format(dateNow));
         Thread.sleep(2000);
-        $(By.xpath("//*[@id='reception']/flow/form/div[10]/div[2]/div[3]/date-time/div/div[2]/input-time/mat-form-field/div/div[1]/div/input")).val(timeGosp);
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Время']")).val(timeGosp);
 
 //        $(By.xpath("//div[contains(text(),'Обследован на RW:')]/mat-radio-group/mat-radio-button")).click();
 //        $(By.xpath("//div[contains(text(),'Обследован на AIDS:')]/mat-radio-group/mat-radio-button")).click();
@@ -283,13 +280,13 @@ public class StationarStepdefs {
         /** Ввод группы крови
          * резус-фактор
          * Специалист*/
-        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-blood-type-rh/form/div/div[3]/div/mat-card/mat-card-content/div/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("Четвертая");
+        $(By.xpath("//*[@id='vitalinformation']//input[@placeholder='Группа крови']")).val("Четвертая");
             $(byText("AB (IV) - Четвертая группа")).click();
-        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-blood-type-rh/form/div/div[3]/div/mat-card/mat-card-content/div/div[3]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("-");
+        $(By.xpath("//*[@id='vitalinformation']//input[@placeholder='Резус-фактор']")).val("-");
             $(byText("RH- - Резус - отрицателен")).click();
-        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-blood-type-rh/form/div/div[3]/div/mat-card/mat-card-content/div/div[4]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("ПУШКАРЕВА");
-        //*[@id="vitalinformation"]/vital-information/app-blood-type-rh/form/div/div[3]/div/mat-card/mat-card-content/div/div[4]/st-autocomplete/mat-form-field/div/div[1]/div[1]
-            $(byText("90855, ПУШКАРЕВА РЕГИНА ВЯЧЕСЛАВОВНА, Эндокринология")).click();
+        $(By.xpath("//*[@id='vitalinformation']//input[@placeholder='Специалист']")).val("Андреева"); //Андреева //Пушкарева
+            $(byText("SSTO, Андреева Екатерина Алексеевна, Лечебное дело")).click();
+            //SSTO, Андреева Екатерина Алексеевна, Лечебное дело  //90855, ПУШКАРЕВА РЕГИНА ВЯЧЕСЛАВОВНА, Эндокринология
 
         /** Ввод типа реакции
          * Аллергена
@@ -298,16 +295,17 @@ public class StationarStepdefs {
          * Специалист
          * ПРимечание*/
         $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/div/button")).click();
-        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[1]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("20");
+        $(By.xpath("//*[@id='vitalinformation']//input[@placeholder='Тип реакции']")).val("20");
             $(byText("20 - Аллергические реакции")).click();
-        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[1]/div[3]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("002");
+        $(By.xpath("//*[@id='vitalinformation']//input[@placeholder='Аллерген']")).val("002");
             $(byText("002 - Пыль")).click();
-        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[1]/div[4]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("дак");
+        $(By.xpath("//*[@id='vitalinformation']//input[@placeholder='Аллерген по МНН']")).val("дак");
             $(byText("2 - Дактиномицин")).click();
-        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[2]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("12");
+        $(By.xpath("//*[@id='vitalinformation']//input[@placeholder='Проявление реакции']")).val("12");
             $(byText("12 - Зуд")).click();
-        $(By.xpath("//*[@id='vitalinformation']/vital-information/app-pathological-reaction/div/div/div[3]/div/mat-card/mat-card-content/div[2]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("сокол");
+        $(By.xpath("//*[@id='vitalinformation']//*[@name='pathological_group']//input[@placeholder='Специалист']")).val("сокол"); //соболь //сокол
             $(byText("16236, Соколовская Ирина Анатольевна, Терапия")).click();
+            //ssXO, Соболева Юлия Евгеньевна, Средний мед. персонал //16236, Соколовская Ирина Анатольевна, Терапия
 
 
     }
@@ -320,18 +318,16 @@ public class StationarStepdefs {
          * отчества
          * даты рождения
          * пола*/
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[1]/div[1]/mat-form-field/div/div[1]/div/input")).hover();
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[1]/div[1]/mat-form-field/div/div[1]/div/input")).val("Тестовый");
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[1]/div[2]/mat-form-field/div/div[1]/div/input")).val("Представитель");
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[1]/div[3]/mat-form-field/div/div[1]/div/input")).val("Один");
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[1]/div[4]/date-time/div/div/st-date/mat-form-field/div/div[1]/div[1]/input")).val("01.01.2001");
-                    //*[@id="agents"]/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[1]/div[4]/date-time/div/div/st-date/mat-form-field/div/div[1]/div[1]
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Фамилия']")).hover().val("Тестовый");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Имя']")).val("Представитель");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Отчество']")).val("Один");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Дата рождения']")).val("01.01.2001");
 //        $(By.xpath("//div[@id='agents']//span[contains(.,'муж.')]"))
 //                .$(By.xpath("../."))
 //                .click();
-//        $(By.xpath("//*[@formcontrolname='isBasic']/label/div/input")).click();
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[2]/div/div[1]/mat-checkbox/label/div")).click();
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[2]/div/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("42");
+        $(By.xpath("//*[@formcontrolname='isBasic']/label/div/input")).click();
+//        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[2]/div/div[1]/mat-checkbox/label/div")).click();
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Родственная связь']")).val("42");
             $(byText("42 - Иное")).click();
 
         /** Ввод тип документа
@@ -339,23 +335,23 @@ public class StationarStepdefs {
          * номер
          * кем выдан
          * когда выдан*/
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[3]/div[1]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("9");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Тип документа']")).val("9");
             $(byText("9 - Иностранный паспорт")).click();
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[3]/div[1]/div[2]/mat-form-field/div/div[1]/div/input")).val("S");
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[3]/div[1]/div[3]/mat-form-field/div/div[1]/div/input")).val("567890");
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[3]/div[2]/div[1]/mat-form-field/div/div[1]/div/input")).val("Мной");
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[3]/div[2]/div[2]/date-time/div/div/st-date/mat-form-field/div/div[1]/div[1]/input")).val("02.02.2002");
-                    //*[@id="agents"]/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[3]/div[2]/div[2]/date-time/div/div/st-date/mat-form-field/div/div[1]/div[1]
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Серия']")).val("S");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Номер']")).val("567890");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Кем выдан']")).val("Мной");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Когда выдан']")).val("02.02.2002");
+
 
         /** Ввод снилс
          * гражданство*/
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[4]/div[1]/mat-form-field/div/div[1]/div/input")).val("12345678999");
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[4]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("748");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='СНИЛС']")).val("12345678999");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Гражданство']")).val("748");
             $(byText("748 - СВАЗИЛЕНД")).click();
 
         /** Ввод адреса не по КЛАДР*/
         $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[5]/div/mat-checkbox/label/div")).click();
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/person-base/div/form/div/div[6]/div/mat-form-field/div/div[1]/div/input")).val("Белгородская обл., Прохоровский р-н., с. Прелестное,");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Адрес']")).val("Белгородская обл., Прохоровский р-н., с. Прелестное,");
 //        $(By.xpath("//div[@id='agents']//*[@placeholder='Корпус']")).val("2");
 //        $(By.xpath("//div[@id='agents']//*[@placeholder='Строение']")).val("3");
 //        $(By.xpath("//div[@id='agents']//*[@placeholder='Квартира']")).val("4");
@@ -365,18 +361,18 @@ public class StationarStepdefs {
          * серия
          * номер
          * кем выдан*/
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/div[2]/div[1]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("4");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Тип полиса']")).val("4");
             $(byText("4 - Состояние на учёте без полиса ОМС")).click();
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/div[2]/div[1]/div[2]/mat-form-field/div/div[1]/div/input")).val("123");
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/div[2]/div[1]/div[3]/mat-form-field/div/div[1]/div/input")).val("789");
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[1]/div[2]/div[2]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("86003");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Серия']")).val("123");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Номер']")).val("789");
+        $(By.xpath("//*[@id='agents']//input[@placeholder='Кем выдан']")).val("86003");
             $(By.xpath("//*[contains(text(),'МАКСИМУС')]")).click();
 
         /** Ввод контактой информации*/
         $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[2]/div[2]/div/button")).click();
         $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[2]/div[1]/div/div/div/div[1]/mat-form-field/div/div[1]/div")).click();
             $(byText("Электронная почта")).click();
-        $(By.xpath("//*[@id='agents']/div[3]/div/mat-card/div[2]/person/div/form/div[2]/div[1]/div/div/div/div[2]/mat-form-field/div/div[1]/div/input")).val("123@qwe.ru");
+        $(By.xpath("//*[@id='agents']//input[@name='comInfo']")).val("123@qwe.ru");
     }
 
     @Когда("^Пушкарева нажимает на кнопку Сохранить$")
@@ -396,25 +392,185 @@ public class StationarStepdefs {
 //        $("title").shouldHave(Condition.attribute("text", "Your page title"));
     }
 
-    @Когда("^Пушкарева ищет в поиске пациента$")
-    public void пушкареваИщетВПоискеПациента() throws Throwable {
-//        $(By.xpath("//*[@placeholder='Поиск по ФИО, СНИЛС (123-456-789 12), № страхового полиса']")).val("54585").pressEnter();
-        open("http://109.95.224.42:2165/test/stationar/stationar_ui/statist/edit/card/61960");
+//    @Когда("^Пушкарева ищет в поиске пациента$")
+//    public void пушкареваИщетВПоискеПациента() throws Throwable {
+////        $(By.xpath("//*[@placeholder='Поиск по ФИО, СНИЛС (123-456-789 12), № страхового полиса']")).val("54585").pressEnter();
+//        open("http://109.95.224.42:2165/test/stationar/stationar_ui/statist/edit/card/61960");
+//
+//    }
+//
+//    @Тогда("^в журнале отобразится фио$")
+//    public void вЖурналеОтобразитсяФио() throws Throwable {
+//
+//    }
+//
+//    @И("^Пушкарева нажимает редактировать$")
+//    public void пушкареваНажимаетРедактировать() throws Throwable {
+//
+//    }
+//
+//    @Тогда("^открылась лента стационарного случая пациента$")
+//    public void открыласьЛентаСтационарногоСлучаяПациента() throws Throwable {
+//
+//    }
+
+    @И("^Пушкарева заполняет обязательные поля в блоке “Медицинская карта”$")
+    public void пушкареваЗаполняетОбязательныеПоляВБлокеМедицинскаяКарта() throws Throwable {
+        /** Ввод номера карты
+         * проверка типа стационара
+         * проверка вида оплаты*/
+        page.utils().randomCard();
+//        $(By.xpath("//*[@placeholder='Тип стационара']")).shouldHave(Condition.attribute("value", "005 - Стационар круглосуточного пребывания"));
+        $(By.xpath("//*[@placeholder='Тип стационара']")).val("005 ");
+        $(By.xpath("//*[contains(text(),'005 - Стационар круглосуточного пребывания')]")).click();
+//        $(By.xpath("//*[@placeholder='Вид оплаты']")).shouldHave(Condition.attribute("value", "1 - ОМС"));
+        $(By.xpath("//div[@id='medicalcard']//*[@placeholder='Вид оплаты']")).val("1");
+        $(By.xpath("//*[contains(text(),'1 - ОМС')]")).click();
+    }
+
+    @Также("^Пушкарева заполняет обязательные поля в блоке “Персональные данные”$")
+    public void пушкареваЗаполняетОбязательныеПоляВБлокеПерсональныеДанные() throws Throwable {
+        $(By.xpath("//*[@id='person']/person/div/form/div[1]/div[1]/div/mat-checkbox/label/div")).click();
+        /** Ввод фамилиии
+         * имени
+         * даты рождения*/
+        $(By.xpath("//div[@id='person']//input[@placeholder='Фамилия']")).val("АвтоТестовый");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Имя']")).val("Пациент");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Дата рождения']")).val("01.01.2001");
+
+        /** Ввод тип документа
+         * серия
+         * номер*/
+        $(By.xpath("//div[@id='person']//input[@placeholder='Тип документа']")).val("14");
+        $(By.xpath("//div[@id='person']//*[contains(text(),'Паспорт')]")).click();
+        $(By.xpath("//div[@id='person']//input[@placeholder='Серия']")).val("1234");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Номер']")).val("567890").pressTab();
+
+//        /** Ввод кем выдан документ
+//         * дата выдачи*/
+//        $(By.xpath("//*[@placeholder='Кем выдан']")).val("НЛО");
+//        $(By.xpath("//*[@placeholder='Когда выдан']")).val("02.02.2002");
+//
+//        /** Ввод СНИЛС
+//         * Гражданство*/
+//        $(By.xpath("//*[@id='person']/person/div/form/div[1]/person-base/div/form/div/div[3]/div[1]/mat-form-field/div/div[1]/div/input")).val("12345678999");
+//        $(By.xpath("//*[@id='person']/person/div/form/div[1]/person-base/div/form/div/div[3]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("010");
+//        $(By.xpath("//*[contains(text(),'АНТАРКТИДА')]")).click();
+
+        /** Ввод адреса по КЛАДР*/
+        $(By.xpath("//div[@id='person']//input[@placeholder='Адрес']")).hover().click();
+
+        $(By.xpath("//div[@id='person']//input[@placeholder='Адрес']")).val("Бел");
+        $(By.xpath("//div[@id='person']//*[contains(text(),'Белгородская обл.,')]")).click();
+        $(By.xpath("//div[@id='person']//input[@placeholder='Дом']")).val("1");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Корпус']")).val("2");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Строение']")).val("3");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Квартира']")).val("4");
+
+//        /** Ввод адреса не по КЛАДР*/
+//        $(By.xpath("//*[@id='person']/person/div/form/div[1]/person-base/div/form/div/div[4]/div/mat-checkbox/label/div")).click();
+//        $(By.xpath("//*[@id='person']/person/div/form/div[1]/person-base/div/form/div/div[5]/div[1]/mat-form-field/div/div[1]/div/input")).val("Белгородская обл.,Прелестное,д.1");
+
+        /** Ввод типа полиса
+         * номер
+         * кем выдан*/
+        $(By.xpath("//div[@id='person']//input[@placeholder='Тип полиса']")).val("3");
+        $(By.xpath("//*[contains(text(),'Полис ОМС единого образца')]")).click();
+        $(By.xpath("//div[@id='person']//input[@placeholder='Номер']")).val("0123456787654321");
+        $(By.xpath("//div[@id='person']//input[@placeholder='Выдан']")).val("05501");
+        $(By.xpath("//*[contains(text(),'МАКС')]")).click();
+
+//        /** Ввод социального статуса
+//         * категории льгот*/
+//        $(By.xpath("//*[@id='person']/person/div/form/div[1]/div[3]/div[1]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("1");
+//        $(By.xpath("//*[contains(text(),'Работающий')]")).click();
+//        $(By.xpath("//*[@id='person']/person/div/form/div[1]/div[3]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("809");
+//        $(By.xpath("//*[contains(text(),'Лепра')]")).click();
+
+        /** Ввод телефона контактной информации*/
+//        $(By.xpath("//*[@id='person']/person/div/form/div[2]/div[2]/div/button")).click();
+//        $(By.xpath("//*[@id='person']/person/div/form/div[2]/div[1]/div/div/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div")).click();
+//            $(By.xpath("//*[contains(text(),'Телефон')]")).click();
+//        $(By.xpath("//*[@id='person']/person/div/form/div[2]/div[1]/div/div/div/div[2]/mat-form-field/div/div[1]/div/input")).val("12345678999");
+    }
+
+    @И("^Пушкарева заполняет обязательные поля в блоке “Поступления”$")
+    public void пушкареваЗаполняетОбязательныеПоляВБлокеПоступления() throws Throwable {
+//        /** Ввод номера направления
+//         * кем направлен
+//         * ФИО врача
+//         * дата направления*/
+//        page.utils().randomDirection();
+////        $(By.xpath("//input[@placeholder='Кем направлен']")).val("2220100");
+//        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("2223000");
+//        $(byText("2223000 - ДЕПАРТАМЕНТ ЗДРАВООХРАНЕНИЯ И СОЦИАЛЬНОЙ ЗАЩИТЫ НАСЕЛЕНИЯ БЕЛГОРОДСКОЙ ОБЛАСТИ")).click();
+////            $(By.xpath("//*[contains(text(),'ОБЛАСТНАЯ')]")).click();
+//        $(By.xpath("//*[@id='reception']/flow/form/div[2]/div[3]/mat-form-field/div/div[1]/div/input")).val("Иванов");
+////        $(By.xpath("//input[@placeholder='Врач']")).val("Иванов");
+        // определяем текущую дату для направления и госпитализации
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd.MM.yyyy");
+//        $(By.xpath("//*[@placeholder='Дата направления']")).val(formatForDateNow.format(dateNow));
+
+        /** Ввод кем доставлен
+         * диагноз направившего учреждения
+         * диагноз приемного учреждения
+         * состояние
+         * вид транспорта*/
+        $(By.xpath("//div[@id='reception']//input[@placeholder='Кем доставлен']")).val("12");
+        $(byText("12 - Самотек")).click();
+        $(By.xpath("//div[@id='reception']//input[@placeholder='Диагноз направившего учреждения']")).val("Z55.2");
+        $(byText("Z55.2 - Провал на экзаменах")).click();
+        $(By.xpath("//div[@id='reception']//input[@placeholder='Диагноз приемного отделения']")).val("Z55.1");
+        $(byText("Z55.1 - Отсутствие способности к обучению")).click();
+//        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("11");
+//        $(byText("11 - Запах алкоголя")).click();
+//        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div[2]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("3");
+//        $(byText("3 - Может идти")).click();
+
+        /** Ввод впервые
+         * планово
+         * в первые 6 часов*/
+//            $(By.xpath("//*[contains(text(),'Запах')]")).click();
+//        $(By.xpath("//*[contains(text(),'Впервые')]")).click();
+//        $(By.xpath("//*[contains(text(),'Планово')]")).click();
+//        $(By.xpath("//*[contains(text(),'в первые 6 часов')]")).click();
+
+//        $(By.xpath("//*[@id='reception']/flow/form/div[8]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("5");
+//        $(byText("5 - Производственные прочие")).click();
+
+        /** Копирование времени приемного отделения для вставки в госпитализацию
+         * ввод врача приемного отделения*/
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Приемное отделение']")).shouldHave(Condition.value("777 - Приемное отделение"));
+        SelenideElement time = $(By.xpath("//div[@id='reception']//*[@name='dateEntrance']//input[@placeholder='Время']"));
+        String timeGosp = time.getValue();
+        $(By.xpath("//*[@id='reception']/flow/form/div[9]/div[3]/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val("90855");
+        $(byText("90855 - ПУШКАРЕВА Р. В.")).click();
+//            $(By.xpath("//*[contains(text(),'Иващенкова')]")).click();$(byText("02 - терапевтические")).click();
+//        $(By.name("hospitalizationAccept")).click();
+
+        /** Ввод причины отказа от госпитализации
+         * проверка даты
+         * примечание*/
+        $(By.xpath("//*[@name='hospitalizationRefuse']/label/div")).click();
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Специалист']")).val("отказ");
+            $(byText("Пациент отказался от госпитализации")).click();
+//        $(By.xpath("//*[@id='reception']/flow/form/div[5]/div/st-autocomplete/mat-form-field/div/div[1]/div[1]/input")).val(formatForDateNow.format(dateNow));
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Специалист']")).shouldHave(Condition.hasValue(formatForDateNow.format(dateNow)));
+//        $(By.xpath("//*[@id='reception']/flow/form/div[10]/div[2]/div[3]/date-time/div/div[2]/input-time/mat-form-field/div/div[1]/div/input")).val(timeGosp);
+        $(By.xpath("//*[@id='reception']//input[@placeholder='Специалист']")).val("автотест отказа");
+
+//        $(By.xpath("//div[contains(text(),'Обследован на RW:')]/mat-radio-group/mat-radio-button")).click();
+//        $(By.xpath("//div[contains(text(),'Обследован на AIDS:')]/mat-radio-group/mat-radio-button")).click();
+    }
+
+    @Тогда("^Пушкарева заполняет обязательные поля в блоке “Витальная информация”$")
+    public void пушкареваЗаполняетОбязательныеПоляВБлокеВитальнаяИнформация() throws Throwable {
 
     }
 
-    @Тогда("^в журнале отобразится фио$")
-    public void вЖурналеОтобразитсяФио() throws Throwable {
-
-    }
-
-    @И("^Пушкарева нажимает редактировать$")
-    public void пушкареваНажимаетРедактировать() throws Throwable {
-
-    }
-
-    @Тогда("^открылась лента стационарного случая пациента$")
-    public void открыласьЛентаСтационарногоСлучаяПациента() throws Throwable {
+    @И("^Пушкарева заполняет обязательные поля в блоке “Представители пациента”$")
+    public void пушкареваЗаполняетОбязательныеПоляВБлокеПредставителиПациента() throws Throwable {
 
     }
 
