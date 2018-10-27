@@ -1,14 +1,13 @@
 package pages.callCenter;
 
 import com.codeborne.selenide.SelenideElement;
+import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 public class CallDoctorPage extends AbstractPage {
     public CallDoctorPage() {
@@ -91,23 +90,23 @@ public class CallDoctorPage extends AbstractPage {
         String phone=pho.getText();
         String complaint=com.getText();
 
-        assertTrue(lpu.contains("Стенд ЕМИАС МО"));
+        Assert.assertTrue(lpu.contains("Стенд ЕМИАС МО"));
         System.out.println(lpu+" есть");
-        assertTrue(arg2.contains(fio));
+        Assert.assertTrue(arg2.contains(fio));
         System.out.println(fio+" есть");
-        assertTrue(arg3.contains(birthday));
+        Assert.assertTrue(arg3.contains(birthday));
         System.out.println(birthday+" есть");
-        assertTrue(arg4.contains(adress));
+        Assert.assertTrue(arg4.contains(adress));
         System.out.println(adress+" есть");
-        assertTrue(arg5.contains(porch));
+        Assert.assertTrue(arg5.contains(porch));
         System.out.println(porch+" есть");
-        assertTrue(arg6.contains(floor));
+        Assert.assertTrue(arg6.contains(floor));
         System.out.println(floor+" есть");
-        assertTrue(arg7.contains(intercom));
+        Assert.assertTrue(arg7.contains(intercom));
         System.out.println(intercom+" есть");
-        assertTrue(arg8.contains(phone));
+        Assert.assertTrue(arg8.contains(phone));
         System.out.println(phone+" есть");
-        assertTrue(arg9.contains(complaint));
+        Assert.assertTrue(arg9.contains(complaint));
         System.out.println(complaint+" есть");
 
     }
@@ -133,23 +132,23 @@ public class CallDoctorPage extends AbstractPage {
         String phone=pho.getText();
         String complaint=com.getText();
 
-        assertTrue(lpu.contains("Стенд ЕМИАС МО"));
+        Assert.assertTrue(lpu.contains("Стенд ЕМИАС МО"));
         System.out.println(lpu+" есть");
-        assertTrue(arg1.contains(fio));
+        Assert.assertTrue(arg1.contains(fio));
         System.out.println(fio+" есть");
-        assertTrue(birthday.contains(""));
+        Assert.assertTrue(birthday.contains(""));
         System.out.println(birthday+" есть");
-        assertTrue(arg3.contains(adress));
+        Assert.assertTrue(arg3.contains(adress));
         System.out.println(adress+" есть");
-        assertTrue(porch.contains(""));
+        Assert.assertTrue(porch.contains(""));
         System.out.println(porch+" есть");
-        assertTrue(floor.contains(""));
+        Assert.assertTrue(floor.contains(""));
         System.out.println(floor+" есть");
-        assertTrue(intercom.contains(""));
+        Assert.assertTrue(intercom.contains(""));
         System.out.println(intercom+" есть");
-        assertTrue(arg4.contains(phone));
+        Assert.assertTrue(arg4.contains(phone));
         System.out.println(phone+" есть");
-        assertTrue(arg5.contains(complaint));
+        Assert.assertTrue(arg5.contains(complaint));
         System.out.println(complaint+" есть");
 
 

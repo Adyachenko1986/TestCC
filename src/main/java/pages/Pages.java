@@ -58,6 +58,10 @@ public class Pages extends AbstractPage {
         return page(Utils.class);
     }
 
+    public TestResponseCode testResponseCode() {
+        return page(TestResponseCode.class);
+    }
+
 }
 
 //    public steps.AdmissionSchedule admissionSchedule() {

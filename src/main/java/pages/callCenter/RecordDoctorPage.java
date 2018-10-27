@@ -1,6 +1,7 @@
 package pages.callCenter;;
 
 import com.codeborne.selenide.SelenideElement;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.SElements;
@@ -8,7 +9,6 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Selenide.$;
-import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 
 public class RecordDoctorPage extends AbstractPage implements SElements {
@@ -50,17 +50,17 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         System.out.println("текст в lpu и eq1 = "+lpu+" и "+eq1);
         System.out.println("текст в фио док и eq3 = "+fioDoc+" и "+eq3);
 
-        assertTrue(eq1.contains("Стенд ЕМИАС МО | Московская область, г. Неизвестный, ул. Светлая, д. 5"));
+        Assert.assertTrue(eq1.contains("Стенд ЕМИАС МО | Московская область, г. Неизвестный, ул. Светлая, д. 5"));
         System.out.println("Лпу есть");
-        assertTrue(eq2.contains(special));
+        Assert.assertTrue(eq2.contains(special));
         System.out.println("Специальность есть");
-        assertTrue(eq3.contains(fioDoc));
+        Assert.assertTrue(eq3.contains(fioDoc));
         System.out.println(eq3+" есть");
-        assertTrue(kab.contains(eq4));
+        Assert.assertTrue(kab.contains(eq4));
         System.out.println(eq4+" есть");
-        assertTrue(eq5 != null);
+        Assert.assertTrue(eq5 != null);
         System.out.println(eq5+" есть");
-        assertTrue(eq6 != null);
+        Assert.assertTrue(eq6 != null);
         System.out.println(eq6+" есть");
 
     }
@@ -82,19 +82,19 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         System.out.println("текст в lpu и eq1 = "+lpu+" и "+eq1);
 
 //        assertThat(lpu).isEqualToIgnoringCase(eq1);
-        assertTrue(eq1.contains("Стенд ЕМИАС МО Московская область, г. Неизвестный, ул. Светлая, д. 5"));
+        Assert.assertTrue(eq1.contains("Стенд ЕМИАС МО Московская область, г. Неизвестный, ул. Светлая, д. 5"));
         System.out.println("Лпу есть");
-        assertTrue(eq2.contains("Терапевты"));
+        Assert.assertTrue(eq2.contains("Терапевты"));
         System.out.println("Специальность есть");
-        assertTrue(eq3.contains(fioDoc));
+        Assert.assertTrue(eq3.contains(fioDoc));
         System.out.println(eq3+" есть");
-        assertTrue(kab.contains(eq4));
+        Assert.assertTrue(kab.contains(eq4));
         System.out.println(eq4+" есть");
-        assertTrue(eq5 != null);
+        Assert.assertTrue(eq5 != null);
         System.out.println(eq5+" есть");
-        assertTrue(eq6 != null);
+        Assert.assertTrue(eq6 != null);
         System.out.println(eq6+" есть");
-        assertTrue(eq7 != null);
+        Assert.assertTrue(eq7 != null);
         System.out.println(eq7+" есть");
 
     }
@@ -124,15 +124,15 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         String equal5 = $(By.xpath("//*[@id='talon-list']/tr/td[6]")).getText();
         System.out.println("Код гавно2");
 
-        assertTrue(equal2.contains("Терапия"));
+        Assert.assertTrue(equal2.contains("Терапия"));
         System.out.println(eq2+" есть");
-        assertTrue(equal3.contains("Ай Бо Лит"));
+        Assert.assertTrue(equal3.contains("Ай Бо Лит"));
         System.out.println(eq3+" есть");
-        assertTrue(equal6.contains(eq6));
+        Assert.assertTrue(equal6.contains(eq6));
         System.out.println(eq6+" есть");
-        assertTrue(equal7.contains(eq7));
+        Assert.assertTrue(equal7.contains(eq7));
         System.out.println(eq7+" есть");
-        assertTrue(istok.contains("Колл-центр"));
+        Assert.assertTrue(istok.contains("Колл-центр"));
         System.out.println("Код гавно3");
     }
 
@@ -146,10 +146,10 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
 //
 //        System.out.println("Код гавно3");
 //
-//        assertTrue(istok.contains("Колл-центр"));
-//        assertTrue(equal8.contains(eq1));
+//        Assert.assertTrue();(istok.contains("Колл-центр"));
+//        Assert.assertTrue();(equal8.contains(eq1));
 //        System.out.println(eq1+" есть");
-//        assertTrue(istok.contains(equal9));
+//        Assert.assertTrue();(istok.contains(equal9));
 //        System.out.println(" есть");
         SelenideElement lpuName2 = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/h4"));
         //*[@id="talon-list"]/tr/td[1]/div/ul/li/div/h4
@@ -163,13 +163,13 @@ public class RecordDoctorPage extends AbstractPage implements SElements {
         String eq3 = istok.getText();
         String eq4 = createData.getText();
 
-        assertTrue(eq1.contains("Стенд ЕМИАС МО"));
+        Assert.assertTrue(eq1.contains("Стенд ЕМИАС МО"));
         System.out.println(eq1+" есть");
-        assertTrue(eq2.contains("Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5"));
+        Assert.assertTrue(eq2.contains("Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5"));
         System.out.println(eq2+" есть");
-        assertTrue(eq3.contains("Источник: Колл-центр"));
+        Assert.assertTrue(eq3.contains("Источник: Колл-центр"));
         System.out.println(eq3+" есть");
-        assertTrue(eq4 != null);
+        Assert.assertTrue(eq4 != null);
         System.out.println(eq4+" есть");
     }
 

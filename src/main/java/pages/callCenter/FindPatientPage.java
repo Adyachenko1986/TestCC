@@ -1,11 +1,11 @@
 package pages.callCenter;
 
+import org.junit.Assert;
 import pages.AbstractPage;
 import pages.SElements;
 
 import java.io.IOException;
 
-import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 
 public class FindPatientPage extends AbstractPage implements SElements {
@@ -52,8 +52,8 @@ public class FindPatientPage extends AbstractPage implements SElements {
 //        assertEquals("Проверка Фамилии",family, fondPatient1.getText());
 //        assertEquals("Проверка Даты рождения",born, fondPatient2.getText());
 //        assertEquals("Проверка Полиса",polisNumber, fondPatient3.getText());
-        assertTrue(family.contains(eq1));
-        assertTrue(born.contains(eq2));
-        assertTrue(polisNumber.contains(eq3));
+        Assert.assertTrue(family.contains(eq1));
+        Assert.assertTrue(born.contains(eq2));
+        Assert.assertTrue(polisNumber.contains(eq3));
     }
 }

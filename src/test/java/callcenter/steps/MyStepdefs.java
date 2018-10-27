@@ -7,6 +7,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.ru.*;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +33,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 public class MyStepdefs implements SElements {
     public static Pages page;
@@ -554,9 +554,9 @@ public class MyStepdefs implements SElements {
         String specEq1 = $(By.xpath("//*[@id='department-11802']/button/span[2]")).getText();
         String specEq2 = $(By.xpath("//*[@id='department-12100']/button/span[2]")).getText();
         String specEq3 = $(By.xpath("//*[@id='department-12102']/button/span[2]")).getText();
-        assertTrue(spec1.contains(specEq1));
-        assertTrue(spec2.contains(specEq2));
-        assertTrue(spec3.contains(specEq3));
+        Assert.assertTrue(spec1.contains(specEq1));
+        Assert.assertTrue(spec2.contains(specEq2));
+        Assert.assertTrue(spec3.contains(specEq3));
     }
 
     @Тогда("^количество талонов совпадает$")
